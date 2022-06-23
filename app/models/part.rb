@@ -1,4 +1,5 @@
 class Part < ApplicationRecord
     belongs_to :item
-    
-end
+    has_many :repairs
+    accepts_nested_attributes_for :repairs
+end 
