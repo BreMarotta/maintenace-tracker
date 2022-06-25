@@ -2,10 +2,11 @@ import React from 'react'
 
 const ColorOptions = () => {
     const colorsArray = [
-        {name: "red",color: "BC243C"}, 
+        {name: "default", color: "DFCFBE"},
+        {name: "red", color: "BC243C"}, 
         {name: "orange", color: "DD4124"}, 
         {name: "yellow", color: "EFC050"}, 
-        {name: "green", color: ""},
+        {name: "green", color: "009B77"},
         {name: "blue", color: ""},
         {name: "purple", color: ""},
         {name: "pink", color: ""}, 

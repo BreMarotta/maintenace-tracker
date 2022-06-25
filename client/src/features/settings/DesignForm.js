@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ColorOptions from './ColorOptions';
+import { CirclePicker } from 'react-color';
 
 const DesignForm = ({ onDesignSubmit }) => {
     const [banner, setBanner] = useState("");
@@ -28,10 +29,10 @@ const DesignForm = ({ onDesignSubmit }) => {
             <label>Banner Image: </label>
                 <input type="text" name="banner" onChange={(e) => setBanner(e.target.value)} />
                 <br/>
-
-            <label type="text" onChange={(e) => setBackground(e.target.value)}>
+            
+            <label background={{background}}>
                 Background Color: 
-                <ColorOptions />
+                <CirclePicker color={background.color} onChange={(e) => setBackground(e.hex)} />
             </label>    
             <br/>
 
