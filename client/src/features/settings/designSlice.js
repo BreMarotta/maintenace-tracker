@@ -6,15 +6,15 @@ const designSlice = createSlice({
         entities: [],
     },
     reducers: {
-        designAdded(state, action) {
-
-        },
         designUpdated(state, action) {
-
+            state.entities.push(action.payload)
+        },
+        designSaved(state, action){
+            state.entities.push(action.payload)
         },
     },
 });
 
-export const { designAdded, designUpdated } = designSlice.actions;
+export const { designAdded, designUpdated, designSaved } = designSlice.actions;
 
 export default designSlice.reducer;

@@ -10,9 +10,9 @@ function Home() {
 
     const design = useSelector(state => state.design.entities);
 
-    const handleDesignSubmit = (design) => {
-        dispatch(designAdded(design))
-    }
+    // const handleDesignSubmit = (design) => {
+    //     dispatch(designAdded(design))
+    // }
 
     const people = useSelector(state => state.people.entities);
 
@@ -26,7 +26,7 @@ function Home() {
             <ul>
                 <li>This will eventually have a settings form where app-owners can personalize their site setup.</li>
                 <li>They will also have the ability to add people (household members, emoloyees, helpers depending on what type of entity is using the app.) </li>
-                <DesignForm onDesignSubmit={handleDesignSubmit} />
+                <DesignForm />
                 <PersonForm onPersonSubmit={handlePersonSubmit} />
             </ul>
 

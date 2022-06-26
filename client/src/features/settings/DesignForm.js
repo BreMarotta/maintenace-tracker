@@ -1,25 +1,36 @@
-import React, { useState } from 'react'
-import ColorOptions from './ColorOptions';
-import { CirclePicker } from 'react-color';
+import React, { useState, useEffect } from 'react'
+import { SwatchesPicker } from 'react-color';
+import { useSelector, useDispatch } from 'react-redux';
+import { designUpdated, designAdded, designSaved } from './designSlice';
 
-const DesignForm = ({ onDesignSubmit }) => {
-    const [banner, setBanner] = useState("");
-    const [background, setBackground] = useState("");
-    const [main, setMain] = useState("");
-    const [accent, setAccent] = useState("");
+const DesignForm = () => {;
+    const dispatch = useDispatch()
+    const design = useSelector(state => state.design.entities)
+    const b = (design.background == null ? "#90a4ae" : design.background)
+    const m = (design.main == null ? "#455a64" : design.main)
+    const a = (design.accent == null ? "#81c784" : design.accent)
 
-    
-    const designObject = {
-        banner: banner,
-        background: background,
-        main: main, 
-        accent: accent
+    const [designObj, setDesignObj] = useState({
+        banner: '',
+        background: b,
+        main: m,
+        accent: a
+    })
+
+    useEffect(() => {
+        dispatch(designUpdated(designObj))
+    }, [designObj])
+
+    const handleChange = (name, color) => {
+        setDesignObj({
+            ...designObj,
+            [name]: color,
+        })
     }
-    console.log(designObject)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(designObject);
+        dispatch(designSaved(designObj));
 
     }
 
@@ -27,25 +38,25 @@ const DesignForm = ({ onDesignSubmit }) => {
     <div>
         <form onSubmit={handleSubmit}>
             <label>Banner Image: </label>
-                <input type="text" name="banner" onChange={(e) => setBanner(e.target.value)} />
+                <input type="text" name="banner"/>
                 <br/>
             
-            <label background={{background}}>
+            <label style={{color: 'white', background: designObj.background}}>
                 Background Color: 
-                <CirclePicker color={background.color} onChange={(e) => setBackground(e.hex)} />
+                <SwatchesPicker color={designObj.background} name="background" onChange={(e) => handleChange("background", e.hex)} />
             </label>    
             <br/>
 
-            <label type="text" onChange={(e) => setMain(e.target.value)}>
+            <label style={{color: 'white', background: designObj.main}}>
                 Main Color: 
-                <ColorOptions />
-            </label>
+                <SwatchesPicker color={designObj.main} onChange={(e) => handleChange("main", e.hex)} />
+            </label>    
             <br/>
 
-            <label type="text" onChange={(e) => setAccent(e.target.value)}>
-                Accent Image: 
-                <ColorOptions />
-            </label>
+            <label style={{color: 'white', background: designObj.accent}}>
+                Accent Color: 
+                <SwatchesPicker color={designObj.accent} onChange={(e) => handleChange("accent", e.hex)} />
+            </label>    
             <br/>
 
             <button type="submit">Set Design Preferences</button>
