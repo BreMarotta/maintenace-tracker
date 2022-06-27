@@ -25,10 +25,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     private
 
     def design_params
-        params.prequire(:design).permit(:owner_id, :background, :main, :accent, :banner)
+        params.require(:design).permit(:owner_id, :background, :main, :accent, :banner)
     end
 
     def render_not_found_response
         render json: { error: "Design not found" },
         status: :not_found
+    end
 end
