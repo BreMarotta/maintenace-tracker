@@ -5,6 +5,6 @@ class Owner < ApplicationRecord
     has_many :locations
     has_many :categories
 
-    validates :username, :password, :password_confirmation, presence: true
+    validates :username, :password, presence: true
     validates :username, uniqueness: { case_sensitive: false }
 end

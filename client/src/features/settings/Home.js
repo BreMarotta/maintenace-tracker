@@ -8,7 +8,7 @@ import { personAdded } from './peopleSlice';
 function Home() {
     const dispatch = useDispatch();
 
-    const design = useSelector(state => state.design.entities);
+    // const design = useSelector(state => state.design.entities);
 
     // const handleDesignSubmit = (design) => {
     //     dispatch(designAdded(design))

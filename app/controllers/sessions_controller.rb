@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
     skip_before_action :authorize, only: :create
+
     #login
     def create 
         owner = Owner.find_by(username: params[:username])

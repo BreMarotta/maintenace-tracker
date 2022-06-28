@@ -6,12 +6,21 @@ const ownersSlice = createSlice({
         entities: [],
     },
     reducers: {
-        ownerAdded(state, action) {
+
+    },
+    asyncReducers: {
+        signup(state, action) {
             state.entities.push({...action.payload});
         },
-    },
+        login(state, action) {
+
+        },
+        logout(state, action) {
+
+        }
+    }
 });
 
-export const { ownerAdded } = ownersSlice.actions;
+export const { signup, login, logout } = ownersSlice.actions;
 
 export default ownersSlice.reducer;
