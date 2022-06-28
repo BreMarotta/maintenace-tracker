@@ -21,8 +21,7 @@ export const logOut = createAsyncThunk('owners/logout', () => {
         method: "DELETE",
         headers: {"Content-Type": "application/json"}
     })
-    .then((res) => res.json())
-    .then(d => d)
+    .then((res) => {})
 })
 
 const ownersSlice = createSlice({
@@ -34,39 +33,54 @@ const ownersSlice = createSlice({
         loggedin: "false"
     },
     reducers: {
-        setUser(state, action) {
-            state.user.push(action.payload);
-        },
-        logout(state) {
-            console.log("Logged Out")
-            state.user = [];
-            state.loggedin = "false"
-        },
-        login(state, action) {
-            console.log(action.payload)
-        }
+        // setUser(state, action) {
+        //     state.user.push(action.payload);
+        // },
+        // logout(state) {
+        //     console.log("Logged Out")
+        //     state.user = [];
+        //     state.loggedin = "false"
+        // },
+        // login(state, action) {
+        //     console.log(action.payload)
+        // }
     },
     extraReducers: {
         [getMe.pending](state) {
             state.status = "loading";
         },
         [getMe.fulfilled](state, action) {
-            state.user = action.payload;
+            if (action.payload) {
+                console.log(action.payload)
+                state.user = action.payload;
+                state.loggedin = "true"
+                state.status = "idle"
+            } else {
             state.status = "idle";
+            state.loggedin = "false"
+        }
+            
         },
         [logIn.pending](state) {
             state.status = "loading";
         },
         [logIn.fulfilled](state, action) {
-            console.log(action.payload)
-            state.user = action.payload;
-            state.status = "idle";
-            state.loggedin = "true"
+            if (!action.payload.error) {
+                state.user = action.payload;
+                state.status = "idle";
+                state.loggedin = "true"
+            } else {
+                state.error = action.payload.error;
+                state.loggedin = "false"
+                console.log(action.payload)}
+                
+            
         },
         [logOut.pending](state) {
             state.status = "loading";
         },
         [logOut.fulfilled](state) {
+            console.log("logged out")
             state.user = [];
             state.status = "idle";
             state.loggedin = "false"

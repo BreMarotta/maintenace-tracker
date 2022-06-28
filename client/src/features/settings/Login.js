@@ -1,51 +1,29 @@
 import React, { useState, useEffect} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { logIn } from './ownersSlice'
 
 const Login = () => {
     // const navigate = useNavigate();
     const dispatch = useDispatch();
+    const error = useSelector(state => state.owners.error)
+    // console.log(error)
 
     const [userObj, setUserObj] = useState({
         username: "",
         password: ""
     })
 
-    // const [username, setUsername] = useState("")
-    // const [password, setPassword] = useState("")
-    // const [errorsList, setErrorsList] = useState([])
     const handleChange = (e) => {
-
-        const newObj = {
-            ...userObj, [e.target.name]: e.target.value}
-            setUserObj(newObj)
+        const newObj = {...userObj, [e.target.name]: e.target.value};
+        setUserObj(newObj)
     }
  
-    // console.log(userObj)
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(logIn(userObj))
     }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     fetch(`/login`, {
-    //         method: "POST",
-    //         headers: {"Content-Type": "application/json"},
-    //         body: JSON.stringify({username, password }),
-    //     })
-    //     .then(res => res.json())
-    //     .then(user => {
-    //         if (!user.error){
-    //             dispatch(setMe(user))
-    //         } else {
-    //             setUsername("")
-    //             setPassword("")
-    //             setErrorsList(user.error)
-    //         }
-    //     })
-        // dispatch(setMe({username, password}))
-    // }
+
   return (
     <div>
         <form className="form" onSubmit={handleSubmit}>
@@ -68,7 +46,7 @@ const Login = () => {
                 <br/>
                 <input type="submit"/>
                 <br/>
-            {/* {errorsList} */}
+            {error}
         </form>
     </div>
   )
