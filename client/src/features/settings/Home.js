@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Auth from './Auth'
+
 
 const Home = () => {
     const [count, setCount] = useState("");
@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div>Home
         <h1>Page Count: {count}</h1>
-        {/* <Auth /> */}
+
     </div>
   )
 }
