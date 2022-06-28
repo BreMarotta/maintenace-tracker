@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
 
-    skip_before_action :authorize, only: :create
+    # skip_before_action :authorize, only: :create
 
     #login
     def create 
+        # byebug
         owner = Owner.find_by(username: params[:username])
         if owner&.authenticate(params[:password])
             session[:owner_id] = owner.id
@@ -16,6 +17,5 @@ class SessionsController < ApplicationController
     #logout
     def destroy
         session.clear
-
     end
 end

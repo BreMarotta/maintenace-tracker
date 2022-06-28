@@ -3,11 +3,12 @@ import { NavLink, useNavigation } from 'react-router-dom';
 
 const Navigation = () => {
   return (
-    <div className="navigation">
-        <NavLink to="/" className="">Home</NavLink>
-        <NavLink to="/items" className="">Items</NavLink>
-        <NavLink to="/repairs" className="">Repairs</NavLink>
-        <NavLink to="/testing" className="">Test Route</NavLink>
+    <div className="">
+        <NavLink to="/" className="navigation">Home</NavLink>
+        <NavLink to="/signup" className="navigation">Signup</NavLink>
+        {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
+        <NavLink to="/login" className="navigation">Login</NavLink>
+        
     </div>
   )
 }

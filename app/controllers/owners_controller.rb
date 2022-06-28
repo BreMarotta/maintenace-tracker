@@ -1,6 +1,6 @@
 class OwnersController < ApplicationController
 
-    skip_before_action :authorize, only: :create
+    # skip_before_action :authorize, only: :create
 
 
     #signup
@@ -11,8 +11,9 @@ class OwnersController < ApplicationController
     end
 
     def show
-        byebug
-        render json: @current_owner
+        # byebug
+        owner = Owner.find_by(id: session[:owner_id])
+        render json: owner
     end
 
     private

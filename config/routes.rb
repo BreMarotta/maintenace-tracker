@@ -4,8 +4,13 @@ Rails.application.routes.draw do
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
   post '/signup', to: 'owners#create'
   get '/me', to: 'owners#show'
+
+
+  resources :people
+
 
   get '*path',
   to: 'fallback#index',

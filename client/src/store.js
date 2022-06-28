@@ -16,10 +16,10 @@ export const store = configureStore({
         // design: designSlice,
         // items: itemsReducer,
         // locations: locationsReducer,
-        // owners: ownersReducer,
+        owners: ownersReducer,
         // people: peopleReducer,
         // repairs: repairsReducer,
-        [ownerApi.reducerPath]: ownerApi.reducer,
+        // [ownerApi.reducerPath]: ownerApi.reducer,
         
     },
     middleware: (getDefaultMiddleware) =>

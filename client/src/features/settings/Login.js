@@ -1,20 +1,51 @@
-import React, { useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
-import { login } from './ownersSlice'
+import { logIn } from './ownersSlice'
 
 const Login = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [errorsList, setErrorsList] = useState([])
+    const [userObj, setUserObj] = useState({
+        username: "",
+        password: ""
+    })
 
+    // const [username, setUsername] = useState("")
+    // const [password, setPassword] = useState("")
+    // const [errorsList, setErrorsList] = useState([])
+    const handleChange = (e) => {
+
+        const newObj = {
+            ...userObj, [e.target.name]: e.target.value}
+            setUserObj(newObj)
+    }
+ 
+    // console.log(userObj)
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(login())
+        dispatch(logIn(userObj))
     }
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     fetch(`/login`, {
+    //         method: "POST",
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify({username, password }),
+    //     })
+    //     .then(res => res.json())
+    //     .then(user => {
+    //         if (!user.error){
+    //             dispatch(setMe(user))
+    //         } else {
+    //             setUsername("")
+    //             setPassword("")
+    //             setErrorsList(user.error)
+    //         }
+    //     })
+        // dispatch(setMe({username, password}))
+    // }
   return (
     <div>
         <form className="form" onSubmit={handleSubmit}>
@@ -23,19 +54,21 @@ const Login = () => {
             <input 
                 type="text"
                 id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)} />
+                name="username"
+                value={userObj.username}
+                onChange={handleChange} />
                 <br/>
             <label>Password: </label>
             <input
                 type="password"
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} />
+                name="password"
+                value={userObj.password}
+                onChange={handleChange} />
                 <br/>
                 <input type="submit"/>
                 <br/>
-            {errorsList}
+            {/* {errorsList} */}
         </form>
     </div>
   )
