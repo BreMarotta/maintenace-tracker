@@ -1,10 +1,10 @@
 import React, { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { logIn } from './ownersSlice'
+import { logIn } from './manageUsersSlice'
 
 const Login = () => {
     const dispatch = useDispatch();
-    const error = useSelector(state => state.owners.errors)
+    const errors = useSelector(state => state.owners.errors)
     // console.log(error)
 
     const [userObj, setUserObj] = useState({
@@ -20,7 +20,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(logIn(userObj))
-        if (!error) {
+        if (!errors) {
             // console.log("no error, but history not working????")
             // history.push('/');
             
@@ -55,7 +55,7 @@ const Login = () => {
                 <br/>
                 <input type="submit"/>
                 <br/>
-            {error}
+            {errors}
         </form>
     </div>
   )

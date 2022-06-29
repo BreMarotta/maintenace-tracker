@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { signUp } from './ownersSlice';
+import { signUp } from './manageUsersSlice';
 
 const Signup = () => {
   const dispatch = useDispatch();

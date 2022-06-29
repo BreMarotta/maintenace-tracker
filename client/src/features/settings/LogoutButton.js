@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getMe, logOut } from './ownersSlice'
+import { getMe, logOut } from './manageUsersSlice'
 
 const LogoutButton = () => {
     const dispatch = useDispatch()

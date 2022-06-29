@@ -7,7 +7,7 @@ import Signup from "./features/settings/Signup";
 import Login from "./features/settings/Login";
 
 import { useDispatch, useSelector } from 'react-redux'
-import { getMe } from './features/settings/ownersSlice'
+import { getMe } from './features/settings/manageUsersSlice'
 
 function App() {
   const dispatch = useDispatch()

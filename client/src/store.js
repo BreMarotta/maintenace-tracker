@@ -5,7 +5,7 @@ import categoriesReducer from "./features/categories/categoriesSlice";
 import designSlice from "./features/settings/designSlice";
 import itemsReducer from './features/items/itemsSlice';
 import locationsReducer from './features/locations/locationsSlice';
-import ownersReducer from "./features/settings/ownersSlice";
+import manageUsersReducer from "./features/settings/manageUsersSlice";
 import peopleReducer from "./features/settings/peopleSlice";
 import repairsReducer from './features/repairs/repairsSlice';
 
@@ -16,7 +16,7 @@ export const store = configureStore({
         // design: designSlice,
         // items: itemsReducer,
         // locations: locationsReducer,
-        owners: ownersReducer,
+        owners: manageUsersReducer,
         // people: peopleReducer,
         // repairs: repairsReducer,
         // [ownerApi.reducerPath]: ownerApi.reducer,

@@ -34,7 +34,7 @@ export const logOut = createAsyncThunk('owners/logout', () => {
     .then((res) => {})
 })
 
-const ownersSlice = createSlice({
+const manageUsersSlice = createSlice({
     name: "owners",
     initialState: {
         user: [],
@@ -70,7 +70,7 @@ const ownersSlice = createSlice({
                 state.loggedin = "true";
                 state.errors = [];
             } else {
-                state.error = action.payload.error;
+                state.errors = action.payload.error;
                 state.loggedin = "false";
             }           
         },
@@ -102,4 +102,4 @@ const ownersSlice = createSlice({
 
 // export const { setMe, signup, login, logout } = ownersSlice.actions;
 
-export default ownersSlice.reducer;
+export default manageUsersSlice.reducer;
