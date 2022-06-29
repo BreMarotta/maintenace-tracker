@@ -7,12 +7,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         render json: design
     end
 
-    # def create 
-    #     # byebug
-    #     new_design = @current_owner.designs.create!(design_params)
-    #     render json: new_design, status: :created
-    # end
-
     def update
         # byebug
         design = @current_owner.designs.first

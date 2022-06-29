@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import DesignForm from './DesignForm';
+import SettingsContainer from './SettingsContainer';
+
 
 
 const Home = () => {
   const loggedIn = useSelector((state) => state.owners.loggedin);
   const username = useSelector((state) => state.owners.user.username)
+
+  const [toggleDisplay, setToggleDisplay] = useState(false)
+
+  const toggle = () => {
+      setToggleDisplay(!toggleDisplay)
+  }
+
+  const displaySettingUpdates = toggleDisplay === true ? <div>
+      <SettingsContainer toggle={toggle}/>
+  </div> : ""
   
     if (loggedIn != "true"){
       return (
@@ -23,7 +34,12 @@ const Home = () => {
     return (
         <div>
           <h1>Welcome {username}! </h1>
-          <DesignForm />        
+          <button onClick={toggle}>⚙️</button>
+          {displaySettingUpdates}
+          <ul>
+            <li>Eventually, this will have instructions about how to properly use the site.</li>
+            <li> Will also include quick links???</li>
+          </ul>      
         </div>
     )
     }

@@ -3,7 +3,7 @@ import { SwatchesPicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
 import { designUpdate } from './designSlice'
 
-const DesignForm = () => {;
+const DesignForm = ({ toggle }) => {;
     const dispatch = useDispatch()
     const errors = useSelector((state) => state.design.errors);
 
@@ -38,12 +38,12 @@ const DesignForm = () => {;
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(designUpdate(designObj));
-
+        toggle();
     }
 
   return (
     <div>
-        <form onSubmit={handleSubmit}>
+        <form className=""onSubmit={handleSubmit}>
             <label>Banner Image: </label>
                 <input 
                     type="text" 
@@ -72,9 +72,7 @@ const DesignForm = () => {;
             <br/>
 
             <button type="submit">Set Design Preferences</button>
-
         </form>
-        DesignForm
     </div>
   )
 }
