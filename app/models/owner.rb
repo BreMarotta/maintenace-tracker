@@ -7,4 +7,6 @@ class Owner < ApplicationRecord
 
     validates :username, :password, presence: true
     validates :username, uniqueness: { case_sensitive: false }
+
+    accepts_nested_attributes_for :designs
 end

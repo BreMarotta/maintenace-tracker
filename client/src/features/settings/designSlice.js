@@ -1,9 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { createGlobalStyle } from 'styled-components';
-
-// const Global = createGlobalStyle`
-
-// `
 
 export const designBase = createAsyncThunk('design/base', () => {
     return fetch('/designs')
@@ -11,15 +6,6 @@ export const designBase = createAsyncThunk('design/base', () => {
     .then(data => data)
 })
 
-// export const designCreate = createAsyncThunk('design/create', (designObj) => {
-//     return fetch('/designs', {
-//         method: "POST",
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(designObj)
-//     })
-//     .then(res => res.json())
-//     .then(data => data)
-// })
 
 export const designUpdate = createAsyncThunk('design/update', (designObj) => {
     return fetch('/designs/1', {
@@ -39,17 +25,7 @@ const designSlice = createSlice({
         errors: [],
         status: []
     },
-    reducers: {
-        // designUpdated(state, action) {
-        //     // console.log(action.payload)
-        //     state.entities.push(action.payload)
-        // },
-        // designSaved(state, action){
-        //     state.entities.push(action.payload)
-        //     console.log(state)
-        // },
-
-    },
+    reducers: {},
     extraReducers: {
         [designBase.pending](state) {
             state.status = "loading"
@@ -64,19 +40,6 @@ const designSlice = createSlice({
                 // state.errors = action.payload.error;
             }
         },
-        // [designCreate.pending](state) {
-        //     state.status = "loading";
-        // }, 
-        // [designCreate.fulfilled](state, action) {
-        //     if(!action.payload.error) {
-        //         state.design = action.payload;
-        //         state.status = "idle";
-        //         state.errors = [];
-        //     }else{
-        //         console.log("returned from fetch: ", action.payload)
-        //         // state.errors = action.payload.error;
-        //     }
-        // },
         [designUpdate.pending](state) {
             state.status = "loading"
         },

@@ -9,30 +9,37 @@ const Signup = () => {
   const errorLis = errors.map(e => <li key={e}>{e}</li>)
 
   const [userObj, setUserObj] = useState({
-    username: "",
-    password: "",
-    password_confirmation: "",
-    background: "#90a4ae",
-    main: "#455a64",
-    accent: "#81c784",
-    banner: "https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467__340.jpg" 
+    owner: {
+      username: "",
+      password: "",
+      password_confirmation: "",
+      designs_attributes: [{
+        background: "#90a4ae",
+        main: "#455a64",
+        accent: "#81c784",
+        banner: "https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467__340.jpg"
+      }] 
+    }   
   })
 
-  const handleChange = (e) => {
-    const newObj = {...userObj, [e.target.name]: e.target.value}
+  const handleChange = (e) => { 
+    const newObj = {...userObj, owner: {...userObj.owner, [e.target.name]: e.target.value}}
     setUserObj(newObj)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // debugger
     dispatch(signUp(userObj))
     if (!errors) {
 
     } else {
       setUserObj({
-        username: "",
-        password: "",
-        password_confirmation: ""
+        owner: {
+          username: "",
+          password: "",
+          password_confirmation: ""
+        }
       })
     }
   }

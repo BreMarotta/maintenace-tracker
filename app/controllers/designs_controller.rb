@@ -3,6 +3,7 @@ class DesignsController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
+        byebug
         design = @current_owner.designs.first
         render json: design
     end

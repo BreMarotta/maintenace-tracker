@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     dispatch(getMe());
     dispatch(designBase());
-  }, []);
+  }, [loggedIn]);
 
   return (
     <BrowserRouter>
