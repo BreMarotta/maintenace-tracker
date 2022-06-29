@@ -21,7 +21,10 @@ function App() {
     <BrowserRouter>
         <Navigation />
         <Switch />
-          
+          <Route path="/signup" >
+            {loggedIn == "true" ? <Redirect to="/" /> : <Signup />}
+            
+          </Route>
           <Route path="/login" > 
             {loggedIn == "true" ? <Redirect to="/" /> : <Login />}
           </Route>
