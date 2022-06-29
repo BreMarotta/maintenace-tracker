@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import DesignForm from './DesignForm';
 
 
 const Home = () => {
@@ -21,7 +22,8 @@ const Home = () => {
     } else {
     return (
         <div>
-          <h1>Welcome {username}! </h1>        
+          <h1>Welcome {username}! </h1>
+          <DesignForm />        
         </div>
     )
     }

@@ -1,36 +1,43 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { SwatchesPicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
-import { designUpdated, designAdded, designSaved } from './designSlice';
+import { designUpdate } from './designSlice'
 
 const DesignForm = () => {;
     const dispatch = useDispatch()
-    const design = useSelector(state => state.design.entities)
-    const b = (design.background == null ? "#90a4ae" : design.background)
-    const m = (design.main == null ? "#455a64" : design.main)
-    const a = (design.accent == null ? "#81c784" : design.accent)
+    const errors = useSelector((state) => state.design.errors);
+
+
+    const currentDesign = useSelector(state => state.design.design)
+
+
+    // console.log("Design from global state: ", currentDesign)
 
     const [designObj, setDesignObj] = useState({
-        banner: '',
-        background: b,
-        main: m,
-        accent: a
+        banner: currentDesign.banner,
+        background: currentDesign.background,
+        main: currentDesign.main,
+        accent: currentDesign.accent
     })
 
-    useEffect(() => {
-        dispatch(designUpdated(designObj))
-    }, [designObj])
+    const handleBannerChange = (e) => {
+        const newObj = {
+            ...designObj, 
+            [e.target.name]: e.target.value
+        }
+    }
 
     const handleChange = (name, color) => {
-        setDesignObj({
+        const newObj = {
             ...designObj,
             [name]: color,
-        })
+        }
+        setDesignObj(newObj);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(designSaved(designObj));
+        dispatch(designUpdate(designObj));
 
     }
 
@@ -38,22 +45,27 @@ const DesignForm = () => {;
     <div>
         <form onSubmit={handleSubmit}>
             <label>Banner Image: </label>
-                <input type="text" name="banner"/>
+                <input 
+                    type="text" 
+                    id="banner"
+                    name="banner"
+                    value={designObj.banner}
+                    onChange={handleBannerChange}/>
                 <br/>
             
-            <label style={{color: 'white', background: designObj.background}}>
+            <label style={{color: 'white', background: currentDesign.background}}>
                 Background Color: 
                 <SwatchesPicker color={designObj.background} name="background" onChange={(e) => handleChange("background", e.hex)} />
             </label>    
             <br/>
 
-            <label style={{color: 'white', background: designObj.main}}>
+            <label style={{color: 'white', background: currentDesign.main}}>
                 Main Color: 
                 <SwatchesPicker color={designObj.main} onChange={(e) => handleChange("main", e.hex)} />
             </label>    
             <br/>
 
-            <label style={{color: 'white', background: designObj.accent}}>
+            <label style={{color: 'white', background: currentDesign.accent}}>
                 Accent Color: 
                 <SwatchesPicker color={designObj.accent} onChange={(e) => handleChange("accent", e.hex)} />
             </label>    

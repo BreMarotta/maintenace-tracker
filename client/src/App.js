@@ -8,6 +8,7 @@ import Login from "./features/settings/Login";
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getMe } from './features/settings/manageUsersSlice'
+import { designBase } from './features/settings/designSlice'
 
 function App() {
   const dispatch = useDispatch()
@@ -15,6 +16,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getMe());
+    dispatch(designBase());
   }, []);
 
   return (

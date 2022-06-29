@@ -2,24 +2,22 @@ class DesignsController < ApplicationController
 
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
-    def show
-        design = @current_owner.designs.find(params[:id])
+    def index
+        design = @current_owner.designs.first
         render json: design
     end
 
-    def create 
-        new_design = @current_owner.designs.create!(design_params)
-        render json: new_design, status: :created
-    end
+    # def create 
+    #     # byebug
+    #     new_design = @current_owner.designs.create!(design_params)
+    #     render json: new_design, status: :created
+    # end
 
     def update
-        design = @current_owner.designs.find(params[:id])
-        design.update(design_params)
-        if design.valid?
-            render json: design, status: :accepted
-        else
-            render json: { errors: design.errors.full_messages }, status: :unprocessable_entity
-        end
+        # byebug
+        design = @current_owner.designs.first
+        new_design = design.update!(design_params)
+        render json: design, status: :accepted
     end
 
     private

@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+1.times do |i|
+    Design.create(banner: "https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467__340.jpg", accent: "#81c784", main: "#455a64", background: "#90a4ae")
+end

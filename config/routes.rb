@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/me', to: 'owners#show'
 
 
-  resources :people
+  resources :designs
 
 
   get '*path',

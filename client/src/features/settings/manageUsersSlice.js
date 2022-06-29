@@ -50,7 +50,8 @@ const manageUsersSlice = createSlice({
             state.status = "loading";
         },
         [getMe.fulfilled](state, action) {
-            if (!action.payload.errors) {
+            if (!action.payload.error && !action.payload.errors) {
+                console.log(action.payload)
                 state.user = action.payload;
                 state.loggedin = "true";
                 state.status = "idle";

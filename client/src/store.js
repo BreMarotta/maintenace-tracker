@@ -13,7 +13,7 @@ import repairsReducer from './features/repairs/repairsSlice';
 export const store = configureStore({
     reducer: {
         // categories: categoriesReducer,
-        // design: designSlice,
+        design: designSlice,
         // items: itemsReducer,
         // locations: locationsReducer,
         owners: manageUsersReducer,

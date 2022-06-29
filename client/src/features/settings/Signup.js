@@ -11,7 +11,11 @@ const Signup = () => {
   const [userObj, setUserObj] = useState({
     username: "",
     password: "",
-    password_confirmation: ""
+    password_confirmation: "",
+    background: "#90a4ae",
+    main: "#455a64",
+    accent: "#81c784",
+    banner: "https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467__340.jpg" 
   })
 
   const handleChange = (e) => {
