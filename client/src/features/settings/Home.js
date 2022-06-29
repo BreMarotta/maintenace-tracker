@@ -7,22 +7,22 @@ const Home = () => {
   const loggedIn = useSelector((state) => state.owners.loggedin);
   const username = useSelector((state) => state.owners.user.username)
   
-    if (loggedIn == "true"){
+    if (loggedIn != "true"){
       return (
-        <div>
-          <h1>Welcome {username}! </h1>        
-        </div>
-      )
-    } else {
-    return (
-      <div className="">
+        <div className="">
         <br/>
           Please 
           <NavLink to ='/login' ><strong>Login</strong></NavLink> 
           or 
           <NavLink to='/signup' ><strong>Signup</strong></NavLink>!
-          
-      </div>
+          </div>
+      
+      )
+    } else {
+    return (
+        <div>
+          <h1>Welcome {username}! </h1>        
+        </div>
     )
     }
 }

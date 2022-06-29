@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   
 rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
-# before_action :authorize
+before_action :authorize
 
     def hello_world
       session[:count] = (session[:count] || 0) + 1
@@ -12,10 +12,10 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 
     private
     
-    # def authorize
-    #   @current_owner = Owner.find_by(id: session[:owner_id])
-    #   render json: { errors: ["I thought I got this working?"] }, status: :unauthorized unless @current_owner
-    # end
+    def authorize
+      @current_owner = Owner.find_by(id: session[:owner_id])
+      render json: { errors: ["Unauthorized"] }, status: :unauthorized unless @current_owner
+    end
 
     def render_unprocessable_entity_response(exception)
       render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity

@@ -43,25 +43,14 @@ const ownersSlice = createSlice({
         loggedin: "false"
     },
     reducers: {
-        // setUser(state, action) {
-        //     state.user.push(action.payload);
-        // },
-        // logout(state) {
-        //     console.log("Logged Out")
-        //     state.user = [];
-        //     state.loggedin = "false"
-        // },
-        // login(state, action) {
-        //     console.log(action.payload)
-        // }
+
     },
     extraReducers: {
         [getMe.pending](state) {
             state.status = "loading";
         },
         [getMe.fulfilled](state, action) {
-            if (action.payload) {
-                // console.log(action.payload)
+            if (!action.payload.errors) {
                 state.user = action.payload;
                 state.loggedin = "true";
                 state.status = "idle";
@@ -111,6 +100,6 @@ const ownersSlice = createSlice({
     },
 });
 
-export const { setMe, signup, login, logout } = ownersSlice.actions;
+// export const { setMe, signup, login, logout } = ownersSlice.actions;
 
 export default ownersSlice.reducer;

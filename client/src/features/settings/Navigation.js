@@ -7,15 +7,20 @@ const Navigation = () => {
   const loggedIn = useSelector((state) => state.owners.loggedin);
 
   const displayLogoutButton = loggedIn == "true" ? <LogoutButton /> : ""
-
-  return (
-    <div className="">
-      {displayLogoutButton}
-        <NavLink to="/" className="navigation">Home</NavLink>
-        {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
-        
-    </div>
-  )
+  if (loggedIn == "true"){
+    return (
+      <div className="">
+        {displayLogoutButton}
+          <NavLink to="/" className="navigation">Home</NavLink>
+          {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
+          
+      </div>
+    )
+  } else {
+    return (
+      <div></div>
+    )
+  }
 }
 
 export default Navigation
