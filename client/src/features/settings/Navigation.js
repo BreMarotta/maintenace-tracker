@@ -5,17 +5,14 @@ import { useSelector } from 'react-redux';
 
 const Navigation = () => {
   const loggedIn = useSelector((state) => state.owners.loggedin);
-  console.log(loggedIn)
 
-  const displayLogout = loggedIn == "true" ? <LogoutButton /> : console.log(loggedIn)
+  const displayLogoutButton = loggedIn == "true" ? <LogoutButton /> : ""
 
   return (
     <div className="">
-      {displayLogout}
+      {displayLogoutButton}
         <NavLink to="/" className="navigation">Home</NavLink>
-        <NavLink to="/signup" className="navigation">Signup</NavLink>
         {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
-        <NavLink to="/login" className="navigation">Login</NavLink>
         
     </div>
   )

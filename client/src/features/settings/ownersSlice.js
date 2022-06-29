@@ -51,13 +51,13 @@ const ownersSlice = createSlice({
         },
         [getMe.fulfilled](state, action) {
             if (action.payload) {
-                console.log(action.payload)
+                // console.log(action.payload)
                 state.user = action.payload;
-                state.loggedin = "true"
-                state.status = "idle"
+                state.loggedin = "true";
+                state.status = "idle";
             } else {
             state.status = "idle";
-            state.loggedin = "false"
+            state.loggedin = "false";
         }
             
         },
@@ -68,13 +68,12 @@ const ownersSlice = createSlice({
             if (!action.payload.error) {
                 state.user = action.payload;
                 state.status = "idle";
-                state.loggedin = "true"
+                state.loggedin = "true";
+                state.error = [];
             } else {
                 state.error = action.payload.error;
-                state.loggedin = "false"
-                console.log(action.payload)}
-                
-            
+                state.loggedin = "false";
+            }           
         },
         [logOut.pending](state) {
             state.status = "loading";
@@ -83,23 +82,8 @@ const ownersSlice = createSlice({
             console.log("logged out")
             state.user = [];
             state.status = "idle";
-            state.loggedin = "false"
+            state.loggedin = "false";
         }
-        // setMe(state, action){
-        //     state.user= ({action.payload, loggedin: true})
-        //     console.log("payload:", action.payload)
-        //     console.log("State from Slice:", state.user)
-        // },
-        // // signup(state, action) {
-        // //     state.owner.push({...action.payload});
-        // // },
-        // // login(state, action) {
-
-        // // },
-        // logout(state, action) {
-        //     state.user= [];
-        //     console.log(action.payload, state.user)
-        // }
     },
 });
 

@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 
 const Home = () => {
   const loggedIn = useSelector((state) => state.owners.loggedin);
-  console.log(loggedIn)
-    const [count, setCount] = useState("");
-
-    useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-    }, []);
+  const username = useSelector((state) => state.owners.user.username)
   
-    if (loggedIn){
+    if (loggedIn == "true"){
       return (
         <div>
-          Home
+          <h1>Welcome {username}! </h1>        
         </div>
       )
     } else {
-
     return (
-      <div>Home
-          <h1>Page Count: {count}</h1>
-
+      <div className="">
+        <br/>
+          Please 
+          <NavLink to ='/login' ><strong>Login</strong></NavLink> 
+          or 
+          <NavLink to='/signup' ><strong>Signup</strong></NavLink>!
+          
       </div>
     )
     }

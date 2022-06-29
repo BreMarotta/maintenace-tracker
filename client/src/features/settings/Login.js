@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logIn } from './ownersSlice'
+import { useHistory } from "react-router-dom"
 
 const Login = () => {
-    // const navigate = useNavigate();
+    let history = useHistory();
     const dispatch = useDispatch();
     const error = useSelector(state => state.owners.error)
     // console.log(error)
@@ -21,6 +22,17 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(logIn(userObj))
+        if (!error) {
+            // console.log("no error, but history not working????")
+            // history.push('/');
+            
+        } else {
+            setUserObj({
+                username: "",
+                password: ""
+            })
+            
+        }
     }
 
 
