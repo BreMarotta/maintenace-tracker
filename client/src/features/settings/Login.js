@@ -1,12 +1,10 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logIn } from './ownersSlice'
-import { useHistory } from "react-router-dom"
 
 const Login = () => {
-    let history = useHistory();
     const dispatch = useDispatch();
-    const error = useSelector(state => state.owners.error)
+    const error = useSelector(state => state.owners.errors)
     // console.log(error)
 
     const [userObj, setUserObj] = useState({
@@ -30,8 +28,7 @@ const Login = () => {
             setUserObj({
                 username: "",
                 password: ""
-            })
-            
+            })           
         }
     }
 

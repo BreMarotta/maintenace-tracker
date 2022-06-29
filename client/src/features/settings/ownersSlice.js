@@ -16,6 +16,16 @@ export const logIn = createAsyncThunk('owners/login', (userObj) => {
     .then(data => data)
 })
 
+export const signUp = createAsyncThunk('owners/signup', (userObj) => {
+    return fetch('/signup', {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(userObj)
+    })
+    .then(res => res.json())
+    .then(data => data)
+})
+
 export const logOut = createAsyncThunk('owners/logout', () => {
     return fetch('/logout', {
         method: "DELETE",
@@ -28,7 +38,7 @@ const ownersSlice = createSlice({
     name: "owners",
     initialState: {
         user: [],
-        error: [],
+        errors: [],
         status: "idle",
         loggedin: "false"
     },
@@ -69,11 +79,25 @@ const ownersSlice = createSlice({
                 state.user = action.payload;
                 state.status = "idle";
                 state.loggedin = "true";
-                state.error = [];
+                state.errors = [];
             } else {
                 state.error = action.payload.error;
                 state.loggedin = "false";
             }           
+        },
+        [signUp.pending](state) {
+            state.status = "loading";
+        },
+        [signUp.fulfilled](state, action) {
+            if(!action.payload.errors) {
+                state.user = action.payload;
+                state.status = "idle";
+                state.loggedin = "true";
+                state.errors = [];
+            } else {
+                state.errors = action.payload.errors;
+                state.loggedin = "false";
+            }
         },
         [logOut.pending](state) {
             state.status = "loading";

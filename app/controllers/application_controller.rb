@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
   
-# rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
 # before_action :authorize
 
@@ -17,9 +17,9 @@ class ApplicationController < ActionController::API
     #   render json: { errors: ["I thought I got this working?"] }, status: :unauthorized unless @current_owner
     # end
 
-    # def render_unprocessable_entity_response(exception)
-    #   render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
-    # end 
+    def render_unprocessable_entity_response(exception)
+      render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
+    end 
 
   end
 
