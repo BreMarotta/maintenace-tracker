@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
 
     def create 
         # byebug
-        new_person = @current_owner.people.create!(person_params)
+        new_person = @current_user.people.create!(person_params)
         render json: new_person, status: :created
     end
 

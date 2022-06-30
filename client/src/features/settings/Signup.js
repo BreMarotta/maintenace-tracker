@@ -13,6 +13,7 @@ const Signup = () => {
       username: "",
       password: "",
       password_confirmation: "",
+      type: "",
       designs_attributes: [{
         background: "#90a4ae",
         main: "#455a64",

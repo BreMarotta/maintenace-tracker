@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
     #login
     def create 
         # byebug
-        owner = Owner.find_by(username: params[:username])
-        if owner&.authenticate(params[:password])
-            session[:owner_id] = owner.id
-            render json: owner
+        user = User.find_by(username: params[:username])
+        if user&.authenticate(params[:password])
+            session[:user_id] = user.id
+            render json: user
         else
             render json: { error: "Invalid username or password" }, status: :unauthorized
         end   

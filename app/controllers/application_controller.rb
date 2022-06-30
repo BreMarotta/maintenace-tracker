@@ -13,8 +13,8 @@ before_action :authorize
     private
     
     def authorize
-      @current_owner = Owner.find_by(id: session[:owner_id])
-      render json: { errors: ["Unauthorized"] }, status: :unauthorized unless @current_owner
+      @current_user = User.find_by(id: session[:user_id])
+      render json: { errors: ["Unauthorized"] }, status: :unauthorized unless @current_user
     end
 
     def render_unprocessable_entity_response(exception)

@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  post '/signup', to: 'owners#create'
-  get '/me', to: 'owners#show'
+  post '/signup', to: 'users#create'
+  get '/me', to: 'users#show'
 
 
   resources :designs
