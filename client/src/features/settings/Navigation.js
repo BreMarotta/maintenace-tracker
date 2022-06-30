@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux';
 const Navigation = () => {
   const loggedIn = useSelector((state) => state.users.loggedin);
 
-  const peopleType = useSelector((state) => state.users.type)
+  const peopleType = useSelector((state) => state.users.user.type)
+  const peopleLink = peopleType == null ? "People" : peopleType
 
   const displayLogoutButton = loggedIn == "true" ? <LogoutButton /> : ""
   if (loggedIn == "true"){
@@ -14,6 +15,7 @@ const Navigation = () => {
       <div className="">
         {displayLogoutButton}
           <NavLink to="/" className="navigation">Home</NavLink>
+          <NavLink to='/people' className="navigation">{peopleLink}</NavLink>
           {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
           
       </div>

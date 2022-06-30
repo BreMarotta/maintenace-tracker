@@ -5,23 +5,29 @@ import Navigation from "./features/settings/Navigation";
 import Home from "./features/settings/Home";
 import Signup from "./features/settings/Signup";
 import Login from "./features/settings/Login";
-import { userLoggedIn } from "./features/settings/designSlice";
-
+import People from "./features/settings/People"
+import { initDesign } from "./features/settings/designSlice";
+import { initPeople } from "./features/settings/peopleSlice";
 import { useDispatch, useSelector } from 'react-redux'
 import { getMe } from './features/settings/manageUsersSlice'
-import { designBase } from './features/settings/designSlice'
 
 function App() {
   const dispatch = useDispatch()
   const loggedIn = useSelector((state) => state.users.loggedin);
-  const userDesigns = useSelector((state) => state.users.user.designs)
-  // console.log("with useSelector: ", userDesign)
+  const user = useSelector((state) => state.users.user)
+
 
   useEffect(() => {
     dispatch(getMe());
-    // console.log("User from useSelector: ", user.designs[0])
-    dispatch(userLoggedIn(userDesigns));
+    // dispatch(initDesign(user.designs));
+    // dispatch(initPeople(user.people));
   }, [loggedIn]);
+
+  //I'm trying to figure out how to use the getMe fetch to /me to lead to setting initial state in each slice each time the page loads.
+  useEffect(() => {
+    dispatch(initDesign(user.designs));
+    dispatch(initPeople(user.people));
+  }, [useSelector((state) => state.users.user)])
 
   return (
     <BrowserRouter>
@@ -36,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/people">
+            <People />
           </Route>
 
 

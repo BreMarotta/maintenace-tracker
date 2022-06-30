@@ -26,7 +26,7 @@ const designSlice = createSlice({
         status: "idle"
     },
     reducers: {
-        userLoggedIn(state, action) {
+        initDesign(state, action) {
             state.design = action.payload
         }
     },
@@ -61,6 +61,6 @@ const designSlice = createSlice({
     },
 });
 
-export const { userLoggedIn } = designSlice.actions;
+export const { initDesign } = designSlice.actions;
 
 export default designSlice.reducer;

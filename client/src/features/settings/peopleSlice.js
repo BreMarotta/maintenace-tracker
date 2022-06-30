@@ -17,16 +17,16 @@ const peopleSlice = createSlice({
         status: "idle"
     },
     reducers: {
+        initPeople(state, action) {
+            state.people = action.payload
+        }
     },
     extraReducers: {
         [addPerson.pending](state) {
-            // console.log("pending")
             state.status = "loading"
         },
         [addPerson.fulfilled](state, action) {
-            // console.log(action.payload)
             if(!action.payload.errors && !action.payload.error) {
-                // console.log(action.payload)
                 state.people.push(action.payload);
                 state.status = "idle";
                 state.errors = [];
@@ -39,6 +39,6 @@ const peopleSlice = createSlice({
     }
 });
 
-export const { personAdded, personUpdated, personDeleted } = peopleSlice.actions;
+export const { initPeople, personAdded, personUpdated, personDeleted } = peopleSlice.actions;
 
 export default peopleSlice.reducer;

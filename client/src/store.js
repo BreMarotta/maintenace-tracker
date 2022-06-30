@@ -12,13 +12,13 @@ import repairsReducer from './features/repairs/repairsSlice';
 
 export const store = configureStore({
     reducer: {
-        // categories: categoriesReducer,
+        categories: categoriesReducer,
         design: designSlice,
-        // items: itemsReducer,
-        // locations: locationsReducer,
+        items: itemsReducer,
+        locations: locationsReducer,
         users: manageUsersReducer,
         people: peopleReducer,
-        // repairs: repairsReducer,
+        repairs: repairsReducer,
         // [ownerApi.reducerPath]: ownerApi.reducer,
         
     },
