@@ -4,7 +4,7 @@ import { logIn } from './manageUsersSlice'
 
 const Login = () => {
     const dispatch = useDispatch();
-    const errors = useSelector(state => state.owners.errors)
+    const errors = useSelector(state => state.users.errors)
     // console.log(error)
 
     const [userObj, setUserObj] = useState({

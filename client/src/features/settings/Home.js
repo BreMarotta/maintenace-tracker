@@ -6,8 +6,8 @@ import SettingsContainer from './SettingsContainer';
 
 
 const Home = () => {
-  const loggedIn = useSelector((state) => state.owners.loggedin);
-  const username = useSelector((state) => state.owners.user.username)
+  const loggedIn = useSelector((state) => state.users.loggedin);
+  const username = useSelector((state) => state.users.user.username)
 
   const [toggleDisplay, setToggleDisplay] = useState(false)
 

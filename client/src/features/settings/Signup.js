@@ -4,12 +4,12 @@ import { signUp } from './manageUsersSlice';
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const errors = useSelector(state => state.owners.errors);
+  const errors = useSelector(state => state.users.errors);
 
   const errorLis = errors.map(e => <li key={e}>{e}</li>)
 
   const [userObj, setUserObj] = useState({
-    owner: {
+    user: {
       username: "",
       password: "",
       password_confirmation: "",
@@ -24,7 +24,7 @@ const Signup = () => {
   })
 
   const handleChange = (e) => { 
-    const newObj = {...userObj, owner: {...userObj.owner, [e.target.name]: e.target.value}}
+    const newObj = {...userObj, user: {...userObj.user, [e.target.name]: e.target.value}}
     setUserObj(newObj)
   }
 
@@ -36,7 +36,7 @@ const Signup = () => {
 
     } else {
       setUserObj({
-        owner: {
+        user: {
           username: "",
           password: "",
           password_confirmation: ""

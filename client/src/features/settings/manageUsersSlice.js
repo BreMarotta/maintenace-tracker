@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 
-export const getMe = createAsyncThunk('owners/getMe', () => {
+export const getMe = createAsyncThunk('users/getMe', () => {
     return fetch('/me')
     .then((res) => res.json())
     .then((data) => data)
 })
 
-export const logIn = createAsyncThunk('owners/login', (userObj) => {
+export const logIn = createAsyncThunk('users/login', (userObj) => {
     return fetch('/login', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -17,7 +17,7 @@ export const logIn = createAsyncThunk('owners/login', (userObj) => {
     .then(data => data)
 })
 
-export const signUp = createAsyncThunk('owners/signup', (userObj) => {
+export const signUp = createAsyncThunk('users/signup', (userObj) => {
     return fetch('/signup', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -27,7 +27,7 @@ export const signUp = createAsyncThunk('owners/signup', (userObj) => {
     .then(data => data)
 })
 
-export const logOut = createAsyncThunk('owners/logout', () => {
+export const logOut = createAsyncThunk('users/logout', () => {
     return fetch('/logout', {
         method: "DELETE",
         headers: {"Content-Type": "application/json"}
@@ -36,7 +36,7 @@ export const logOut = createAsyncThunk('owners/logout', () => {
 })
 
 const manageUsersSlice = createSlice({
-    name: "owners",
+    name: "users",
     initialState: {
         user: [],
         errors: [],
@@ -101,6 +101,6 @@ const manageUsersSlice = createSlice({
     },
 });
 
-// export const { setMe, signup, login, logout } = ownersSlice.actions;
+// export const { setMe, signup, login, logout } = usersSlice.actions;
 
 export default manageUsersSlice.reducer;

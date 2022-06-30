@@ -4,7 +4,9 @@ import LogoutButton from './LogoutButton';
 import { useSelector } from 'react-redux';
 
 const Navigation = () => {
-  const loggedIn = useSelector((state) => state.owners.loggedin);
+  const loggedIn = useSelector((state) => state.users.loggedin);
+
+  const peopleType = useSelector((state) => state.users.type)
 
   const displayLogoutButton = loggedIn == "true" ? <LogoutButton /> : ""
   if (loggedIn == "true"){

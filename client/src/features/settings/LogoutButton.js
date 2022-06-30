@@ -4,7 +4,7 @@ import { getMe, logOut } from './manageUsersSlice'
 
 const LogoutButton = () => {
     const dispatch = useDispatch()
-    // const loggedInUser = useSelector((state) => state.owners.user);
+    // const loggedInUser = useSelector((state) => state.users.user);
 
 
 

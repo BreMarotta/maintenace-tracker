@@ -13,8 +13,8 @@ import { designBase } from './features/settings/designSlice'
 
 function App() {
   const dispatch = useDispatch()
-  const loggedIn = useSelector((state) => state.owners.loggedin);
-  const userDesigns = useSelector((state) => state.owners.user.designs)
+  const loggedIn = useSelector((state) => state.users.loggedin);
+  const userDesigns = useSelector((state) => state.users.user.designs)
   // console.log("with useSelector: ", userDesign)
 
   useEffect(() => {
