@@ -10,7 +10,7 @@ const DesignForm = ({ toggle }) => {;
 
     const currentDesign = useSelector(state => state.design.design)
 
-
+console.log(currentDesign)
     // console.log("Design from global state: ", currentDesign)
 
     const [designObj, setDesignObj] = useState({
@@ -25,6 +25,7 @@ const DesignForm = ({ toggle }) => {;
             ...designObj, 
             [e.target.name]: e.target.value
         }
+        setDesignObj(newObj)
     }
 
     const handleChange = (name, color) => {

@@ -5,7 +5,7 @@ import PersonForm from './PersonForm'
 const SettingsContainer = ({ toggle }) => {
   return (
     <div>
-        <DesignForm toggle={toggle}/>
+        {/* <DesignForm toggle={toggle}/> */}
         <PersonForm toggle={toggle}/>
     </div>
     

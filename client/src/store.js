@@ -17,7 +17,7 @@ export const store = configureStore({
         // items: itemsReducer,
         // locations: locationsReducer,
         owners: manageUsersReducer,
-        // people: peopleReducer,
+        people: peopleReducer,
         // repairs: repairsReducer,
         // [ownerApi.reducerPath]: ownerApi.reducer,
         

@@ -23,9 +23,13 @@ const designSlice = createSlice({
     initialState: {
         design: [],
         errors: [],
-        status: []
+        status: "idle"
     },
-    reducers: {},
+    reducers: {
+        userLoggedIn(state, action) {
+            state.design = action.payload
+        }
+    },
     extraReducers: {
         [designBase.pending](state) {
             state.status = "loading"
@@ -57,6 +61,6 @@ const designSlice = createSlice({
     },
 });
 
-export const { designAdded, designUpdated, designSaved, GlobalStyles } = designSlice.actions;
+export const { userLoggedIn } = designSlice.actions;
 
 export default designSlice.reducer;

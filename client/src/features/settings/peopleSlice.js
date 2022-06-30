@@ -1,22 +1,42 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
+export const addPerson = createAsyncThunk('people/addPerson', (personObj) => {
+    return fetch('/people', {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(personObj)
+    })
+    .then(res => res.json())
+    .then(data => data)
+})
 const peopleSlice = createSlice({
     name: "people",
     initialState: {
-        entities: [],
+        people: [],
+        errors: [],
+        status: "idle"
     },
     reducers: {
-        personAdded(state, action){
-            state.entities.push({...action.payload});
-        },
-        personUpdated(state, action) {
-
-        },
-        personDeleted(state, action) {
-            const index = state.entities.findIndex(r => r.id === action.payload);
-            state.entities.splice(index, 1);
-        },
     },
+    extraReducers: {
+        [addPerson.pending](state) {
+            // console.log("pending")
+            state.status = "loading"
+        },
+        [addPerson.fulfilled](state, action) {
+            // console.log(action.payload)
+            if(!action.payload.errors && !action.payload.error) {
+                // console.log(action.payload)
+                state.people.push(action.payload);
+                state.status = "idle";
+                state.errors = [];
+            } else {
+                console.log("returned from fetch: ", action.payload)
+                
+            }
+            
+        },
+    }
 });
 
 export const { personAdded, personUpdated, personDeleted } = peopleSlice.actions;

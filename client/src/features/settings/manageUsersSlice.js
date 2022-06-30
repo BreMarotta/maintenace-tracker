@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
+
 export const getMe = createAsyncThunk('owners/getMe', () => {
     return fetch('/me')
     .then((res) => res.json())
@@ -51,7 +52,7 @@ const manageUsersSlice = createSlice({
         },
         [getMe.fulfilled](state, action) {
             if (!action.payload.error && !action.payload.errors) {
-                // console.log(action.payload)
+                console.log("Me from backend: ", action.payload)
                 state.user = action.payload;
                 state.loggedin = "true";
                 state.status = "idle";
@@ -66,8 +67,7 @@ const manageUsersSlice = createSlice({
         },
         [logIn.fulfilled](state, action) {
             if (!action.payload.error) {
-                state.user = action.payload;
-                state.status = "idle";
+                // console.log("after login: ", action.payload.designs[0])
                 state.loggedin = "true";
                 state.errors = [];
             } else {
@@ -80,10 +80,10 @@ const manageUsersSlice = createSlice({
         },
         [signUp.fulfilled](state, action) {
             if(!action.payload.errors) {
-                state.user = action.payload;
+                console.log("after signup: ", action.payload.designs[0])
                 state.status = "idle";
                 state.loggedin = "true";
-                state.errors = [];
+                // state.errors = [];
             } else {
                 state.errors = action.payload.errors;
                 state.loggedin = "false";

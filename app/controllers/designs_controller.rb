@@ -3,13 +3,11 @@ class DesignsController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
-        byebug
         design = @current_owner.designs.first
         render json: design
     end
 
     def update
-        # byebug
         design = @current_owner.designs.first
         new_design = design.update!(design_params)
         render json: design, status: :accepted

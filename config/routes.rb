@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :designs
 
+  resources :people
+
 
   get '*path',
   to: 'fallback#index',

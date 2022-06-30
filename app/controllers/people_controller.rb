@@ -1,7 +1,9 @@
 class PeopleController < ApplicationController
 
     def create 
-
+        # byebug
+        new_person = @current_owner.people.create!(person_params)
+        render json: new_person, status: :created
     end
 
     def show
@@ -19,7 +21,7 @@ class PeopleController < ApplicationController
     private
 
     def person_params
-
+        params.require(:person).permit(:name, :title, :color)
     end
 
 end
