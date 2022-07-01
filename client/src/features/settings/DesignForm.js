@@ -44,7 +44,7 @@ console.log(currentDesign)
 
   return (
     <div>
-        <form className=""onSubmit={handleSubmit}>
+        <form className="designForm"onSubmit={handleSubmit}>
             <label>Banner Image: </label>
                 <input 
                     type="text" 

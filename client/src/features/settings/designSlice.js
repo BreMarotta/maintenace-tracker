@@ -27,6 +27,7 @@ const designSlice = createSlice({
     },
     reducers: {
         initDesign(state, action) {
+            console.log("Sent post get/me ", action.payload)
             state.design = action.payload
         }
     },

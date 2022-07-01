@@ -16,18 +16,19 @@ function App() {
   const loggedIn = useSelector((state) => state.users.loggedin);
   const user = useSelector((state) => state.users.user)
 
-
   useEffect(() => {
-    dispatch(getMe());
-    // dispatch(initDesign(user.designs));
-    // dispatch(initPeople(user.people));
+    dispatch(getMe())
+    .then((user)  => { 
+      dispatch(initDesign(user.payload.designs))
+      dispatch(initPeople(user.payload.people))
+    })  
   }, [loggedIn]);
 
   //I'm trying to figure out how to use the getMe fetch to /me to lead to setting initial state in each slice each time the page loads.
-  useEffect(() => {
-    dispatch(initDesign(user.designs));
-    dispatch(initPeople(user.people));
-  }, [useSelector((state) => state.users.user)])
+  // useEffect(() => {
+  //   dispatch(initDesign(user.designs));
+  //   dispatch(initPeople(user.people));
+  // }, [useSelector((state) => state.users.user)])
 
   return (
     <BrowserRouter>

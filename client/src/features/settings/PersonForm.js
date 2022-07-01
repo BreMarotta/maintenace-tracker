@@ -35,7 +35,7 @@ const PersonForm = ({ toggle }) => {
   }
 
   return (
-    <form className="" onSubmit={handleSubmit}>
+    <form className="personForm" onSubmit={handleSubmit}>
       <label>Name: </label>
         <input
           type="text"

@@ -6,3 +6,14 @@
     color: black;
     text-shadow: gray;
 }
+
+form {
+    background-color: linen;
+}
+.personForm {
+    float: right;
+    max-width: 50%;
+}
+.designForm {
+    max-width: 50%;
+}

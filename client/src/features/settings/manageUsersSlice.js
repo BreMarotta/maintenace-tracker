@@ -52,7 +52,7 @@ const manageUsersSlice = createSlice({
         },
         [getMe.fulfilled](state, action) {
             if (!action.payload.error && !action.payload.errors) {
-                console.log("Me from backend: ", action.payload)
+                // console.log("Me from backend: ", action.payload)
                 state.user = action.payload;
                 state.loggedin = "true";
                 state.status = "idle";
