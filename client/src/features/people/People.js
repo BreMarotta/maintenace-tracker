@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import Person from './Person'
+import Person from '../people/Person'
 
 
 

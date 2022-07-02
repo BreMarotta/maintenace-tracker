@@ -5,12 +5,13 @@ import Navigation from "./features/settings/Navigation";
 import Home from "./features/settings/Home";
 import Signup from "./features/settings/Signup";
 import Login from "./features/settings/Login";
-import People from "./features/settings/People"
+import People from "./features/people/People"
+import Categories from "./features/categories/Categories";
 import CategoryForm from "./features/categories/CategoryForm";
 import LocationForm from "./features/locations/LocationForm";
 import Locations from "./features/locations/Locations";
-import { initDesign } from "./features/settings/designSlice";
-import { initPeople } from "./features/settings/peopleSlice";
+import { initDesign } from "./features/designs/designSlice";
+import { initPeople } from "./features/people/peopleSlice";
 import { initCategories } from './features/categories/categoriesSlice'
 import { initLocations } from "./features/locations/locationsSlice";
 import { useDispatch, useSelector } from 'react-redux'
@@ -53,6 +54,9 @@ function App() {
           </Route>
           <Route path="/people">
             <People />
+          </Route>
+          <Route exact path="/categories" >
+            <Categories />
           </Route>
           <Route path="/categories/new" >
             <CategoryForm />

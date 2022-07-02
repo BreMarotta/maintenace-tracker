@@ -16,9 +16,9 @@ const Navigation = () => {
         {displayLogoutButton}
           <NavLink to="/" className="navigation">Home</NavLink>
           <NavLink to='/people' className="navigation">{peopleLink}</NavLink>
-          <NavLink to="/categories/new" className="navigation">Add Category</NavLink>
+         
           <NavLink to="/locations" className="navigation">Locations</NavLink>
-          
+          <NavLink to="/categories" className="navigation">Categories</NavLink>
           {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
           
       </div>

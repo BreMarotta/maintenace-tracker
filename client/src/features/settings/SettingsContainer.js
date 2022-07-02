@@ -1,6 +1,6 @@
 import React from 'react'
-import DesignForm from './DesignForm';
-import PersonForm from './PersonForm'
+import DesignForm from '../designs/DesignForm'
+import PersonForm from '../people/PersonForm'
 
 const SettingsContainer = ({ toggle }) => {
   return (
