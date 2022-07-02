@@ -1,6 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import { ownerApi } from "./features/settings/API";
 import categoriesReducer from "./features/categories/categoriesSlice";
 import designSlice from "./features/settings/designSlice";
 import itemsReducer from './features/items/itemsSlice';
@@ -18,12 +16,8 @@ export const store = configureStore({
         locations: locationsReducer,
         users: manageUsersReducer,
         people: peopleReducer,
-        repairs: repairsReducer,
-        // [ownerApi.reducerPath]: ownerApi.reducer,
-        
+        repairs: repairsReducer,       
     },
-    middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(ownerApi.middleware),
 });
 
-setupListeners(store.dispatch)
+export default store;

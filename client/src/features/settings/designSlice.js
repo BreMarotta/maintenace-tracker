@@ -21,13 +21,13 @@ export const designUpdate = createAsyncThunk('design/update', (designObj) => {
 const designSlice = createSlice({
     name: "design",
     initialState: {
-        design: [],
+        design: {},
         errors: [],
         status: "idle"
     },
     reducers: {
         initDesign(state, action) {
-            console.log("Sent post get/me ", action.payload)
+            // console.log("Sent post get/me ", action.payload)
             state.design = action.payload
         }
     },
@@ -50,7 +50,7 @@ const designSlice = createSlice({
         },
         [designUpdate.fulfilled](state, action) {
             if(!action.payload.error) {
-                console.log(action.payload)
+                // console.log(action.payload)
                 state.design = action.payload;
                 state.status = "idle";
                 state.errors = [];

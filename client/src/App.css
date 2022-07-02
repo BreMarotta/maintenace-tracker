@@ -9,9 +9,10 @@
 
 form {
     background-color: linen;
+    align-content: center;
 }
 .personForm {
-    float: right;
+    /* float: right; */
     max-width: 50%;
 }
 .designForm {

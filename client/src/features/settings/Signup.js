@@ -5,6 +5,7 @@ import { signUp } from './manageUsersSlice';
 const Signup = () => {
   const dispatch = useDispatch();
   const errors = useSelector(state => state.users.errors);
+  // const currentDesign = useSelector(state => state.design.design[0])
 
   const errorLis = errors.map(e => <li key={e}>{e}</li>)
 
@@ -15,9 +16,9 @@ const Signup = () => {
       password_confirmation: "",
       type: "",
       designs_attributes: [{
-        background: "#90a4ae",
-        main: "#455a64",
-        accent: "#81c784",
+        background: "#666666",
+        main: "#0062B1",
+        accent: "#A4DD00",
         banner: "https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467__340.jpg"
       }] 
     }   

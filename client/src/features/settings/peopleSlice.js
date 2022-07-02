@@ -18,7 +18,7 @@ const peopleSlice = createSlice({
     },
     reducers: {
         initPeople(state, action) {
-            console.log("people in state: ", action.payload)
+            // console.log("people in state: ", action.payload)
             state.people = action.payload
         }
     },

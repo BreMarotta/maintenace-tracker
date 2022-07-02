@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SwatchesPicker } from 'react-color';
+import { CirclePicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
 import { addPerson } from './peopleSlice';
 
@@ -56,7 +56,7 @@ const PersonForm = ({ toggle }) => {
 
         <label style={{color: 'white', background: "blue"}}>
                 Color: 
-          <SwatchesPicker 
+          <CirclePicker 
             color={personObj.background} 
             name="color" 
             onChange={(e) => handleColorChange("color", e.hex)} />

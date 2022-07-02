@@ -2,8 +2,9 @@ import React from 'react'
 
 const Person = ({ person }) => {
   return (
-    <div>
+    <div style={{background: person.color}}>
         {person.name}
+        {person.title}
     </div>
   )
 }
