@@ -5,7 +5,6 @@ import { signUp } from './manageUsersSlice';
 const Signup = () => {
   const dispatch = useDispatch();
   const errors = useSelector(state => state.users.errors);
-  // const currentDesign = useSelector(state => state.design.design[0])
 
   const errorLis = errors.map(e => <li key={e}>{e}</li>)
 
@@ -31,7 +30,6 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // debugger
     dispatch(signUp(userObj))
     if (!errors) {
 

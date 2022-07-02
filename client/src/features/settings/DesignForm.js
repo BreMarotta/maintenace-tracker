@@ -8,14 +8,8 @@ const DesignForm = ({ toggle }) => {;
     const errors = useSelector((state) => state.design.errors);
 
     const designInArray = useSelector(state => state.design.design[0])
-
     const designAsObj = useSelector(state => state.design.design)
-
-    console.log("Array: ", designInArray)
-    console.log("Obj: ", designAsObj)
     const currentDesign = designInArray == undefined ? designAsObj : designInArray
-
-    console.log("Should be Object: ", currentDesign)
 
     const [designObj, setDesignObj] = useState({
         banner: currentDesign.banner,

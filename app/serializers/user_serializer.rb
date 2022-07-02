@@ -3,4 +3,5 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :designs
   has_many :people
+  has_many :categories
 end

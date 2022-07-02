@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
-  def show
+  def create
+    new_category = @current_user.categories.create!(category_params)
+    render json: new_category, status: :created
   end
 
   def index
@@ -13,6 +15,6 @@ class CategoriesController < ApplicationController
 
   private
   def category_params
-
+    params.require(:category).permit(:name)
   end
 end
