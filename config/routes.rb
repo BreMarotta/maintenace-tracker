@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  resources :locations
+
 
   get '*path',
   to: 'fallback#index',

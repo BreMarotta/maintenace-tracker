@@ -1,22 +1,44 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
+export const addLocation = createAsyncThunk('/locations/addLocation', (locationObj) => {
+    return fetch('/locations', {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(locationObj)
+    })
+    .then(res => res.json())
+    .then(data => data)
+} )
 const locationsSlice = createSlice({
     name: "locations",
     initialState: {
-        entities: [],
+        locations: [],
+        errors: [],
+        status: "idle",
     },
     reducers: {
-        locationAdded(state, action) {
-            state.entities.push({...action.payload
-            });
+        initLocations(state, action) {
+            state.locations = action.payload
+        }
         },
-        locationRemoved(state, action) {
-            const index = state.entities.findIndex(r => r.id === action.payload);
-            state.entities.splice(index, 1);
+    extraReducers: {
+        [addLocation.pending](state){
+            state.status = "loacing"
         },
-    },
+        [addLocation.fulfilled](state, action) {
+            if(!action.payload.error && !action.payload.errors){
+                state.locations.push(action.payload);
+                state.status = "idle";
+                state.errors = [];
+            } else {
+                console.log("returned from fetch: ", action.payload)
+                state.errors = action.payload.errors;
+            
+            }
+        }
+    }
 });
 
-export const { locationAdded, locationRemoved } = locationsSlice.actions;
+export const { initLocations } = locationsSlice.actions;
 
 export default locationsSlice.reducer;

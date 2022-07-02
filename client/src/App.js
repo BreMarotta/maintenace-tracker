@@ -7,9 +7,11 @@ import Signup from "./features/settings/Signup";
 import Login from "./features/settings/Login";
 import People from "./features/settings/People"
 import CategoryForm from "./features/categories/CategoryForm";
+import LocationForm from "./features/locations/LocationForm";
 import { initDesign } from "./features/settings/designSlice";
 import { initPeople } from "./features/settings/peopleSlice";
 import { initCategories } from './features/categories/categoriesSlice'
+import { initLocations } from "./features/locations/locationsSlice";
 import { useDispatch, useSelector } from 'react-redux'
 import { getMe } from './features/settings/manageUsersSlice'
 
@@ -24,6 +26,7 @@ function App() {
       dispatch(initDesign(user.payload.designs))
       dispatch(initPeople(user.payload.people))
       dispatch(initCategories(user.payload.categories))
+      dispatch(initLocations(user.payload.locations))
     })  
   }, [loggedIn]);
 
@@ -52,6 +55,9 @@ function App() {
           </Route>
           <Route path="/categories/new" >
             <CategoryForm />
+          </Route>
+          <Route path="/locations/new" >
+            <LocationForm />
           </Route>
 
 
