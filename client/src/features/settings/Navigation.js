@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useNavigation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 import { useSelector } from 'react-redux';
 
@@ -16,8 +16,9 @@ const Navigation = () => {
         {displayLogoutButton}
           <NavLink to="/" className="navigation">Home</NavLink>
           <NavLink to='/people' className="navigation">{peopleLink}</NavLink>
-          <NavLink to="/categories/new">Add Category</NavLink>
-          <NavLink to="/locations/new">Add Location</NavLink>
+          <NavLink to="/categories/new" className="navigation">Add Category</NavLink>
+          <NavLink to="/locations" className="navigation">Locations</NavLink>
+          
           {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
           
       </div>

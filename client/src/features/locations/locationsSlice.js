@@ -19,6 +19,10 @@ const locationsSlice = createSlice({
     reducers: {
         initLocations(state, action) {
             state.locations = action.payload
+        },
+        addLocationFront(state, action) {
+            state.locations.push(action.payload)
+            
         }
         },
     extraReducers: {
@@ -39,6 +43,6 @@ const locationsSlice = createSlice({
     }
 });
 
-export const { initLocations } = locationsSlice.actions;
+export const { initLocations, addLocationFront } = locationsSlice.actions;
 
 export default locationsSlice.reducer;

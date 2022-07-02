@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLocation } from './locationsSlice';
+import { addLocation, addLocationFront } from './locationsSlice';
 
 const LocationForm = () => {
     const loggedIn = useSelector(state => state.users.loggedIn);
@@ -47,6 +47,7 @@ const LocationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addLocation(locationObj))
+        dispatch(addLocationFront(locationObj))
     }
 if (loggedIn == true){
     return (

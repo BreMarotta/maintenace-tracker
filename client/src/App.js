@@ -8,6 +8,7 @@ import Login from "./features/settings/Login";
 import People from "./features/settings/People"
 import CategoryForm from "./features/categories/CategoryForm";
 import LocationForm from "./features/locations/LocationForm";
+import Locations from "./features/locations/Locations";
 import { initDesign } from "./features/settings/designSlice";
 import { initPeople } from "./features/settings/peopleSlice";
 import { initCategories } from './features/categories/categoriesSlice'
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route path="/locations/new" >
             <LocationForm />
+          </Route>
+          <Route exact path="/locations" >
+            <Locations />
           </Route>
 
 
