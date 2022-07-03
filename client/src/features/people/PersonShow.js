@@ -8,8 +8,11 @@ const PersonShow = () => {
   const people = useSelector(state => state.people.people)
   const [person, setPerson] = useState({}) 
   const [color, setColor] = useState("")
+  const [current, setCurrent] = useState(true)
   const [error, setError] = useState(false)
   const [showForm, setShowForm] = useState(false)
+  const peopleType = useSelector((state) => state.users.user.type)
+  const peopleTypeName = peopleType == null ? "Person" : peopleType
 
   useEffect(() => {
     fetch(`/people/${params.id}`)
@@ -17,6 +20,7 @@ const PersonShow = () => {
     .then(data => {
       if (!data.error && !data.errors){
         setColor(data.color)
+        setCurrent(data.current)
         setPerson(data)
         setError(false)
       } else{
@@ -36,14 +40,14 @@ const PersonShow = () => {
  if (!error) {
   return (
     <div>
-      <label>Update Person</label>
+      <label>Update {peopleTypeName}</label>
         <input
           type="checkbox"
           checked={showForm}
           onChange={toggle}/>
-          {}
       <ul>
         <li style={{background: color}}>{displayUpdate}</li>
+        <hr/>
         <li>I eventually want to have this as a list of cards of this person's repairs</li>
         <li>Each card would be a link to that specific repair.</li>
         <li>This way a manager/company/parent could look at an overview of what each person/employee has contributed.</li>

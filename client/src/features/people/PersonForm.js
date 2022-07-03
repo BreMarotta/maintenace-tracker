@@ -11,12 +11,14 @@ const PersonForm = (props) => {
  const n = (props.person !== undefined || null ? props.person.name : "")
  const t = (props.person !== undefined || null ? props.person.title : "")
  const c = (props.person !== undefined || null ? props.person.color : "")
+ const current = (props.person !== undefined || null ? props.person.current : "")
 
 
   const [personObj, setPersonObj] = useState({
     name: n,
     title: t,
     color: c,
+    current: current,
     id: params.id
   })
 
@@ -52,6 +54,12 @@ const PersonForm = (props) => {
 
   const buttonText = props.person !== undefined || null ? "Save Changes" : "Add Person" 
   const submitFunction = props.person !== undefined || null ? handleUpdate : handleSubmit
+
+  const toggleCurrent = () => {
+    const newObj = {... personObj, current: !personObj.current}
+    setPersonObj(newObj)
+  }
+
   return (
     <form className="personForm" onSubmit={submitFunction}>
       <label>Name: </label>
@@ -80,6 +88,12 @@ const PersonForm = (props) => {
             onChange={(e) => handleColorChange("color", e.hex)} />
           </label>    
           <br/>
+
+        <label>Mark as inactive?</label>
+          <input
+            type="checkbox"
+            checked={current}
+            onChange={toggleCurrent}/>
 
         <button type="submit">{buttonText}</button>
     </form>

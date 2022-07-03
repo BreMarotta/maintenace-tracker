@@ -34,9 +34,8 @@ const peopleSlice = createSlice({
         },
         updatePersonFront(state, action) {
             const updatedPeople = state.people.map(p => p.id === action.payload.id ? action.payload : p)
-            state.people = updatedPeople
-           
-        },
+            state.people = updatedPeople           
+        }
     },
     extraReducers: {
         [addPerson.pending](state) {
