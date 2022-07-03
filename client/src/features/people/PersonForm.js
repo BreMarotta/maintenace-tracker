@@ -1,16 +1,23 @@
 import React, { useState } from 'react'
 import { CirclePicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPerson } from './peopleSlice';
+import { useParams } from 'react-router-dom';
+import { addPerson, updatePerson, updatePersonFront } from './peopleSlice';
 
-const PersonForm = ({ toggle }) => {
+const PersonForm = (props) => {
   const dispatch = useDispatch()
-  // const errors = useSelector((state) => state.people.errors)
+  const params = useParams()
+
+ const n = (props.person !== undefined || null ? props.person.name : "")
+ const t = (props.person !== undefined || null ? props.person.title : "")
+ const c = (props.person !== undefined || null ? props.person.color : "")
+
 
   const [personObj, setPersonObj] = useState({
-    name: "",
-    title: "",
-    color: ""
+    name: n,
+    title: t,
+    color: c,
+    id: params.id
   })
 
   const handleChange = (e) => {
@@ -31,11 +38,22 @@ const PersonForm = ({ toggle }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log("new")
     dispatch(addPerson(personObj))
+    props.toggle()
   }
 
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    dispatch(updatePerson(personObj))
+    dispatch(updatePersonFront(personObj))
+    props.toggle()
+  }
+
+  const buttonText = props.person !== undefined || null ? "Save Changes" : "Add Person" 
+  const submitFunction = props.person !== undefined || null ? handleUpdate : handleSubmit
   return (
-    <form className="personForm" onSubmit={handleSubmit}>
+    <form className="personForm" onSubmit={submitFunction}>
       <label>Name: </label>
         <input
           type="text"
@@ -63,7 +81,7 @@ const PersonForm = ({ toggle }) => {
           </label>    
           <br/>
 
-        <button type="submit">Add Person</button>
+        <button type="submit">{buttonText}</button>
     </form>
   )
 }

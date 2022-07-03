@@ -6,7 +6,8 @@ class PeopleController < ApplicationController
     end
 
     def show
-
+        person = @current_user.people.find(params[:id])
+        render json: person
     end
     
     def update

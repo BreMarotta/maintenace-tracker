@@ -9,6 +9,18 @@ export const addPerson = createAsyncThunk('people/addPerson', (personObj) => {
     .then(res => res.json())
     .then(data => data)
 })
+
+export const updatePerson = createAsyncThunk('people/updatePerson', (personObj) => {
+    return fetch(`/people/${personObj.id}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(personObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+    })
+})
 const peopleSlice = createSlice({
     name: "people",
     initialState: {
@@ -18,9 +30,13 @@ const peopleSlice = createSlice({
     },
     reducers: {
         initPeople(state, action) {
-            // console.log("people in state: ", action.payload)
             state.people = action.payload
-        }
+        },
+        updatePersonFront(state, action) {
+            const updatedPeople = state.people.map(p => p.id === action.payload.id ? action.payload : p)
+            state.people = updatedPeople
+           
+        },
     },
     extraReducers: {
         [addPerson.pending](state) {
@@ -32,14 +48,12 @@ const peopleSlice = createSlice({
                 state.status = "idle";
                 state.errors = [];
             } else {
-                console.log("returned from fetch: ", action.payload)
-                
+                console.log("returned from fetch: ", action.payload)    
             }
-            
         },
     }
 });
 
-export const { initPeople, personAdded, personUpdated, personDeleted } = peopleSlice.actions;
+export const { initPeople, updatePersonFront } = peopleSlice.actions;
 
 export default peopleSlice.reducer;

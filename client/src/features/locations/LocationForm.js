@@ -11,6 +11,7 @@ const LocationForm = () => {
         address_2: ""
     })
     const errors = useSelector(state => state.locations.errors)
+    
     const [toggleAddress, setToggleAddress] = useState(false)
 
     const toggle = () => {setToggleAddress(!toggleAddress)}

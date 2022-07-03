@@ -6,6 +6,8 @@ import Home from "./features/settings/Home";
 import Signup from "./features/settings/Signup";
 import Login from "./features/settings/Login";
 import People from "./features/people/People"
+import PersonForm from "./features/people/PersonForm";
+import PersonShow from "./features/people/PersonShow";
 import Categories from "./features/categories/Categories";
 import CategoryForm from "./features/categories/CategoryForm";
 import LocationForm from "./features/locations/LocationForm";
@@ -43,8 +45,7 @@ function App() {
         <Navigation />
         <Switch />
           <Route path="/signup" >
-            {loggedIn == "true" ? <Redirect to="/" /> : <Signup />}
-            
+            {loggedIn == "true" ? <Redirect to="/" /> : <Signup />}            
           </Route>
           <Route path="/login" > 
             {loggedIn == "true" ? <Redirect to="/" /> : <Login />}
@@ -52,8 +53,14 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/people">
+          <Route exact path="/people">
             <People />
+          </Route>
+          {/* <Route exact path="/people/new">
+            <PersonForm />
+          </Route> */}
+          <Route path="/people/:id" >
+            <PersonShow />
           </Route>
           <Route exact path="/categories" >
             <Categories />

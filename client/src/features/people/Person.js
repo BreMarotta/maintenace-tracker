@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Person = ({ person }) => {
   return (
     <div style={{background: person.color}}>
-        {person.name}
-        {person.title}
+      <Link to={`/people/${person.id}`}>{person.name}</Link>
+        <p>{person.title}</p>
+        
     </div>
   )
 }
