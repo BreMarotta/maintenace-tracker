@@ -52,31 +52,31 @@ function App() {
             {loggedIn == "true" ? <Redirect to="/" /> : <Login />}
           </Route>
           <Route path="/settings" >
-            <SettingsContainer />
+            {loggedIn != "true" ? <Redirect to="/" /> : <SettingsContainer />}
           </Route>
           <Route exact path="/">
             <Home />
           </Route>
           <Route exact path="/people">
-            <People />
+          {loggedIn != "true" ? <Redirect to="/" /> : <People />}
           </Route>
-          {/* <Route exact path="/people/new">
-            <PersonForm />
-          </Route> */}
+          <Route exact path="/people/new">
+          {loggedIn != true ? <Redirect to="/" /> : <PersonForm />}
+          </Route>
           <Route path="/people/:id" >
-            <PersonShow />
+          {loggedIn != "true" ? <Redirect to="/" /> : <PersonShow />}
           </Route>
           <Route exact path="/categories" >
-            <Categories />
+          {loggedIn != "true" ? <Redirect to="/" /> : <Categories />}
           </Route>
           <Route path="/categories/new" >
-            <CategoryForm />
+          {loggedIn != true ? <Redirect to="/" /> : <CategoryForm />}
           </Route>
           <Route path="/locations/new" >
-            <LocationForm />
+          {loggedIn != "true" ? <Redirect to="/" /> : <LocationForm />}
           </Route>
           <Route exact path="/locations" >
-            <Locations />
+          {loggedIn != "true" ? <Redirect to="/" /> : <Locations /> }
           </Route>
 
 

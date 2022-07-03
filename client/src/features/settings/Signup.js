@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { signUp } from './manageUsersSlice';
+import { NavLink } from 'react-router-dom';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,8 @@ const Signup = () => {
                 <input type="submit"/>
                 <br/>
                 <ul>{errorLis}</ul>           
-      </form>      
+      </form>   
+      <h5>Already have an account? <NavLink to='/login' ><strong>Login</strong></NavLink>!</h5>   
     </div>
   )
 }

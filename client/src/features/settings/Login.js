@@ -1,6 +1,7 @@
 import React, { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logIn } from './manageUsersSlice'
+import { NavLink } from 'react-router-dom'
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -21,9 +22,7 @@ const Login = () => {
         e.preventDefault()
         dispatch(logIn(userObj))
         if (!errors) {
-            // console.log("no error, but history not working????")
-            // history.push('/');
-            
+
         } else {
             setUserObj({
                 username: "",
@@ -57,6 +56,7 @@ const Login = () => {
                 <br/>
             {errors}
         </form>
+        <h5>No account yet? <NavLink to='/signup' ><strong>Signup</strong></NavLink>!</h5>
     </div>
   )
 }
