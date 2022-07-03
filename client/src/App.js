@@ -13,12 +13,17 @@ import Categories from "./features/categories/Categories";
 import CategoryForm from "./features/categories/CategoryForm";
 import LocationForm from "./features/locations/LocationForm";
 import Locations from "./features/locations/Locations";
+import Items from "./features/items/Items";
+import ItemForm from "./features/items/ItemForm";
+import ItemShow from "./features/items/ItemShow";
 import { initDesign } from "./features/designs/designSlice";
 import { initPeople } from "./features/people/peopleSlice";
 import { initCategories } from './features/categories/categoriesSlice'
 import { initLocations } from "./features/locations/locationsSlice";
+import { initItems } from "./features/items/itemsSlice";
 import { useDispatch, useSelector } from 'react-redux'
 import { getMe } from './features/settings/manageUsersSlice'
+
 
 function App() {
   const dispatch = useDispatch()
@@ -32,14 +37,9 @@ function App() {
       dispatch(initPeople(user.payload.people))
       dispatch(initCategories(user.payload.categories))
       dispatch(initLocations(user.payload.locations))
+      dispatch(initItems(user.payload.items))
     })  
   }, [loggedIn]);
-
-  //I'm trying to figure out how to use the getMe fetch to /me to lead to setting initial state in each slice each time the page loads.
-  // useEffect(() => {
-  //   dispatch(initDesign(user.designs));
-  //   dispatch(initPeople(user.people));
-  // }, [useSelector((state) => state.users.user)])
 
   return (
     <BrowserRouter>
@@ -52,31 +52,40 @@ function App() {
             {loggedIn == "true" ? <Redirect to="/" /> : <Login />}
           </Route>
           <Route path="/settings" >
-            {loggedIn != "true" ? <Redirect to="/" /> : <SettingsContainer />}
+            {loggedIn != true ? <Redirect to="/" /> : <SettingsContainer />}
           </Route>
           <Route exact path="/">
             <Home />
           </Route>
           <Route exact path="/people">
-          {loggedIn != "true" ? <Redirect to="/" /> : <People />}
+            <People />
           </Route>
           <Route exact path="/people/new">
-          {loggedIn != true ? <Redirect to="/" /> : <PersonForm />}
+            <PersonForm />
           </Route>
           <Route path="/people/:id" >
-          {loggedIn != "true" ? <Redirect to="/" /> : <PersonShow />}
+            <PersonShow />
           </Route>
           <Route exact path="/categories" >
-          {loggedIn != "true" ? <Redirect to="/" /> : <Categories />}
+            <Categories />
           </Route>
           <Route path="/categories/new" >
-          {loggedIn != true ? <Redirect to="/" /> : <CategoryForm />}
+            <CategoryForm />
           </Route>
           <Route path="/locations/new" >
-          {loggedIn != "true" ? <Redirect to="/" /> : <LocationForm />}
+            <LocationForm />
           </Route>
           <Route exact path="/locations" >
-          {loggedIn != "true" ? <Redirect to="/" /> : <Locations /> }
+            <Locations />
+          </Route>
+          <Route exact path="/items" >
+            <Items />
+          </Route>
+          <Route exact path="/items/new" >
+            <ItemForm />
+          </Route>
+          <Route path="/items/:id" >
+            <ItemShow />
           </Route>
 
 

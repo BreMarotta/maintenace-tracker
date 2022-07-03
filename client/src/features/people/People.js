@@ -20,10 +20,11 @@ const People = () => {
   </div> : ""
   return (
     <div>
-        {displayPeople}
+        
         <button onClick={toggle}>Add Person</button>
 
         {displaySettingUpdates}
+        {displayPeople}
     </div>
 
   )

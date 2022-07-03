@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { CirclePicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import { addPerson, updatePerson, updatePersonFront } from './peopleSlice';
+
 
 const PersonForm = (props) => {
   const dispatch = useDispatch()
@@ -43,6 +44,7 @@ const PersonForm = (props) => {
     console.log("new")
     dispatch(addPerson(personObj))
     props.toggle()
+    
   }
 
   const handleUpdate = (e) => {

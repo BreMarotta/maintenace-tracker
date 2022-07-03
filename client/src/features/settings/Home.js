@@ -11,7 +11,7 @@ const Home = () => {
         <div className="">
         <br/>
           Please 
-          <NavLink to ='/login' ><strong>Login</strong></NavLink> 
+          <NavLink to='/login' ><strong>Login</strong></NavLink> 
           or 
           <NavLink to='/signup' ><strong>Signup</strong></NavLink>!
           </div>

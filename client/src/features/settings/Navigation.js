@@ -19,6 +19,7 @@ const Navigation = () => {
          
           <NavLink to="/locations" className="navigation">Locations</NavLink>
           <NavLink to="/categories" className="navigation">Categories</NavLink>
+          <NavLink to="/items" className="navigation">Items</NavLink>
           {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
           <NavLink to='/settings' style={{float: "right"}}><button>⚙️</button></NavLink>
           
