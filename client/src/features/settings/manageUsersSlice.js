@@ -35,6 +35,16 @@ export const logOut = createAsyncThunk('users/logout', () => {
     .then((res) => {})
 })
 
+export const updateUser = createAsyncThunk('users/updateUser', (settingsObj) => {
+    return fetch(`/users`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(settingsObj)
+    })
+    .then(res => res.json())
+    .then(data => data)
+})
+
 const manageUsersSlice = createSlice({
     name: "users",
     initialState: {
@@ -97,6 +107,16 @@ const manageUsersSlice = createSlice({
             state.user = [];
             state.status = "idle";
             state.loggedin = "false";
+        },
+        [updateUser.pending](state) {
+            state.status = "loading";
+        },
+        [updateUser.fulfilled](state, action) {
+            if(!action.payload.errors && !action.payload.error) {
+                console.log("after update: ", action.payload)
+            } else {
+                console.log("with errors: ", action.payload)
+            }
         }
     },
 });

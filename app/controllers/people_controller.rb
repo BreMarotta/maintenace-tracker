@@ -16,7 +16,7 @@ class PeopleController < ApplicationController
         if person.valid?
             render json: person, status: :accepted
         else
-            render json: { errors: book.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: person.errors.full_messages }, status: :unprocessable_entity
         end
     end
 

@@ -19,9 +19,9 @@ const DesignForm = ({ toggle }) => {;
         id: currentDesign.id
     })
 
-    console.log(currentDesign)
-    console.log("Array: ", designInArray)
-    console.log("Object: ", designAsObj)
+    // console.log(currentDesign)
+    // console.log("Array: ", designInArray)
+    // console.log("Object: ", designAsObj)
     const handleBannerChange = (e) => {
         const newObj = {
             ...designObj, 
@@ -40,7 +40,7 @@ const DesignForm = ({ toggle }) => {;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Sending to fetch", designObj)
+        // console.log("Sending to fetch", designObj)
         dispatch(designUpdate(designObj));
         // toggle();
     }
