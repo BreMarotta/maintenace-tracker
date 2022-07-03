@@ -17,9 +17,7 @@ export const updatePerson = createAsyncThunk('people/updatePerson', (personObj) 
         body: JSON.stringify(personObj)
     })
     .then(res => res.json())
-    .then(data => {
-        console.log(data)
-    })
+    .then(data => data)
 })
 const peopleSlice = createSlice({
     name: "people",
@@ -50,6 +48,18 @@ const peopleSlice = createSlice({
                 console.log("returned from fetch: ", action.payload)    
             }
         },
+        [updatePerson.pending](state) {
+            state.status = "loading"
+        },
+        [updatePerson.fulfilled](state, action) {
+            if (!action.payload.errors && !action.payload.error) {
+                const updatedPeople = state.people.map(p => p.id === action.payload.id ? action.payload : p)
+                state.people = updatedPeople
+            } else {
+                state.errors = action.payload.errors
+            }
+            
+        }
     }
 });
 

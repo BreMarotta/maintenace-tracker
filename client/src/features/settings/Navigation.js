@@ -7,7 +7,7 @@ const Navigation = () => {
   const loggedIn = useSelector((state) => state.users.loggedin);
 
   const peopleType = useSelector((state) => state.users.user.type)
-  const peopleLink = peopleType == null ? "People" : peopleType
+  const peopleLink = peopleType == "" ? "People" : peopleType
 
   const displayLogoutButton = loggedIn == "true" ? <LogoutButton /> : ""
   if (loggedIn == "true"){
@@ -20,6 +20,7 @@ const Navigation = () => {
           <NavLink to="/locations" className="navigation">Locations</NavLink>
           <NavLink to="/categories" className="navigation">Categories</NavLink>
           {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
+          <NavLink to='/settings' style={{float: "right"}}><button>⚙️</button></NavLink>
           
       </div>
     )

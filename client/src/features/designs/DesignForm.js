@@ -15,9 +15,13 @@ const DesignForm = ({ toggle }) => {;
         banner: currentDesign.banner,
         background: currentDesign.background,
         main: currentDesign.main,
-        accent: currentDesign.accent
+        accent: currentDesign.accent,
+        id: currentDesign.id
     })
 
+    console.log(currentDesign)
+    console.log("Array: ", designInArray)
+    console.log("Object: ", designAsObj)
     const handleBannerChange = (e) => {
         const newObj = {
             ...designObj, 
@@ -36,8 +40,9 @@ const DesignForm = ({ toggle }) => {;
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Sending to fetch", designObj)
         dispatch(designUpdate(designObj));
-        toggle();
+        // toggle();
     }
 
   return (
@@ -54,18 +59,21 @@ const DesignForm = ({ toggle }) => {;
             
             <label style={{color: 'white', background: currentDesign.background}}>
                 Background Color: 
+                <br/>
                 <CompactPicker color={designObj.background} name="background" onChange={(e) => handleChange("background", e.hex)} />
             </label>    
             <br/>
 
             <label style={{color: 'white', background: currentDesign.main}}>
                 Main Color: 
+                <br/>
                 <CompactPicker color={designObj.main} onChange={(e) => handleChange("main", e.hex)} />
             </label>    
             <br/>
 
             <label style={{color: 'white', background: currentDesign.accent}}>
                 Accent Color: 
+                <br/>
                 <CompactPicker color={designObj.accent} onChange={(e) => handleChange("accent", e.hex)} />
             </label>    
             <br/>

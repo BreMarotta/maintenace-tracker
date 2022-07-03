@@ -49,6 +49,7 @@ const PersonForm = (props) => {
     e.preventDefault()
     dispatch(updatePerson(personObj))
     dispatch(updatePersonFront(personObj))
+    props.updatePerson(personObj)
     props.toggle()
   }
 

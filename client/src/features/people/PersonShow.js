@@ -5,7 +5,7 @@ import PersonForm from './PersonForm';
 
 const PersonShow = () => {
   const params = useParams()
-  const people = useSelector(state => state.people.people)
+  // const people = useSelector(state => state.people.people)
   const [person, setPerson] = useState({}) 
   const [color, setColor] = useState("")
   const [current, setCurrent] = useState(true)
@@ -20,7 +20,6 @@ const PersonShow = () => {
     .then(data => {
       if (!data.error && !data.errors){
         setColor(data.color)
-        setCurrent(data.current)
         setPerson(data)
         setError(false)
       } else{
@@ -32,7 +31,12 @@ const PersonShow = () => {
 
   const toggle = () => {setShowForm(!showForm)}
 
-  const displayUpdate = showForm == true ? <PersonForm person={person} toggle={toggle}/> : <div>
+  const updatePerson = (obj) => {
+    setColor(obj.color)
+    setPerson(obj)
+  }
+
+  const displayUpdate = showForm == true ? <PersonForm person={person} toggle={toggle} updatePerson={updatePerson}/> : <div>
   <p>{person.name}</p>
   <p> Title: {person.title}</p>
 </div>

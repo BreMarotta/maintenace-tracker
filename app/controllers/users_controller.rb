@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
     #signup
     def create 
-
+        # byebug
         user = User.create!(user_params)
         session[:user_id] = user.id
         render json: user, status: :created

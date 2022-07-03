@@ -1,18 +1,13 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { getMe, logOut } from './manageUsersSlice'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { logOut } from './manageUsersSlice'
 
 const LogoutButton = () => {
     const dispatch = useDispatch()
-    // const loggedInUser = useSelector((state) => state.users.user);
-
-
-
-    // console.log("User available to all components: ", loggedInUser)
 
   return (
     <div>
-        <button onClick={() => dispatch(logOut())}>Logout</button>
+        <button onClick={() => dispatch(logOut())} style={{float: "right"}}>Logout</button>
         </div>
   )
 }

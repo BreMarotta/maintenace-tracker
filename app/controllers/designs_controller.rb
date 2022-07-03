@@ -8,7 +8,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
 
     def update
-        design = @current_user.designs.first
+        design = @current_user.designs.find(params[:id])
         new_design = design.update!(design_params)
         render json: design, status: :accepted
     end
@@ -16,7 +16,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     private
 
     def design_params
-        params.require(:design).permit(:user_id, :background, :main, :accent, :banner)
+        params.require(:design).permit(:user_id, :background, :main, :accent, :banner, :id)
     end
 
     def render_not_found_response

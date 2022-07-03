@@ -5,6 +5,7 @@ import Navigation from "./features/settings/Navigation";
 import Home from "./features/settings/Home";
 import Signup from "./features/settings/Signup";
 import Login from "./features/settings/Login";
+import SettingsContainer from "./features/settings/SettingsContainer";
 import People from "./features/people/People"
 import PersonForm from "./features/people/PersonForm";
 import PersonShow from "./features/people/PersonShow";
@@ -49,6 +50,9 @@ function App() {
           </Route>
           <Route path="/login" > 
             {loggedIn == "true" ? <Redirect to="/" /> : <Login />}
+          </Route>
+          <Route path="/settings" >
+            <SettingsContainer />
           </Route>
           <Route exact path="/">
             <Home />

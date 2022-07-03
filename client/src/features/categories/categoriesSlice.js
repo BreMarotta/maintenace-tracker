@@ -10,6 +10,16 @@ export const addCategory = createAsyncThunk('categories/addCategory', (categoryO
     .then(data => data)
 })
 
+export const updateCategory = createAsyncThunk('categories/updateCategory', (categoryObj) => {
+    return fetch(`/categories/${categoryObj.id}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(categoryObj)
+    })
+    .then(res => res.json())
+    .then(data => data)
+})
+
 const categoriesSlice = createSlice({
     name: "categories",
     initialState: {
@@ -21,6 +31,9 @@ const categoriesSlice = createSlice({
         initCategories(state, action) {
             state.categories = action.payload
         },
+        updateCategoryFront(state, action) {
+            console.log(action.payload)
+        }
     },
     extraReducers: {
         [addCategory.pending](state) {
@@ -36,9 +49,17 @@ const categoriesSlice = createSlice({
                 state.errors = action.payload.errors;
             }  
         },
+        [updateCategory.pending](state) {
+            state.status = "loading"
+        },
+        [updateCategory.fulfilled](state, action) {
+            if(!action.payload.errors && !action.payload.error) {
+                state.category.push(action)
+            }
+        }
     }
 });
 
-export const { initCategories } = categoriesSlice.actions;
+export const { initCategories, updateCategoryFront } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

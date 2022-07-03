@@ -8,7 +8,7 @@ export const designBase = createAsyncThunk('design/base', () => {
 
 
 export const designUpdate = createAsyncThunk('design/update', (designObj) => {
-    return fetch('/designs/1', {
+    return fetch(`/designs/${designObj.id}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(designObj)
@@ -50,7 +50,7 @@ const designSlice = createSlice({
         },
         [designUpdate.fulfilled](state, action) {
             if(!action.payload.error) {
-                // console.log(action.payload)
+                console.log(action.payload)
                 state.design = action.payload;
                 state.status = "idle";
                 state.errors = [];
