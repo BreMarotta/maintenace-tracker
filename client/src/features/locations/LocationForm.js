@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLocation, addLocationFront } from './locationsSlice';
+import { addLocation, updateLocation } from './locationsSlice';
 
-const LocationForm = () => {
+const LocationForm = (props) => {
     const loggedIn = useSelector(state => state.users.loggedIn);
     const dispatch = useDispatch()
+    const n = (props.location !== undefined || null ? props.location.name : "")
+    const add_1 = (props.location !== undefined || null ? props.location.address : "")
+    const add_2 = (props.location !== undefined || null ? props.location.address_2 : "")
+    
     const [locationObj, setLocationObj] = useState({
-        name: "",
-        address: "",
-        address_2: ""
+        name: n,
+        address: add_1,
+        address_2: add_2
     })
     const errors = useSelector(state => state.locations.errors)
+    const errorLis = errors.map(e => <li key={e}>{e}</li>)
     
     const [toggleAddress, setToggleAddress] = useState(false)
 
     const toggle = () => {setToggleAddress(!toggleAddress)}
-
-    const errorLis = errors.map(e => <li key={e}>{e}</li>)
 
     const handleChange = (e) => {
         const newObj = {
@@ -48,8 +51,18 @@ const LocationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addLocation(locationObj))
-        dispatch(addLocationFront(locationObj))
+        props.toggle()
     }
+
+    const handleUpdate = (e) => {
+        e.preventDefault()
+        dispatch(updateLocation(locationObj))
+        // dispatch(updateLocationFront(locationObj))
+    }
+
+    const buttonText = props.location !== undefined || null ? "Save Changes" : "Add Location"
+
+    const submitFunction = props.category !== undefined || null ? handleUpdate : handleSubmit
 if (loggedIn == true){
     return (
         <div>Not Logged In!</div>
@@ -58,7 +71,7 @@ if (loggedIn == true){
 } else {
     return (
         <div>
-            <form className="locationForm" onSubmit={handleSubmit}>
+            <form className="locationForm" onSubmit={submitFunction}>
                 <label>Location Name: </label>
                     <input
                         type="text"
@@ -74,7 +87,7 @@ if (loggedIn == true){
                         onChange={toggle} />
                 {displayAddressLines}
                 <br/>
-                <button type="submit">Add Location</button>
+                <button type="submit">{buttonText}</button>
             </form> 
             {errorLis}
         </div>

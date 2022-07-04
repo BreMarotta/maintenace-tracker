@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
+    render json: categories.sort_order
   end
 
   def update

@@ -54,7 +54,7 @@ const categoriesSlice = createSlice({
         },
         [updateCategory.fulfilled](state, action) {
             if(!action.payload.errors && !action.payload.error) {
-                state.category.push(action)
+                // Need to figure this out still
             }
         }
     }

@@ -9,6 +9,16 @@ export const addLocation = createAsyncThunk('/locations/addLocation', (locationO
     .then(res => res.json())
     .then(data => data)
 } )
+
+export const updateLocation = createAsyncThunk('/locations/updateLocation', (locationObj) => {
+    return fetch(`/locations/${locationObj.id}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(locationObj)
+    })
+    .then(res => res.json())
+    .then(data => data)
+})
 const locationsSlice = createSlice({
     name: "locations",
     initialState: {
@@ -20,8 +30,8 @@ const locationsSlice = createSlice({
         initLocations(state, action) {
             state.locations = action.payload
         },
-        addLocationFront(state, action) {
-            state.locations.push(action.payload)
+        updateLocationFront(state, action) {
+            console.log(action.payload)
             
         }
         },
@@ -38,6 +48,14 @@ const locationsSlice = createSlice({
                 console.log("returned from fetch: ", action.payload)
                 state.errors = action.payload.errors;
             
+            }
+        },
+        [updateLocation.pending](state) {
+            state.status = "loading"
+        },
+        [updateLocation.fulfilled](state, action) {
+            if(!action.payload.errors && !action.payload.error) {
+                //Need to figure this out still 
             }
         }
     }

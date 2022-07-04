@@ -5,4 +5,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :people
   has_many :categories
   has_many :locations
+
 end

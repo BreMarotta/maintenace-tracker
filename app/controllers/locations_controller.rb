@@ -4,7 +4,8 @@ class LocationsController < ApplicationController
         render json: new_location, status: :created
     end
 
-    def show
+    def index
+        render json: @current_user.locations.sort_order
 
     end
     
