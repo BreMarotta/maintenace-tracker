@@ -4,10 +4,10 @@ export const addItem = createAsyncThunk('items/addItem', (itemObj) => {
     return fetch('/items', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.strinfigy(itemObj)
+        body: JSON.stringify(itemObj)
     })
     .then(res => res.json())
-    .then(data => data)
+    .then(data => {console.log(data)})
 })
 const itemsSlice = createSlice({
     name: "items",

@@ -5,6 +5,8 @@ class User < ApplicationRecord
     has_many :people, dependent: :destroy
     has_many :locations
     has_many :categories
+    has_many :items, through: :categories
+    # has_many :items, through: :locations
 
     validates :username, :password, presence: true
     validates :username, uniqueness: { case_sensitive: false }
