@@ -16,8 +16,9 @@ const ItemForm = (props) => {
     const war = (props.item !== undefined || null ? props.item.warrenty : "")
     const image = (props.item !== undefined || null ? props.item.img : "")
     const errors = useSelector(state => state.items.errors);
+    // console.log("Errors from Store: ", errors)
 
-    const errorsLis = errors.map(e => <li key={e}> {e}</li>)
+    const errorLis = errors.map(e => <li key={e}> {e}</li>)
 
     const [itemObj, setItemObj] = useState({
         category_id: cat,
@@ -43,7 +44,6 @@ const ItemForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("called submit")
         dispatch(addItem(itemObj))
     }
 
@@ -125,6 +125,7 @@ const ItemForm = (props) => {
         <LocationsDropDown handleSelect={handleSelect}/>
 
         <button type="submit">{buttonText}</button>
+        {errorLis}
     </form>
   )
 }

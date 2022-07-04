@@ -10,7 +10,7 @@ const Items = () => {
   return (
     <div>
       <Link to="/items/new">Add New Item</Link>
-      Items
+      {displayItems}
     </div>
   )
 }

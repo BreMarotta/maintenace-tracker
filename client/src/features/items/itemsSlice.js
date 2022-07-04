@@ -7,7 +7,7 @@ export const addItem = createAsyncThunk('items/addItem', (itemObj) => {
         body: JSON.stringify(itemObj)
     })
     .then(res => res.json())
-    .then(data => {console.log(data)})
+    .then(data => data)
 })
 const itemsSlice = createSlice({
     name: "items",
@@ -23,14 +23,25 @@ const itemsSlice = createSlice({
     },
     extraReducers: {
         [addItem.pending](state) {
-
+            state.status = "loading"
         },
         [addItem.fulfilled](state, action){
-            console.log("Sent back after fetch: ", action.payload)
+            if(!action.payload.error && !action.payload.errors) {
+                state.items.push(action.payload);
+                state.status = "idle";
+                state.errors = [];
+            } else if (action.payload.error){
+                state.errors = ['Category must exist'];
+                state.status = "idle";
+            } else {
+                state.errors = action.payload.errors;
+                state.status = "idle";
+              
+            }
         },
     }
 });
 
-export const { initItems} = itemsSlice.actions;
+export const { initItems } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

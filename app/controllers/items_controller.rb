@@ -1,9 +1,14 @@
 class ItemsController < ApplicationController
 
     def create
-        byebug
-        new_item = @current_user.items.create!(item_params)
-        render json: new_item, status: :created
+        # byebug
+        category = @current_user.categories.find(params[:category_id])
+        if category.valid?
+            new_item = category.items.create!(item_params)
+            render json: new_item, status: :created
+        else 
+            render json: { error: "Must Select Category" }, status: :unprocessable_entity
+        end
     end
     
     def show

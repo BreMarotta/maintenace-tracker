@@ -47,6 +47,7 @@ const categoriesSlice = createSlice({
             } else {
                 console.log("returned from fetch: ", action.payload)
                 state.errors = action.payload.errors;
+                state.status = "idle";
             }  
         },
         [updateCategory.pending](state) {
