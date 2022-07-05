@@ -9,7 +9,7 @@ const PersonForm = (props) => {
   const dispatch = useDispatch()
   const params = useParams()
   const history = useHistory()
-  console.log(props)
+  console.log(props.toggle)
 
  const n = (props.person !== undefined || null ? props.person.name : "")
  const t = (props.person !== undefined || null ? props.person.title : "")
@@ -51,13 +51,15 @@ const PersonForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(addPerson(personObj))
-    history.push('/people')
+    if(props.toggle) {
+      props.toggle();
+    }
   }
 
   const handleUpdate = (e) => {
     e.preventDefault()
     dispatch(updatePerson(personObj))
-    dispatch(updatePersonFront(personObj))
+    // dispatch(updatePersonFront(personObj))
     props.updatePerson(personObj)
   }
 

@@ -4,7 +4,7 @@ import DesignForm from '../designs/DesignForm'
 import PersonForm from '../people/PersonForm'
 import { useSelector } from 'react-redux';
 
-const SettingsContainer = ({ toggle }) => {
+const SettingsContainer = () => {
   const loggedIn = useSelector((state) => state.users.loggedin);
   const [showSettings, setShowSettings] = useState(false)
   const [showPerson, setShowPerson] = useState(false)
@@ -14,19 +14,19 @@ const SettingsContainer = ({ toggle }) => {
     setShowSettings(!showSettings)
   }
 
-  const displaySettings = showSettings == true ? <SettingsForm /> : ""
+  const displaySettings = showSettings == true ? <SettingsForm toggle={toggleSettings}/> : ""
 
   const toggleDesign = () => {
     setShowDesign(!showDesign)
   }
 
-  const displayDesign = showDesign == true ? <DesignForm toggle={toggle}/> : ""
+  const displayDesign = showDesign == true ? <DesignForm toggle={toggleDesign}/> : ""
 
   const togglePerson = () => {
     setShowPerson(!showPerson)
   }
 
-  const displayPerson = showPerson == true ? <PersonForm toggle={toggle}/> : ""
+  const displayPerson = showPerson == true ? <PersonForm toggle={togglePerson}/> : ""
   
 if (loggedIn == "true"){
   return (

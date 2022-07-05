@@ -38,7 +38,6 @@ const CategoryForm = (props) => {
     const handleUpdate = (e) => {
         e.preventDefault()
         dispatch(updateCategory(categoryObj))
-        // dispatch(updateCategoryFront(categoryObj))
     }
 
     const buttonText = props.category !== undefined || null ? "Save Changes" : "Add Category"

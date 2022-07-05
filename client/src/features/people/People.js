@@ -17,7 +17,7 @@ const People = () => {
   }
 
   const displaySettingUpdates = toggleDisplay === true ? <div>
-      <PersonForm />
+      <PersonForm toggle={toggle}/>
   </div> : people.map(p => <Person key={p.id} person={p}/>)
 
   if (loggedIn == "true") {
