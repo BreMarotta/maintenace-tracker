@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import CategoriesDropDown from '../categories/CategoriesDropDown';
 import LocationsDropDown from '../locations/LocationsDropDown';
 import { addItem, updateItem } from './itemsSlice';
@@ -8,6 +8,7 @@ import { addItem, updateItem } from './itemsSlice';
 const ItemForm = (props) => {
     const dispatch = useDispatch();
     const params = useParams()
+    const history = useHistory()
     const [showCategory, setShowCategory] = useState(false)
     const [showLocation, setShowLocation] = useState(false)
 
@@ -49,6 +50,7 @@ const ItemForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addItem(itemObj))
+        history.push('/items')
     }
 
     const handleUpdate = (e) => {

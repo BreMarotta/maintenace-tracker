@@ -19,6 +19,15 @@ export const updateItem = createAsyncThunk('items/updateItem', (itemObj) => {
     .then(res => res.json())
     .then(data => data)
 })
+
+export const deleteItem = createAsyncThunk('items/deleteItem', (itemObj) => {
+    return fetch(`/items/${itemObj.id}`, {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(itemObj)
+    })
+    .then(res => res.json())
+})
 const itemsSlice = createSlice({
     name: "items",
     initialState: {
@@ -29,6 +38,10 @@ const itemsSlice = createSlice({
     reducers: {
         initItems(state, action) {
             state.items = action.payload
+        },
+        deleteItemFront(state, action) {
+            const index = state.items.findIndex(i => i.id === action.payload);
+            state.items.splice(index, 1);
         }
     },
     extraReducers: {
@@ -66,9 +79,15 @@ const itemsSlice = createSlice({
               
             }
         },
+        [deleteItem.pending](state) {
+            state.status = "loading"
+        },
+        [deleteItem.fulfilled](state, action) {
+
+        }
     }
 });
 
-export const { initItems } = itemsSlice.actions;
+export const { initItems, deleteItemFront } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

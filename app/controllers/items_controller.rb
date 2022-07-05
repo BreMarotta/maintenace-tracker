@@ -32,7 +32,9 @@ class ItemsController < ApplicationController
     end
 
     def destroy
-
+        item = @current_user.items.find(params[:id])
+        item.destroy
+        head :no_content
     end
 
     private

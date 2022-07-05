@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import ItemForm from './ItemForm';
+import { deleteItem, deleteItemFront } from './itemsSlice';
 
 const ItemShow = () => {
   const params = useParams()
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   const [item, setItem] = useState({})
   const [error, setError] = useState(false)
@@ -29,8 +32,13 @@ const ItemShow = () => {
     setItem(obj)
   }
 
-  const displayUpdate = showForm == true ? <ItemForm item={item} toggle={toggle} updateItem={updateItem} /> : <div>map out item format here?</div>
+  const display = showForm == true ? <ItemForm item={item} toggle={toggle} updateItem={updateItem} /> : <div>map out item format here?</div>
 
+  const handleDelete = () => {
+    dispatch(deleteItem(item))
+    dispatch(deleteItemFront(item.id))
+    history.push('/items')
+  }
   if (!error) {
     return (
     <div>
@@ -39,7 +47,15 @@ const ItemShow = () => {
         type="checkbox"
         checked={showForm}
         onChange={toggle}/>
-        {displayUpdate}
+        {display}
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <button onClick={handleDelete}>Delete {item.name}</button>
     </div>
   )} 
   // else {
