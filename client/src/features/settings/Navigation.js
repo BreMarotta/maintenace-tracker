@@ -5,6 +5,16 @@ import { useSelector } from 'react-redux';
 
 const Navigation = () => {
   const loggedIn = useSelector((state) => state.users.loggedin);
+  const designInArray = useSelector(state => state.design.design[0])
+    const designAsObj = useSelector(state => state.design.design)
+    const currentDesign = designInArray == undefined ? designAsObj : designInArray
+
+    console.log(currentDesign.banner)
+
+  const navStyles = {
+    backgroundImage: `url(${currentDesign.banner})`,
+    padding: 40,
+  }
 
   const peopleType = useSelector((state) => state.users.user.type)
   const peopleLink = peopleType == "" ? "People" : peopleType
@@ -12,7 +22,7 @@ const Navigation = () => {
   const displayLogoutButton = loggedIn == "true" ? <LogoutButton /> : ""
   if (loggedIn == "true"){
     return (
-      <div className="">
+      <div className="" style={navStyles}>
         {displayLogoutButton}
           <NavLink to="/" className="navigation">Home</NavLink>
           <NavLink to='/people' className="navigation">{peopleLink}</NavLink>

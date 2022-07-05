@@ -8,15 +8,18 @@ const ItemShow = () => {
   const params = useParams()
   const dispatch = useDispatch()
   const history = useHistory()
+  const loggedIn = useSelector((state) => state.users.loggedin);
+
 
   const [item, setItem] = useState({})
   const [error, setError] = useState(false)
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
-    fetch(`/items/${params.id}`)
-    .then(res => res.json())
-    .then(data => {
+    if (loggedIn == "true"){
+      fetch(`/items/${params.id}`)
+      .then(res => res.json())
+      .then(data => {
       if (!data.error && !data.errors){
         setItem(data)
         setError(false)
@@ -24,6 +27,7 @@ const ItemShow = () => {
         setError(true)
       }
     })
+  } 
   }, [params])
 
   const toggle = () => {setShowForm(!showForm)}
