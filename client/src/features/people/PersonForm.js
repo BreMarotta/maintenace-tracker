@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { CirclePicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { addPerson, updatePerson, updatePersonFront } from './peopleSlice';
 
 
 const PersonForm = (props) => {
   const dispatch = useDispatch()
   const params = useParams()
+  const history = useHistory()
+  console.log(props)
 
  const n = (props.person !== undefined || null ? props.person.name : "")
  const t = (props.person !== undefined || null ? props.person.title : "")
@@ -22,6 +24,13 @@ const PersonForm = (props) => {
     current: current,
     id: params.id
   })
+
+  const [toggleDisplay, setToggleDisplay] = useState(false)
+
+  const toggle = () => {
+      setToggleDisplay(!toggleDisplay)
+  }
+
 
   const handleChange = (e) => {
     const newObj = {
@@ -41,10 +50,8 @@ const PersonForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("new")
     dispatch(addPerson(personObj))
-    props.toggle()
-    
+    history.push('/people')
   }
 
   const handleUpdate = (e) => {
@@ -52,7 +59,6 @@ const PersonForm = (props) => {
     dispatch(updatePerson(personObj))
     dispatch(updatePersonFront(personObj))
     props.updatePerson(personObj)
-    props.toggle()
   }
 
   const buttonText = props.person !== undefined || null ? "Save Changes" : "Add Person" 

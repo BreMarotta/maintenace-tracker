@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCategory, updateCategory } from './categoriesSlice'
+import { addCategory, updateCategory } from './categoriesSlice';
+import { useHistory } from 'react-router-dom';
 
 const CategoryForm = (props) => {
     const dispatch = useDispatch()
+    const history = useHistory()
+    console.log(props)
     const n = (props.category !== undefined || null ? props.category.name : "")
     const x = (props.category !== undefined || null ? props.category.id : "")
     const [categoryObj, setCategoryObj] = useState({
@@ -25,7 +28,11 @@ const CategoryForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(addCategory(categoryObj))
-        props.toggle()
+        if(props.toggle) {
+            props.toggle()
+        } else {  
+            history.push('/categories')
+        }
     }
 
     const handleUpdate = (e) => {

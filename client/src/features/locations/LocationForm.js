@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLocation, updateLocation } from './locationsSlice';
+import { useHistory } from 'react-router-dom';
 
 const LocationForm = (props) => {
     const loggedIn = useSelector(state => state.users.loggedIn);
     const dispatch = useDispatch()
+    const history = useHistory()
     const n = (props.location !== undefined || null ? props.location.name : "")
     const add_1 = (props.location !== undefined || null ? props.location.address : "")
     const add_2 = (props.location !== undefined || null ? props.location.address_2 : "")
@@ -51,7 +53,11 @@ const LocationForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addLocation(locationObj))
-        props.toggle()
+        if(props.toggle) {
+            props.toggle()
+        } else {  
+            history.push('/locations')
+        }
     }
 
     const handleUpdate = (e) => {
