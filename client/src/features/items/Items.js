@@ -9,7 +9,7 @@ const Items = () => {
   const displayItems = items.map(i => <Item key={i.id} item={i} />)
   return (
     <div>
-      <Link to="/items/new">Add New Item</Link>
+      <Link to="/items/new"><button>Add New Item</button></Link>
       {displayItems}
     </div>
   )

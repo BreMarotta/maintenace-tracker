@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import CategoryForm from './CategoryForm';
 
 const CategoriesDropDown = (props) => {
+  // console.log(props)
     const categories = useSelector(state => state.categories.categories)
     const [category, setCategory] = useState("")
     const [showForm, setShowForm] = useState(false)
@@ -17,11 +18,14 @@ const CategoriesDropDown = (props) => {
         e.target.value == "add" ? toggle() : props.handleSelect("category_id", e.target.value)
     }
 
+    const d = (props.cat !== undefined || null ? props.cat : "")
+    // const dText = (props.cat !== undefined || null ? )
+
   return (
     <div>
         <label>Category: </label>
             <select onChange={handleCategorySelect}>
-                <option defaultValue={""}>Select From List</option>
+                <option defaultValue={d}>Select From List</option>
                 {dropDown}
                 <option value="add" key="addCategory">Add Category</option>
             </select>

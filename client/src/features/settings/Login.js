@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom'
 const Login = () => {
     const dispatch = useDispatch();
     const errors = useSelector(state => state.users.errors)
+    const user = useSelector((state) => state.users.user)
     // console.log(error)
 
     const [userObj, setUserObj] = useState({

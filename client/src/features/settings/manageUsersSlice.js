@@ -62,7 +62,7 @@ const manageUsersSlice = createSlice({
         },
         [getMe.fulfilled](state, action) {
             if (!action.payload.error && !action.payload.errors) {
-                console.log("Me from fetch: ", action.payload)
+                // console.log("Me from fetch: ", action.payload)
                 state.user = action.payload;
                 state.loggedin = "true";
                 state.status = "idle";
@@ -77,7 +77,8 @@ const manageUsersSlice = createSlice({
         },
         [logIn.fulfilled](state, action) {
             if (!action.payload.error) {
-                // console.log("after login: ", action.payload.designs[0])
+                console.log("after login: ", action.payload)
+                state.user = action.payload
                 state.loggedin = "true";
                 state.errors = [];
             } else {
@@ -90,7 +91,7 @@ const manageUsersSlice = createSlice({
         },
         [signUp.fulfilled](state, action) {
             if(!action.payload.errors) {
-                console.log("after signup: ", action.payload.designs[0])
+                console.log("after signup: ", action.payload)
                 state.status = "idle";
                 state.loggedin = "true";
                 // state.errors = [];

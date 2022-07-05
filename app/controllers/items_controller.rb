@@ -12,7 +12,8 @@ class ItemsController < ApplicationController
     end
     
     def show
-
+        item = @current_user.items.find(params[:id])
+        render json: item
     end
 
     def index 
@@ -20,7 +21,14 @@ class ItemsController < ApplicationController
     end
 
     def update 
-
+        # byebug
+        item = @current_user.items.find(params[:id])
+        item.update(item_params)
+        if item.valid?
+            render json: item, status: :accepted
+        else
+            render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def destroy

@@ -55,8 +55,11 @@ const peopleSlice = createSlice({
             if (!action.payload.errors && !action.payload.error) {
                 const updatedPeople = state.people.map(p => p.id === action.payload.id ? action.payload : p)
                 state.people = updatedPeople
+                state.status = "idle"
+                state.errors = []
             } else {
                 state.errors = action.payload.errors
+                state.status = "idle"
             }
             
         }

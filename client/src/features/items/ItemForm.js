@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import CategoriesDropDown from '../categories/CategoriesDropDown';
 import LocationsDropDown from '../locations/LocationsDropDown';
-import { addItem } from './itemsSlice';
+import { addItem, updateItem } from './itemsSlice';
 
 const ItemForm = (props) => {
     const dispatch = useDispatch();
+    const params = useParams()
+    const [showCategory, setShowCategory] = useState(false)
+    const [showLocation, setShowLocation] = useState(false)
+
     const cat = (props.item !== undefined || null ? props.item.category_id : "")
     const loc = (props.item !== undefined || null ? props.item.location_id : "")
     const n = (props.item !== undefined || null ? props.item.name : "")
@@ -15,9 +20,8 @@ const ItemForm = (props) => {
     const mod = (props.item !== undefined || null ? props.item.model : "")
     const war = (props.item !== undefined || null ? props.item.warrenty : "")
     const image = (props.item !== undefined || null ? props.item.img : "")
+    
     const errors = useSelector(state => state.items.errors);
-    // console.log("Errors from Store: ", errors)
-
     const errorLis = errors.map(e => <li key={e}> {e}</li>)
 
     const [itemObj, setItemObj] = useState({
@@ -29,10 +33,10 @@ const ItemForm = (props) => {
         make: m,
         model: mod,
         warrenty: war,
-        img: image,    
+        img: image,   
+        id: params.id 
     })
     const handleSelect = (type, id) => {
-        // console.log(type, id)
         const newObj = {...itemObj, [type]: id}
         setItemObj(newObj)
     }
@@ -49,84 +53,117 @@ const ItemForm = (props) => {
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        // dispatch(updateItem(itemObj))
+        console.log(itemObj)
+        dispatch(updateItem(itemObj))
     }
+    
+    const toggleCategory = () => {setShowCategory(!showCategory)}
+    const toggleLocation = () => {setShowLocation(!showLocation)}
+
+    const displayCategory = showCategory == true ? <CategoriesDropDown handleSelect={handleSelect} cat={cat}/> : ""
+
+    const displayLocation = showLocation == true ? <LocationsDropDown handleSelect={handleSelect} loc={loc}/> : ""
 
     const buttonText = props.item !== undefined || null ? "Save Changes" : "Add Item"
 
     const submitFunction = props.item !== undefined || null ? handleUpdate : handleSubmit
 
+    const catLocPart = (props.item != undefined || null ?   
+    <div>
+        <div>
+            <label>Reselect Category ? </label>
+                <input
+                    type="checkbox"
+                    checked={showCategory}
+                    onChange={toggleCategory} />
+        </div>
+        {displayCategory}
+        <div>
+            <label>Reselect Location ? </label>
+                <input
+                    type="checkbox"
+                    checked={showLocation}
+                    onChange={toggleLocation} />
+        </div>
+        {displayLocation}
+    </div> :
+    <div>
+        <CategoriesDropDown handleSelect={handleSelect} />
+        <LocationsDropDown handleSelect={handleSelect} />
+    </div>
+     )
+
 
   return (
-    <form className="itemForm" onSubmit={handleSubmit}>
-        <label>Name: </label>
-            <input
-                type="text"
-                id="name"
-                name="name"
-                value={itemObj.name}
-                onChange={handleChange} />
-            <br/>
-
-            <label>Model Year: </label>
-            <input
-                type="text"
-                id="year"
-                name="year"
-                value={itemObj.year}
-                onChange={handleChange} />
-            <br/>
-
-            <label>Make: </label>
-            <input
-                type="text"
-                id="make"
-                name="make"
-                value={itemObj.make}
-                onChange={handleChange} />
-            <br/>
-
-            <label>Model: </label>
-            <input
-                type="text"
-                id="model"
-                name="model"
-                value={itemObj.model}
-                onChange={handleChange} />
-            <br/>
-
-            <label>Year Purchased: </label>
-            <input
-                type="text"
-                id="purchase_year"
-                name="purchase_year"
-                value={itemObj.purchase_year}
-                onChange={handleChange} />
-            <br/>
-
-            <label>Warrenty Information: </label>
-            <input
-                type="text"
-                id="warrenty"
-                name="warrenty"
-                value={itemObj.warrenty}
-                onChange={handleChange} />
-            <br/>
-
-            <label>Image: </label>
-            <input
-                type="text"
-                id="img"
-                name="img"
-                value={itemObj.imb}
-                onChange={handleChange} />
-            <br/>
-        <CategoriesDropDown handleSelect={handleSelect}/>
-        <LocationsDropDown handleSelect={handleSelect}/>
-
+    <div>
+        <form className="itemForm" onSubmit={submitFunction}>
         <button type="submit">{buttonText}</button>
-        {errorLis}
-    </form>
+            <label>Name: </label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={itemObj.name}
+                    onChange={handleChange} />
+                <br/>
+
+                <label>Model Year: </label>
+                <input
+                    type="text"
+                    id="year"
+                    name="year"
+                    value={itemObj.year}
+                    onChange={handleChange} />
+                <br/>
+
+                <label>Make: </label>
+                <input
+                    type="text"
+                    id="make"
+                    name="make"
+                    value={itemObj.make}
+                    onChange={handleChange} />
+                <br/>
+
+                <label>Model: </label>
+                <input
+                    type="text"
+                    id="model"
+                    name="model"
+                    value={itemObj.model}
+                    onChange={handleChange} />
+                <br/>
+
+                <label>Year Purchased: </label>
+                <input
+                    type="text"
+                    id="purchase_year"
+                    name="purchase_year"
+                    value={itemObj.purchase_year}
+                    onChange={handleChange} />
+                <br/>
+
+                <label>Warrenty Information: </label>
+                <input
+                    type="text"
+                    id="warrenty"
+                    name="warrenty"
+                    value={itemObj.warrenty}
+                    onChange={handleChange} />
+                <br/>
+
+                <label>Image: </label>
+                <input
+                    type="text"
+                    id="img"
+                    name="img"
+                    value={itemObj.imb}
+                    onChange={handleChange} />
+                <br/>           
+            {errorLis}
+        </form>
+        {catLocPart}
+    </div>
   )
 }
 

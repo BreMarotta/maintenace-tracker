@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Item = ({ item }) => {
   return (
-    <div>{item.name}</div>
+    <div>
+      <Link to={`/items/${item.id}`}>{item.name}</Link> 
+    </div>
   )
 }
 

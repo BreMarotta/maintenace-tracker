@@ -52,7 +52,7 @@ function App() {
             {loggedIn == "true" ? <Redirect to="/" /> : <Login />}
           </Route>
           <Route path="/settings" >
-            {loggedIn != true ? <Redirect to="/" /> : <SettingsContainer />}
+           <SettingsContainer />
           </Route>
           <Route exact path="/">
             <Home />

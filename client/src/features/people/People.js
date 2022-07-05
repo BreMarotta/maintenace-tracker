@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import Person from '../people/Person'
 import PersonForm from './PersonForm'
 
+
 const People = () => {
   const people = useSelector(state => state.people.people)
   const currentDesign = useSelector(state => state.design.design[0])
@@ -20,7 +21,6 @@ const People = () => {
   </div> : ""
   return (
     <div>
-        
         <button onClick={toggle}>Add Person</button>
 
         {displaySettingUpdates}
