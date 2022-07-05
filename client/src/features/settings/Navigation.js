@@ -2,17 +2,21 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 import { useSelector } from 'react-redux';
+import { useDesign } from '../designs/useDesign';
 
 const Navigation = () => {
   const loggedIn = useSelector((state) => state.users.loggedin);
-  const designInArray = useSelector(state => state.design.design[0])
-    const designAsObj = useSelector(state => state.design.design)
-    const currentDesign = designInArray == undefined ? designAsObj : designInArray
+  const user = useSelector((state) => state.users.user)
+  const design = useDesign(user)
+  console.log(design)
+  // const designInArray = useSelector(state => state.design.design[0])
+  //   const designAsObj = useSelector(state => state.design.design)
+  //   const currentDesign = designInArray == undefined ? designAsObj : designInArray
 
-    console.log(currentDesign.banner)
+  //   console.log(currentDesign.banner)
 
   const navStyles = {
-    backgroundImage: `url(${currentDesign.banner})`,
+    backgroundImage: `url(${design.banner})`,
     padding: 40,
   }
 

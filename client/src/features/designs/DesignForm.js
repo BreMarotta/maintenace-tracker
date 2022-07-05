@@ -42,7 +42,7 @@ const DesignForm = ({ toggle }) => {;
         e.preventDefault();
         // console.log("Sending to fetch", designObj)
         dispatch(designUpdate(designObj));
-        // toggle();
+        toggle();
     }
 
   return (
