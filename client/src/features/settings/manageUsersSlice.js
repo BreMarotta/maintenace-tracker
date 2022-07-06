@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { initCategories } from '../categories/categoriesSlice'
 
-
-export const getMe = createAsyncThunk('users/getMe', () => {
+export const getMe = createAsyncThunk('user/getMe', () => {
     return fetch('/me')
     .then((res) => res.json())
     .then((data) => data)
 })
 
-export const logIn = createAsyncThunk('users/login', (userObj) => {
+export const logIn = createAsyncThunk('user/login', (userObj) => {
     return fetch('/login', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -17,7 +17,7 @@ export const logIn = createAsyncThunk('users/login', (userObj) => {
     .then(data => data)
 })
 
-export const signUp = createAsyncThunk('users/signup', (userObj) => {
+export const signUp = createAsyncThunk('user/signup', (userObj) => {
     return fetch('/signup', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -27,7 +27,7 @@ export const signUp = createAsyncThunk('users/signup', (userObj) => {
     .then(data => data)
 })
 
-export const logOut = createAsyncThunk('users/logout', () => {
+export const logOut = createAsyncThunk('user/logout', () => {
     return fetch('/logout', {
         method: "DELETE",
         headers: {"Content-Type": "application/json"}
@@ -35,7 +35,7 @@ export const logOut = createAsyncThunk('users/logout', () => {
     .then((res) => {})
 })
 
-export const updateUser = createAsyncThunk('users/updateUser', (settingsObj) => {
+export const updateUser = createAsyncThunk('user/updateUser', (settingsObj) => {
     return fetch(`/users`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
@@ -46,7 +46,7 @@ export const updateUser = createAsyncThunk('users/updateUser', (settingsObj) => 
 })
 
 const manageUsersSlice = createSlice({
-    name: "users",
+    name: "user",
     initialState: {
         user: [],
         errors: [],
@@ -63,12 +63,14 @@ const manageUsersSlice = createSlice({
         [getMe.fulfilled](state, action) {
             if (!action.payload.error && !action.payload.errors) {
                 // console.log("Me from fetch: ", action.payload)
+                // initCategories(action.payload.categories);
                 state.user = action.payload;
                 state.loggedin = "true";
                 state.status = "idle";
             } else {
             state.status = "idle";
             state.loggedin = "false";
+            state.user = []
         }
             
         },

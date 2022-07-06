@@ -1,3 +1,4 @@
+
 import { configureStore } from "@reduxjs/toolkit";
 import categoriesReducer from "./features/categories/categoriesSlice";
 import designSlice from "./features/designs/designSlice";
@@ -6,6 +7,17 @@ import locationsReducer from './features/locations/locationsSlice';
 import manageUsersReducer from "./features/settings/manageUsersSlice";
 import peopleReducer from "./features/people/peopleSlice";
 import repairsReducer from './features/repairs/repairsSlice';
+import { initDesign } from "./features/designs/designSlice";
+
+
+//  let user
+//     fetch('/me')
+//     .then((res) => res.json())
+//     .then(data => {
+//         console.log(data)
+//         // initDesign(data.designs)
+//         user = data
+//     })
 
 
 export const store = configureStore({
@@ -18,6 +30,7 @@ export const store = configureStore({
         people: peopleReducer,
         repairs: repairsReducer,       
     },
+
 });
 
 export default store;

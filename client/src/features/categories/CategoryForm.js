@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCategory, updateCategory } from './categoriesSlice';
 import { useHistory } from 'react-router-dom';
+import { DisperseInfo } from '../../Disperse';
 
 const CategoryForm = (props) => {
+    const loggedIn = useContext(DisperseInfo)
     const dispatch = useDispatch()
     const history = useHistory()
     console.log(props)
@@ -44,22 +46,31 @@ const CategoryForm = (props) => {
 
     const submitFunction = props.category !== undefined || null ? handleUpdate : handleSubmit
 
-  return (
-    <div>
-        <form className="categoryForm" onSubmit={submitFunction}>
-            <label>Category Name: </label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={categoryObj.name}
-                    onChange={handleChange} />
-                <br/>
-            <button type="submit">{buttonText}</button>
-        </form>
-        {errorLis}
-    </div>
-  )
+    if (loggedIn == "true"){
+        return (
+            <div>
+                <form className="categoryForm" onSubmit={submitFunction}>
+                    <label>Category Name: </label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={categoryObj.name}
+                            onChange={handleChange} />
+                        <br/>
+                    <button type="submit">{buttonText}</button>
+                </form>
+                {errorLis}
+            </div>
+        ) 
+    } else {
+        return (
+            <div>
+            <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
+            </div>
+        )
+    }
+  
 }
 
 export default CategoryForm

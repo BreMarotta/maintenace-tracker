@@ -27,8 +27,11 @@ const designSlice = createSlice({
     },
     reducers: {
         initDesign(state, action) {
-            // console.log("Sent post get/me ", action.payload)
+            // console.log("initDesign Called: ", action.payload)
             state.design = action.payload
+        },
+        logoutDesign(state) {
+            state.design = {}
         }
     },
     extraReducers: {
@@ -62,6 +65,6 @@ const designSlice = createSlice({
     },
 });
 
-export const { initDesign } = designSlice.actions;
+export const { initDesign, logoutDesign } = designSlice.actions;
 
 export default designSlice.reducer;

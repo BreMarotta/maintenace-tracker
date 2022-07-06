@@ -42,6 +42,9 @@ const itemsSlice = createSlice({
         deleteItemFront(state, action) {
             const index = state.items.findIndex(i => i.id === action.payload);
             state.items.splice(index, 1);
+        },
+        logoutItems(state){
+            state.items = []
         }
     },
     extraReducers: {
@@ -88,6 +91,6 @@ const itemsSlice = createSlice({
     }
 });
 
-export const { initItems, deleteItemFront } = itemsSlice.actions;
+export const { initItems, deleteItemFront, logoutItems } = itemsSlice.actions;
 
 export default itemsSlice.reducer;

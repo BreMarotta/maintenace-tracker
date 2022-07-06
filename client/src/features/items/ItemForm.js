@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import CategoriesDropDown from '../categories/CategoriesDropDown';
 import LocationsDropDown from '../locations/LocationsDropDown';
 import { addItem, updateItem } from './itemsSlice';
+import { DisperseInfo } from '../../Disperse';
 
 const ItemForm = (props) => {
+    const loggedIn = useContext(DisperseInfo)
     const dispatch = useDispatch();
     const params = useParams()
     const history = useHistory()
@@ -98,7 +100,7 @@ const ItemForm = (props) => {
     </div>
      )
 
-
+ if (loggedIn == "true") {
   return (
     <div>
         <form className="itemForm" onSubmit={submitFunction}>
@@ -170,6 +172,14 @@ const ItemForm = (props) => {
         {catLocPart}
     </div>
   )
+} else {
+    return (
+      <div>
+        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
+      </div>
+    )
+  }
+  
 }
 
 export default ItemForm

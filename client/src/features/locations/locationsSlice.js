@@ -31,8 +31,10 @@ const locationsSlice = createSlice({
             state.locations = action.payload
         },
         updateLocationFront(state, action) {
-            console.log(action.payload)
-            
+            console.log(action.payload)   
+        },
+        logoutLocations(state){
+            state.locations = []
         }
         },
     extraReducers: {
@@ -61,6 +63,6 @@ const locationsSlice = createSlice({
     }
 });
 
-export const { initLocations, addLocationFront } = locationsSlice.actions;
+export const { initLocations, addLocationFront, logoutLocations } = locationsSlice.actions;
 
 export default locationsSlice.reducer;

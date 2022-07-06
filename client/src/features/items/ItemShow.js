@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ItemForm from './ItemForm';
 import { deleteItem, deleteItemFront } from './itemsSlice';
+import { DisperseInfo } from '../../Disperse';
 
 const ItemShow = () => {
   const params = useParams()
   const dispatch = useDispatch()
   const history = useHistory()
-  const loggedIn = useSelector((state) => state.users.loggedin);
+  const loggedIn = useContext(DisperseInfo)
 
 
   const [item, setItem] = useState({})
@@ -43,7 +44,7 @@ const ItemShow = () => {
     dispatch(deleteItemFront(item.id))
     history.push('/items')
   }
-  if (!error) {
+  if (loggedIn == true && !error) {
     return (
     <div>
       <label>Update {item.name}</label>
@@ -62,13 +63,13 @@ const ItemShow = () => {
         <button onClick={handleDelete}>Delete {item.name}</button>
     </div>
   )} 
-  // else {
-  //   return (
-  //     <div>
-  //       <h3 className="unauthorized"> Not Authorized - You do not have access to this person or their information </h3>
-  //     </div>
-  //   )
-  // }
+  else {
+    return (
+      <div>
+        <h3 className="unauthorized"> Not Authorized - You do not have access to this person or their information </h3>
+      </div>
+    )
+  }
   
 }
 

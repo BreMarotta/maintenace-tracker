@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PersonForm from './PersonForm';
+import { DisperseInfo } from '../../Disperse';
 
 const PersonShow = () => {
+  const { loggedIn } = useContext(DisperseInfo)
   const params = useParams()
   // const people = useSelector(state => state.people.people)
   const [person, setPerson] = useState({}) 
@@ -41,7 +43,7 @@ const PersonShow = () => {
   <p> Title: {person.title}</p>
 </div>
 
- if (!error) {
+ if (loggedIn == "true" && !error) {
   return (
     <div>
       <label>Update {peopleTypeName}</label>
@@ -60,12 +62,13 @@ const PersonShow = () => {
       </ul>
     </div>
   )
- }
+ } else if (error) {
   return (
     <div>
       <h3 className="unauthorized"> Not Authorized - You do not have access to this person or their information </h3>
     </div>
-  )
+  )}
+  
 }
 
 export default PersonShow

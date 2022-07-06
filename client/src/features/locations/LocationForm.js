@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLocation, updateLocation } from './locationsSlice';
 import { useHistory } from 'react-router-dom';
+import { DisperseInfo } from '../../Disperse';
 
 const LocationForm = (props) => {
-    const loggedIn = useSelector(state => state.users.loggedIn);
+    const loggedIn = useContext(DisperseInfo)
     const dispatch = useDispatch()
     const history = useHistory()
     const n = (props.location !== undefined || null ? props.location.name : "")
@@ -69,12 +70,8 @@ const LocationForm = (props) => {
     const buttonText = props.location !== undefined || null ? "Save Changes" : "Add Location"
 
     const submitFunction = props.category !== undefined || null ? handleUpdate : handleSubmit
-if (loggedIn == true){
-    return (
-        <div>Not Logged In!</div>
-        
-    )
-} else {
+
+    if (loggedIn == "true"){
     return (
         <div>
             <form className="locationForm" onSubmit={submitFunction}>
@@ -98,7 +95,13 @@ if (loggedIn == true){
             {errorLis}
         </div>
     )
-}
+} else {
+    return (
+      <div>
+        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
+      </div>
+    )
+  }
   
 }
 

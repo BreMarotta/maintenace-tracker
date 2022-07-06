@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { useSelector } from 'react-redux'
 import Person from '../people/Person'
 import PersonForm from './PersonForm'
-import { Redirect } from 'react-router-dom'
+import { DisperseInfo } from '../../Disperse'
 
 
 const People = () => {
-  const loggedIn = useSelector((state) => state.users.loggedin);
+  const { loggedIn } = useContext(DisperseInfo)
   const people = useSelector(state => state.people.people)
   const currentDesign = useSelector(state => state.design.design[0])
 
@@ -34,7 +34,9 @@ const People = () => {
 
   )} else {
     return (
-      <div>I can't get this to work</div>
+      <div>
+        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
+      </div>
     )
   }
   

@@ -29,10 +29,14 @@ const categoriesSlice = createSlice({
     },
     reducers: {
         initCategories(state, action) {
+            // console.log("initCategories called: ", action.payload)
             state.categories = action.payload
         },
         updateCategoryFront(state, action) {
             console.log(action.payload)
+        },
+        logoutCategories(state) {
+            state.categories = []
         }
     },
     extraReducers: {
@@ -61,6 +65,6 @@ const categoriesSlice = createSlice({
     }
 });
 
-export const { initCategories, updateCategoryFront } = categoriesSlice.actions;
+export const { initCategories, updateCategoryFront, logoutCategories } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

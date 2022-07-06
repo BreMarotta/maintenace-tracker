@@ -33,6 +33,9 @@ const peopleSlice = createSlice({
         updatePersonFront(state, action) {
             const updatedPeople = state.people.map(p => p.id === action.payload.id ? action.payload : p)
             state.people = updatedPeople           
+        },
+        logoutPeople(state){
+            state.people = []
         }
     },
     extraReducers: {
@@ -66,6 +69,6 @@ const peopleSlice = createSlice({
     }
 });
 
-export const { initPeople, updatePersonFront } = peopleSlice.actions;
+export const { initPeople, updatePersonFront, logoutPeople } = peopleSlice.actions;
 
 export default peopleSlice.reducer;

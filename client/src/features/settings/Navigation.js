@@ -8,7 +8,7 @@ const Navigation = () => {
   const loggedIn = useSelector((state) => state.users.loggedin);
   const user = useSelector((state) => state.users.user)
   const design = useDesign(user)
-  console.log(design)
+  // console.log(design)
   // const designInArray = useSelector(state => state.design.design[0])
   //   const designAsObj = useSelector(state => state.design.design)
   //   const currentDesign = designInArray == undefined ? designAsObj : designInArray

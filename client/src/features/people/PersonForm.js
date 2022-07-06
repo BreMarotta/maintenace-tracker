@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { CirclePicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { addPerson, updatePerson, updatePersonFront } from './peopleSlice';
+import { DisperseInfo } from '../../Disperse';
 
 
 const PersonForm = (props) => {
+  const { loggedIn } = useContext(DisperseInfo)
   const dispatch = useDispatch()
   const params = useParams()
   const history = useHistory()
@@ -71,6 +73,7 @@ const PersonForm = (props) => {
     setPersonObj(newObj)
   }
 
+  if (loggedIn == "true" ){
   return (
     <form className="personForm" onSubmit={submitFunction}>
       <label>Name: </label>
@@ -109,6 +112,12 @@ const PersonForm = (props) => {
         <button type="submit">{buttonText}</button>
     </form>
   )
+} else {
+    return (
+      <div>
+        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
+      </div>
+    )
+  }
 }
-
 export default PersonForm

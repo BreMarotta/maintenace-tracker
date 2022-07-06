@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import SettingsForm from './SettingsForm'
 import DesignForm from '../designs/DesignForm'
 import PersonForm from '../people/PersonForm'
-import { useSelector } from 'react-redux';
+import { DisperseInfo } from '../../Disperse'
 
 const SettingsContainer = () => {
-  const loggedIn = useSelector((state) => state.users.loggedin);
+  const { loggedIn } = useContext(DisperseInfo)
   const [showSettings, setShowSettings] = useState(false)
   const [showPerson, setShowPerson] = useState(false)
   const [showDesign, setShowDesign] = useState(false)
@@ -28,7 +28,7 @@ const SettingsContainer = () => {
 
   const displayPerson = showPerson == true ? <PersonForm toggle={togglePerson}/> : ""
   
-if (loggedIn == "true"){
+if (loggedIn == "true" ){
   return (
     <div> 
       <h3>Settings:  </h3>

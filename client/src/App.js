@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 import "./App.css"
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Navigation from "./features/settings/Navigation";
@@ -16,30 +16,14 @@ import Locations from "./features/locations/Locations";
 import Items from "./features/items/Items";
 import ItemForm from "./features/items/ItemForm";
 import ItemShow from "./features/items/ItemShow";
-import { initDesign } from "./features/designs/designSlice";
-import { initPeople } from "./features/people/peopleSlice";
-import { initCategories } from './features/categories/categoriesSlice'
-import { initLocations } from "./features/locations/locationsSlice";
-import { initItems } from "./features/items/itemsSlice";
-import { useDispatch, useSelector } from 'react-redux'
-import { getMe } from './features/settings/manageUsersSlice'
+import { DisperseInfo } from './Disperse'
 
 
 function App() {
-  const dispatch = useDispatch()
-  const loggedIn = useSelector((state) => state.users.loggedin);
-  const user = useSelector((state) => state.users.user)
+  const { loggedIn } = useContext(DisperseInfo)
 
-  useEffect(() => {
-    dispatch(getMe())
-    .then((user)  => { 
-      dispatch(initDesign(user.payload.designs))
-      dispatch(initPeople(user.payload.people))
-      dispatch(initCategories(user.payload.categories))
-      dispatch(initLocations(user.payload.locations))
-      dispatch(initItems(user.payload.items))
-    })  
-  }, [loggedIn]);
+  console.log(loggedIn)
+
 
   return (
     <BrowserRouter>
