@@ -22,9 +22,6 @@ import { DisperseInfo } from './Disperse'
 function App() {
   const { loggedIn } = useContext(DisperseInfo)
 
-  console.log(loggedIn)
-
-
   return (
     <BrowserRouter>
         <Navigation />
@@ -53,15 +50,15 @@ function App() {
           <Route exact path="/categories" >
             <Categories />
           </Route>
-          <Route path="/categories/new" >
+          <Route exact path="/categories/new" >
             <CategoryForm />
-          </Route>
-          <Route path="/locations/new" >
-            <LocationForm />
           </Route>
           <Route exact path="/locations" >
             <Locations />
           </Route>
+          <Route path="/locations/new" >
+            <LocationForm />
+          </Route>          
           <Route exact path="/items" >
             <Items />
           </Route>

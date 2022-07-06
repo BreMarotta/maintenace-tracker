@@ -17,7 +17,7 @@ const ItemShow = () => {
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
-    if (loggedIn == "true"){
+    if (loggedIn == "true" && params.id != "new"){
       fetch(`/items/${params.id}`)
       .then(res => res.json())
       .then(data => {
@@ -44,7 +44,7 @@ const ItemShow = () => {
     dispatch(deleteItemFront(item.id))
     history.push('/items')
   }
-  if (loggedIn == "true" && !error) {
+  if (loggedIn == "true" && !error && params.id != "new") {
     return (
     <div>
       <label>Update {item.name}</label>
@@ -62,8 +62,7 @@ const ItemShow = () => {
         <br/>
         <button onClick={handleDelete}>Delete {item.name}</button>
     </div>
-  )} 
-  else {
+  )} else if (error) {
     return (
       <div>
         <h3 className="unauthorized"> Not Authorized - You do not have access to this person or their information </h3>
