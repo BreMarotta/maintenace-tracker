@@ -10,7 +10,7 @@ const Items = () => {
 
   const displayItems = items.map(i => <Item key={i.id} item={i} />)
   
-  if (loggedIn == "true"){ 
+  if (loggedIn){ 
     return (
     <div>
       <Link to="/items/new"><button>Add New Item</button></Link>

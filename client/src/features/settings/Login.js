@@ -1,13 +1,10 @@
-import React, { useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { logIn } from './manageUsersSlice'
+import React, { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { DisperseInfo } from '../../Disperse'
 
 const Login = () => {
-    const dispatch = useDispatch();
-    const errors = useSelector(state => state.users.errors)
-    const user = useSelector((state) => state.users.user)
-    // console.log(error)
+    const { handleLogin } = useContext(DisperseInfo)
+    const [error, setError] = useState("")
 
     const [userObj, setUserObj] = useState({
         username: "",
@@ -21,16 +18,26 @@ const Login = () => {
  
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(logIn(userObj))
-        if (!errors) {
-
-        } else {
-            setUserObj({
-                username: "",
-                password: ""
-            })           
-        }
+        fetch('/login', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(userObj)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if (!data.error && !data.errors){
+                handleLogin()
+            } else {
+                setUserObj({
+                    username: "",
+                    password: ""
+                })
+                setError(data.error)
+            }
+        })
     }
+
 
 
   return (
@@ -55,7 +62,7 @@ const Login = () => {
                 <br/>
                 <input type="submit"/>
                 <br/>
-            {errors}
+            {error}
         </form>
         <h5>No account yet? <NavLink to='/signup' ><strong>Signup</strong></NavLink>!</h5>
     </div>

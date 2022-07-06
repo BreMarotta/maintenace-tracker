@@ -11,7 +11,7 @@ const Locations = () => {
 
     const displayLocations = locations.map(l => <Location key={l.id} location={l} />)
   
-  if (loggedIn == "true"){
+  if (loggedIn){
     return (
     <div>
         {displayLocations}

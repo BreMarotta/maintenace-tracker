@@ -72,7 +72,7 @@ const PersonForm = (props) => {
     setPersonObj(newObj)
   }
 
-  if (loggedIn == "true" ){
+  if (loggedIn){
   return (
     <form className="personForm" onSubmit={submitFunction}>
       <label>Name: </label>

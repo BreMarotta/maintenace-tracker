@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { DisperseInfo } from '../../Disperse';
 
 const Home = () => {
-  const loggedIn = useSelector((state) => state.users.loggedin);
+  const { loggedIn } = useContext(DisperseInfo)
   const username = useSelector((state) => state.users.user.username)
   
-    if (loggedIn != "true"){
+    if (!loggedIn){
       return (
         <div className="">
         <br/>

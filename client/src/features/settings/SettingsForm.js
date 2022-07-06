@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUser } from './manageUsersSlice';
 
 const SettingsForm = () => {
     const dispatch = useDispatch()
@@ -24,7 +23,7 @@ const SettingsForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(updateUser(settingsObj))
+        // dispatch(updateUser(settingsObj))
     }
 
   return (

@@ -1,19 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 import { useSelector } from 'react-redux';
 import { useDesign } from '../designs/useDesign';
+import { DisperseInfo } from '../../Disperse';
 
 const Navigation = () => {
-  const loggedIn = useSelector((state) => state.users.loggedin);
+  const { loggedIn } = useContext(DisperseInfo)
   const user = useSelector((state) => state.users.user)
   const design = useDesign(user)
-  // console.log(design)
-  // const designInArray = useSelector(state => state.design.design[0])
-  //   const designAsObj = useSelector(state => state.design.design)
-  //   const currentDesign = designInArray == undefined ? designAsObj : designInArray
-
-  //   console.log(currentDesign.banner)
 
   const navStyles = {
     backgroundImage: `url(${design.banner})`,
@@ -23,8 +18,8 @@ const Navigation = () => {
   const peopleType = useSelector((state) => state.users.user.type)
   const peopleLink = peopleType == "" ? "People" : peopleType
 
-  const displayLogoutButton = loggedIn == "true" ? <LogoutButton /> : ""
-  if (loggedIn == "true"){
+  const displayLogoutButton = loggedIn ? <LogoutButton /> : ""
+  if (loggedIn){
     return (
       <div className="" style={navStyles}>
         {displayLogoutButton}

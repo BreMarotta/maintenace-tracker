@@ -44,7 +44,7 @@ const ItemShow = () => {
     dispatch(deleteItemFront(item.id))
     history.push('/items')
   }
-  if (loggedIn == "true" && !error && params.id != "new") {
+  if (loggedIn && !error && params.id != "new") {
     return (
     <div>
       <label>Update {item.name}</label>

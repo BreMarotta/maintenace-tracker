@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { signUp } from './manageUsersSlice';
 import { NavLink } from 'react-router-dom';
-import { getMe } from './manageUsersSlice';
-import { initDesign } from '../designs/designSlice';
+import { DisperseInfo } from '../../Disperse'
 
 const Signup = () => {
-  const dispatch = useDispatch();
-  const errors = useSelector(state => state.users.errors);
+  const { handleLogin } = useContext(DisperseInfo)
+  const [errorsList, setErrorsList] = useState([])
 
-  const errorLis = errors.map(e => <li key={e}>{e}</li>)
+  const errorLis = errorsList.map(e => <li key={e}>{e}</li>)
 
   const [userObj, setUserObj] = useState({
     user: {
@@ -34,11 +32,18 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(signUp(userObj))
-    if (!errors) {
-      dispatch(getMe())
-      dispatch(initDesign(userObj.designs_attributes))
+    fetch('/signup', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(userObj)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      if (!data.errors) {
+      handleLogin()
     } else {
+      setErrorsList(data.errors)
       setUserObj({
         user: {
           username: "",
@@ -46,7 +51,8 @@ const Signup = () => {
           password_confirmation: ""
         }
       })
-    }
+    }})
+    
   }
 
   return (

@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useContext} from 'react'
 import { useDispatch } from 'react-redux'
-import { logOut } from './manageUsersSlice'
+import { DisperseInfo } from '../../Disperse';
 
 const LogoutButton = () => {
-    const dispatch = useDispatch()
+    const { handleLogout } = useContext(DisperseInfo)
+
+    const logout = () => {
+      fetch('/logout', {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"}
+      })
+      .then(res => handleLogout())
+    }   
 
   return (
     <div>
-        <button onClick={() => dispatch(logOut())} style={{float: "right"}}>Logout</button>
+        <button onClick={logout} style={{float: "right"}}>Logout</button>
         </div>
   )
 }

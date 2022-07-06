@@ -9,7 +9,7 @@ const Categories = () => {
   const categories = useSelector(state => state.categories.categories)
 
   const displayCategories = categories.map(c => <Category key={c.id} category={c} />)
-  if (loggedIn == "true") {
+  if (loggedIn) {
     return (
     <div>
       {displayCategories}

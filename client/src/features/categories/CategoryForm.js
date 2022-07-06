@@ -46,7 +46,7 @@ const CategoryForm = (props) => {
 
     const submitFunction = props.category !== undefined || null ? handleUpdate : handleSubmit
 
-    if (loggedIn == "true"){
+    if (loggedIn){
         return (
             <div>
                 <form className="categoryForm" onSubmit={submitFunction}>

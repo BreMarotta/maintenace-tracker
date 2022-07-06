@@ -28,7 +28,7 @@ const SettingsContainer = () => {
 
   const displayPerson = showPerson == true ? <PersonForm toggle={togglePerson}/> : ""
   
-if (loggedIn == "true" ){
+if (loggedIn ){
   return (
     <div> 
       <h3>Settings:  </h3>

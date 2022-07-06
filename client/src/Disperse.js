@@ -4,8 +4,8 @@ import { initPeople, logoutPeople } from "./features/people/peopleSlice";
 import { initCategories, logoutCategories } from './features/categories/categoriesSlice'
 import { initLocations, logoutLocations } from "./features/locations/locationsSlice";
 import { initItems, logoutItems } from "./features/items/itemsSlice";
+import { initUser, logOut } from './features/settings/manageUsersSlice';
 import { useDispatch, useSelector } from 'react-redux'
-import { getMe } from './features/settings/manageUsersSlice'
 import { useHistory } from 'react-router-dom';
 
 const DisperseInfo = React.createContext()
@@ -13,29 +13,51 @@ const DisperseInfo = React.createContext()
 const UserProvider = ({children}) => {
     const dispatch = useDispatch()
     const history = useHistory()
-    // const [user, setUser] = useState({})
-    const loggedIn = useSelector((state) => state.users.loggedin);
     const user = useSelector(state => state.users.user)
+    const [loggedIn, setLoggedIn] = useState(false)
 
     useEffect(() => {
-        dispatch(getMe())
-        if (loggedIn == "true"){
-            // console.log(user)
-            dispatch(initDesign(user.designs))
-            dispatch(initPeople(user.people))
-            dispatch(initCategories(user.categories))
-            dispatch(initLocations(user.locations))
-            dispatch(initItems(user.items))
-        } else {
-            // console.log(user)
-            dispatch(logoutDesign())
-            dispatch(logoutCategories())
-            dispatch(logoutItems())
-            dispatch(logoutLocations())
-            dispatch(logoutPeople())
-        }
-          
-      }, [loggedIn]);
+        console.log("useEffectCalled")
+        fetch('/me')
+        .then(res => res.json())
+        .then((data) => {
+            // console.log("Errors after getMe", data.errors)
+            if(!data.errors) {
+                console.log(data)
+                setLoggedIn(true)
+                initAll(data) 
+            } else {
+                setLoggedIn(false)
+                clearAll()
+            }            
+        })
+    }, [loggedIn])
+
+    const initAll = (user) => {
+        setLoggedIn(true)
+        dispatch(initUser(user))
+        dispatch(initDesign(user.designs))
+        dispatch(initPeople(user.people))
+        dispatch(initCategories(user.categories))
+        dispatch(initLocations(user.locations))
+        dispatch(initItems(user.items))
+    }
+
+    const clearAll = () => {
+        setLoggedIn(false)
+        dispatch(logoutDesign())
+        dispatch(logoutCategories())
+        dispatch(logoutItems())
+        dispatch(logoutLocations())
+        dispatch(logoutPeople())
+    }
+
+    const handleLogin = () => {
+        setLoggedIn(true)
+    }
+    const handleLogout = () => {
+        setLoggedIn(false)
+    }
 
 
 
@@ -43,6 +65,8 @@ const UserProvider = ({children}) => {
     <DisperseInfo.Provider value={{
         loggedIn,
         user,
+        handleLogout,
+        handleLogin
     }}>
         {children}
     </DisperseInfo.Provider>
