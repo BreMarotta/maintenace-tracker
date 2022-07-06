@@ -30,11 +30,13 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation, :type, :company_name, designs_attributes:[
+        params.require(:user).permit(:username, :password, :password_confirmation,designs_attributes:[
             :background,
             :banner, 
             :accent,
-            :main
+            :main,
+            :company_name,
+            :members
         ])
     end
 end

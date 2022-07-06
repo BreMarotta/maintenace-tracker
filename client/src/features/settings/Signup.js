@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse'
 
@@ -20,7 +19,9 @@ const Signup = () => {
         background: "#666666",
         main: "#0062B1",
         accent: "#A4DD00",
-        banner: "https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467__340.jpg"
+        banner: "https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467__340.jpg",
+        company_name: "",
+        members: "Members"
       }] 
     }   
   })

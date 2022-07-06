@@ -10,7 +10,6 @@ const manageUsersSlice = createSlice({
     },
     reducers: {
         initUser(state, action) {
-            console.log(action.payload)
             state.loggedin = "true";
             state.user = action.payload
         },

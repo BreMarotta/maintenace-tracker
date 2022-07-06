@@ -16,7 +16,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     private
 
     def design_params
-        params.require(:design).permit(:user_id, :background, :main, :accent, :banner, :id)
+        params.require(:design).permit(:user_id, :background, :main, :accent, :banner, :id, :company_name, :members)
     end
 
     def render_not_found_response

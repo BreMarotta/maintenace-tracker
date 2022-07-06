@@ -15,16 +15,13 @@ const Navigation = () => {
     padding: 40,
   }
 
-  const peopleType = useSelector((state) => state.users.user.type)
-  const peopleLink = peopleType == "" ? "People" : peopleType
-
-  const displayLogoutButton = loggedIn ? <LogoutButton /> : ""
   if (loggedIn){
     return (
       <div className="" style={navStyles}>
-        {displayLogoutButton}
+        <LogoutButton />
+        <h1>{design.company_name}</h1>
           <NavLink to="/" className="navigation">Home</NavLink>
-          <NavLink to='/people' className="navigation">{peopleLink}</NavLink>
+          <NavLink to='/people' className="navigation">{design.members}</NavLink>
          
           <NavLink to="/locations" className="navigation">Locations</NavLink>
           <NavLink to="/categories" className="navigation">Categories</NavLink>

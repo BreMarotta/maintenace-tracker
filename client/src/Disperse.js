@@ -17,13 +17,10 @@ const UserProvider = ({children}) => {
     const [loggedIn, setLoggedIn] = useState(false)
 
     useEffect(() => {
-        console.log("useEffectCalled")
         fetch('/me')
         .then(res => res.json())
         .then((data) => {
-            // console.log("Errors after getMe", data.errors)
             if(!data.errors) {
-                console.log(data)
                 setLoggedIn(true)
                 initAll(data) 
             } else {

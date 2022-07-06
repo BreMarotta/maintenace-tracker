@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { CompactPicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
 import { designUpdate } from './designSlice'
+import { useDesign } from './useDesign';
 
 const DesignForm = ({ toggle }) => {;
     const dispatch = useDispatch()
+    const user = useSelector((state) => state.users.user)
+    const design = useDesign(user)
     const errors = useSelector((state) => state.design.errors);
 
     const designInArray = useSelector(state => state.design.design[0])
@@ -12,16 +15,12 @@ const DesignForm = ({ toggle }) => {;
     const currentDesign = designInArray == undefined ? designAsObj : designInArray
 
     const [designObj, setDesignObj] = useState({
-        banner: currentDesign.banner,
+        id: currentDesign.id,
         background: currentDesign.background,
-        main: currentDesign.main,
         accent: currentDesign.accent,
-        id: currentDesign.id
+        main: currentDesign.main
     })
 
-    // console.log(currentDesign)
-    // console.log("Array: ", designInArray)
-    // console.log("Object: ", designAsObj)
     const handleBannerChange = (e) => {
         const newObj = {
             ...designObj, 
@@ -40,9 +39,8 @@ const DesignForm = ({ toggle }) => {;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log("Sending to fetch", designObj)
         dispatch(designUpdate(designObj));
-        toggle();
+        // toggle();
     }
 
   return (
@@ -57,21 +55,21 @@ const DesignForm = ({ toggle }) => {;
                     onChange={handleBannerChange}/>
                 <br/>
             
-            <label style={{color: 'white', background: currentDesign.background}}>
+            <label style={{color: 'white', background: design.background}}>
                 Background Color: 
                 <br/>
                 <CompactPicker color={designObj.background} name="background" onChange={(e) => handleChange("background", e.hex)} />
             </label>    
             <br/>
 
-            <label style={{color: 'white', background: currentDesign.main}}>
+            <label style={{color: 'white', background: design.main}}>
                 Main Color: 
                 <br/>
                 <CompactPicker color={designObj.main} onChange={(e) => handleChange("main", e.hex)} />
             </label>    
             <br/>
 
-            <label style={{color: 'white', background: currentDesign.accent}}>
+            <label style={{color: 'white', background: design.accent}}>
                 Accent Color: 
                 <br/>
                 <CompactPicker color={designObj.accent} onChange={(e) => handleChange("accent", e.hex)} />

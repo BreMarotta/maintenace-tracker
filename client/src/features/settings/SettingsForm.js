@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { designUpdate } from '../designs/designSlice';
 
 const SettingsForm = () => {
     const dispatch = useDispatch()
-    const currentUser = useSelector(state => state.users.user)
-    // console.log("From Settings From: ", currentUser)
+    const errors = useSelector((state) => state.design.errors);
+    const designInArray = useSelector(state => state.design.design[0])
+    const designAsObj = useSelector(state => state.design.design)
+    const currentDesign = designInArray == undefined ? designAsObj : designInArray
+    
     const [settingsObj, setSettingsObj] = useState({
-        type: "",
-        company_name: "",
-        // designs_attributes: [{
-        //     background: currentUser.background,
-        //     main: currentUser.main,
-        //     accent: currentUser.accent,
-        //     banner: currentUser.banner
-        // }]
+        id: currentDesign.id,
+        company_name: currentDesign.company_name,
+        members: currentDesign.members
     })
 
     const handleChange = (e) => {
@@ -23,7 +22,7 @@ const SettingsForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // dispatch(updateUser(settingsObj))
+        dispatch(designUpdate(settingsObj))
     }
 
   return (
@@ -44,9 +43,9 @@ const SettingsForm = () => {
             <div>On this site, you can include family members, employees, or other types of people who will be able to perform repairs.</div>
                 <input 
                     type="text"
-                    name="type"
-                    id="type"
-                    value={settingsObj.type}
+                    name="members"
+                    id="members"
+                    value={settingsObj.members}
                     onChange={handleChange}></input>
                     <br/>
             <button type="submit">Apply Changes</button>
