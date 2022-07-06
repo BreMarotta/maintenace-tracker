@@ -27,7 +27,7 @@ const designSlice = createSlice({
     },
     reducers: {
         initDesign(state, action) {
-            // console.log("initDesign Called: ", action.payload)
+            console.log("initDesign Called: ", action.payload)
             state.design = action.payload
         },
         logoutDesign(state) {

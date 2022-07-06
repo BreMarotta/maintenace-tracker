@@ -94,9 +94,10 @@ const manageUsersSlice = createSlice({
         [signUp.fulfilled](state, action) {
             if(!action.payload.errors) {
                 console.log("after signup: ", action.payload)
+                state.user = action.payload
                 state.status = "idle";
                 state.loggedin = "true";
-                // state.errors = [];
+                state.errors = [];
             } else {
                 state.errors = action.payload.errors;
                 state.loggedin = "false";

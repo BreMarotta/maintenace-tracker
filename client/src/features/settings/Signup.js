@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { signUp } from './manageUsersSlice';
 import { NavLink } from 'react-router-dom';
+import { getMe } from './manageUsersSlice';
+import { initDesign } from '../designs/designSlice';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -34,7 +36,8 @@ const Signup = () => {
     e.preventDefault();
     dispatch(signUp(userObj))
     if (!errors) {
-
+      dispatch(getMe())
+      dispatch(initDesign(userObj.designs_attributes))
     } else {
       setUserObj({
         user: {

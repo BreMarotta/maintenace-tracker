@@ -20,14 +20,14 @@ const UserProvider = ({children}) => {
     useEffect(() => {
         dispatch(getMe())
         if (loggedIn == "true"){
-            console.log(user)
+            // console.log(user)
             dispatch(initDesign(user.designs))
             dispatch(initPeople(user.people))
             dispatch(initCategories(user.categories))
             dispatch(initLocations(user.locations))
             dispatch(initItems(user.items))
         } else {
-            console.log(user)
+            // console.log(user)
             dispatch(logoutDesign())
             dispatch(logoutCategories())
             dispatch(logoutItems())
