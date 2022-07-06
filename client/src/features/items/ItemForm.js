@@ -7,7 +7,7 @@ import { addItem, updateItem } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
 
 const ItemForm = (props) => {
-    const loggedIn = useContext(DisperseInfo)
+    const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch();
     const params = useParams()
     const history = useHistory()

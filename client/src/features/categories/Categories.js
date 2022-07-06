@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 
 const Categories = () => {
-  const loggedIn = useContext(DisperseInfo)
+  const { loggedIn } = useContext(DisperseInfo)
   const categories = useSelector(state => state.categories.categories)
 
   const displayCategories = categories.map(c => <Category key={c.id} category={c} />)

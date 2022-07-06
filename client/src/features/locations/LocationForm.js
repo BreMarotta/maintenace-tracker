@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 
 const LocationForm = (props) => {
-    const loggedIn = useContext(DisperseInfo)
+    const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch()
     const history = useHistory()
     const n = (props.location !== undefined || null ? props.location.name : "")

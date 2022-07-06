@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { DisperseInfo } from '../../Disperse'
 
 const Items = () => {
-  const loggedIn = useContext(DisperseInfo)
+  const { loggedIn } = useContext(DisperseInfo)
   const items = useSelector(state => state.items.items)
 
   const displayItems = items.map(i => <Item key={i.id} item={i} />)

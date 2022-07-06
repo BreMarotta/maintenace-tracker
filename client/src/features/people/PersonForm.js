@@ -11,7 +11,6 @@ const PersonForm = (props) => {
   const dispatch = useDispatch()
   const params = useParams()
   const history = useHistory()
-  console.log(props.toggle)
 
  const n = (props.person !== undefined || null ? props.person.name : "")
  const t = (props.person !== undefined || null ? props.person.title : "")

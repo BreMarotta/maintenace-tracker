@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 
 const CategoryForm = (props) => {
-    const loggedIn = useContext(DisperseInfo)
+    const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch()
     const history = useHistory()
     console.log(props)

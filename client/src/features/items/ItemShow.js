@@ -9,7 +9,7 @@ const ItemShow = () => {
   const params = useParams()
   const dispatch = useDispatch()
   const history = useHistory()
-  const loggedIn = useContext(DisperseInfo)
+  const { loggedIn } = useContext(DisperseInfo)
 
 
   const [item, setItem] = useState({})
@@ -44,7 +44,7 @@ const ItemShow = () => {
     dispatch(deleteItemFront(item.id))
     history.push('/items')
   }
-  if (loggedIn == true && !error) {
+  if (loggedIn == "true" && !error) {
     return (
     <div>
       <label>Update {item.name}</label>
