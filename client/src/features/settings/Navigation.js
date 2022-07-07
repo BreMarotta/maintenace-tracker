@@ -15,17 +15,23 @@ const Navigation = () => {
     padding: 40,
   }
 
+  const linkStyles = {
+    backgroundColor: design.main,
+    padding: 5,
+    color: "white"
+  }
+
   if (loggedIn){
     return (
       <div className="" style={navStyles}>
         <LogoutButton />
         <h1>{design.company_name}</h1>
-          <NavLink to="/" className="navigation">Home</NavLink>
-          <NavLink to='/people' className="navigation">{design.members}</NavLink>
+          <NavLink to="/" className="navigation" style={linkStyles}>Home</NavLink>
+          <NavLink to='/people' className="navigation" style={linkStyles}>{design.members}</NavLink>
          
-          <NavLink to="/locations" className="navigation">Locations</NavLink>
-          <NavLink to="/categories" className="navigation">Categories</NavLink>
-          <NavLink to="/items" className="navigation">Items</NavLink>
+          <NavLink to="/locations" className="navigation" style={linkStyles}>Locations</NavLink>
+          <NavLink to="/categories" className="navigation" style={linkStyles}>Categories</NavLink>
+          <NavLink to="/items" className="navigation" style={linkStyles}>Items</NavLink>
           {/* <NavLink to="/repairs" className="navigation">Repairs</NavLink> */}
           <NavLink to='/settings' style={{float: "right"}}><button>⚙️</button></NavLink>
           
