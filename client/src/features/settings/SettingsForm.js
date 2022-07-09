@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { designUpdate } from '../designs/designSlice';
 
-const SettingsForm = () => {
+const SettingsForm = ({ toggle }) => {
     const dispatch = useDispatch()
     const errors = useSelector((state) => state.design.errors);
     const designInArray = useSelector(state => state.design.design[0])
@@ -23,6 +23,7 @@ const SettingsForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(designUpdate(settingsObj))
+        toggle()
     }
 
   return (

@@ -9,6 +9,7 @@ const DesignForm = ({ toggle }) => {;
     const user = useSelector((state) => state.users.user)
     const design = useDesign(user)
     const errors = useSelector((state) => state.design.errors);
+    const [showBannerInput, setShowBannerInput] = useState(false)
 
     const designInArray = useSelector(state => state.design.design[0])
     const designAsObj = useSelector(state => state.design.design)
@@ -18,7 +19,8 @@ const DesignForm = ({ toggle }) => {;
         id: currentDesign.id,
         background: currentDesign.background,
         accent: currentDesign.accent,
-        main: currentDesign.main
+        main: currentDesign.main,
+        banner: currentDesign.banner
     })
 
     const handleBannerChange = (e) => {
@@ -40,19 +42,24 @@ const DesignForm = ({ toggle }) => {;
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(designUpdate(designObj));
-        // toggle();
+        toggle();
     }
+
+    const bannerInput = showBannerInput == true ? 
+        <div>
+            <label>New Image: </label>
+            <input type="text" id="banner" name="banner" onChange={handleBannerChange}/> 
+        </div>: ""
 
   return (
     <div>
         <form className="designForm"onSubmit={handleSubmit}>
-            <label>Banner Image: </label>
-                <input 
-                    type="text" 
-                    id="banner"
-                    name="banner"
-                    value={designObj.banner}
-                    onChange={handleBannerChange}/>
+            <label>Change Banner Background: </label>
+                <input
+                    type="checkbox"
+                    checked={showBannerInput}
+                    onChange={(e) => setShowBannerInput(!showBannerInput)} />
+                {bannerInput}
                 <br/>
             
             <label style={{color: 'white', background: design.background}}>
