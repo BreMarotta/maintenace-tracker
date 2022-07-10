@@ -7,17 +7,7 @@ import locationsReducer from './features/locations/locationsSlice';
 import manageUsersReducer from "./features/settings/manageUsersSlice";
 import peopleReducer from "./features/people/peopleSlice";
 import repairsReducer from './features/repairs/repairsSlice';
-import { initDesign } from "./features/designs/designSlice";
-
-
-//  let user
-//     fetch('/me')
-//     .then((res) => res.json())
-//     .then(data => {
-//         console.log(data)
-//         // initDesign(data.designs)
-//         user = data
-//     })
+import partsReducer from './features/parts/partsSlice'
 
 
 export const store = configureStore({
@@ -28,7 +18,8 @@ export const store = configureStore({
         locations: locationsReducer,
         users: manageUsersReducer,
         people: peopleReducer,
-        repairs: repairsReducer,       
+        repairs: repairsReducer,
+        parts: partsReducer,       
     },
 
 });

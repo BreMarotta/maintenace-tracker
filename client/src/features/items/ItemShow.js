@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import ItemForm from './ItemForm';
 import { deleteItem, deleteItemFront } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
+import PartsContainer from '../parts/PartsContainer';
+
 
 const ItemShow = () => {
   const params = useParams()
@@ -55,6 +57,7 @@ const ItemShow = () => {
   if (loggedIn && !error && params.id != "new") {
     return (
     <div>
+      <PartsContainer />
       <label>Update {item.name}</label>
         <input
         type="checkbox"
