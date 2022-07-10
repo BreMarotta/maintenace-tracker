@@ -5,6 +5,7 @@ import ItemForm from './ItemForm';
 import { deleteItem, deleteItemFront } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
 import PartsContainer from '../parts/PartsContainer';
+import { initParts } from '../parts/partsSlice';
 
 
 const ItemShow = () => {
@@ -24,6 +25,7 @@ const ItemShow = () => {
       .then(res => res.json())
       .then(data => {
       if (!data.error && !data.errors){
+        dispatch(initParts(data.parts))
         setItem(data)
         setError(false)
       } else {
@@ -38,7 +40,6 @@ const ItemShow = () => {
   const updateItem = (obj) => {
     setItem(obj)
   }
-  console.log(item)
 
   const display = showForm == true ? <ItemForm item={item} toggle={toggle} updateItem={updateItem} /> : <div className="showPage">
     <img style={{height: "350px", float: "right", paddingRight: "100px"}} src={item.img} alt="No Image Available" />

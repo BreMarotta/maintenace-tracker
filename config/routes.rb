@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   resources :items
 
+  resources :parts
+
 
   get '*path',
   to: 'fallback#index',

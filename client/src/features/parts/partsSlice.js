@@ -38,6 +38,7 @@ const partsSlice = createSlice({
     },
     reducers: {
         initParts(state, action) {
+            console.log(action.payload)
             state.parts = action.payload
         },
         deletePartFront(state, action) {

@@ -20,7 +20,8 @@ const PartForm = (props) => {
         model: m,
         img: i,
         price: p,
-        details: d
+        details: d,
+        item_id: params.id
     })
 
     const errors = useSelector(state => state.parts.errors);
@@ -34,7 +35,7 @@ const PartForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addPart(partObj))
-
+        console.log(partObj)
     }
 
     const handleUpdate = (e) => {
@@ -51,6 +52,47 @@ if (loggedIn) {
     return (
         <div>Form to add Part
             <form className="partForm" onSubmit={submitFunction}>
+            <button type="submit">{buttonText}</button>
+                <label>Part Name: </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={partObj.name}
+                        onChange={handleChange} />
+                    <br/>
+                    <label>Model: </label>
+                    <input
+                        type="text"
+                        id="model"
+                        name="model"
+                        value={partObj.model}
+                        onChange={handleChange} />
+                    <br/>
+                    <label>Image: </label>
+                    <input
+                        type="text"
+                        id="img"
+                        name="img"
+                        value={partObj.img}
+                        onChange={handleChange} />
+                    <br/>
+                    <label>Price: </label>
+                    <input
+                        type="text"
+                        id="price"
+                        name="price"
+                        value={partObj.price}
+                        onChange={handleChange} />
+                    <br/>
+                    <label>Additional Details: </label>
+                    <input
+                        type="text"
+                        id="details"
+                        name="details"
+                        value={partObj.details}
+                        onChange={handleChange} />
+                    <br/>
 
             </form>
         </div>
