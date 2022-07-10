@@ -8,12 +8,14 @@ const PartForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch();
     const params = useParams();
+    console.log(props)
 
     const n = (props.part !== undefined || null ? props.part.name  : "")
     const m = (props.part !== undefined || null ? props.part.model  : "")
     const i = (props.part !== undefined || null ? props.part.img  : "")
     const p = (props.part !== undefined || null ? props.part.price  : "")
     const d = (props.part !== undefined || null ? props.part.details  : "")
+    const x = (props.part !== undefined || null ? props.part.id : "")
     
     const [partObj, setPartObj] = useState({
         name: n,
@@ -21,9 +23,10 @@ const PartForm = (props) => {
         img: i,
         price: p,
         details: d,
-        item_id: params.id
+        id: x
     })
 
+    console.log(partObj)
     const errors = useSelector(state => state.parts.errors);
     const errorLis = errors.map(e => <li key={e}>{e}</li>)
 
@@ -35,24 +38,26 @@ const PartForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addPart(partObj))
-        console.log(partObj)
+        props.toggle()
     }
 
     const handleUpdate = (e) => {
         e.preventDefault()
+        console.log("called update")
         dispatch(updatePart(partObj))
-        props.updatePart(partObj)
+        props.toggle()
     }
 
     const buttonText = props.part !== undefined || null ? "Save Changes" : "Add Part"
 
-    const submitFunction = props.item !== undefined || null ? handleUpdate : handleSubmit
+    const submitFunction = props.part !== undefined || null ? handleUpdate : handleSubmit
 
 if (loggedIn) {
     return (
         <div>Form to add Part
             <form className="partForm" onSubmit={submitFunction}>
             <button type="submit">{buttonText}</button>
+            <br/>
                 <label>Part Name: </label>
                     <input
                         type="text"

@@ -25,7 +25,7 @@ const Navigation = () => {
     return (
       <div className="" style={navStyles}>
         <LogoutButton />
-        <h1>{design.company_name}</h1>
+        <h1 style={{color: `${design.accent}`}}>{design.company_name}</h1>
           <NavLink to="/" className="navigation" style={linkStyles}>Home</NavLink>
           <NavLink to='/people' className="navigation" style={linkStyles}>{design.members}</NavLink>
          

@@ -58,13 +58,14 @@ const ItemShow = () => {
   if (loggedIn && !error && params.id != "new") {
     return (
     <div>
-      <PartsContainer />
+      
       <label>Update {item.name}</label>
         <input
         type="checkbox"
         checked={showForm}
         onChange={toggle}/>
         {display}
+        <PartsContainer />
         <br/>
         <br/>
         <br/>

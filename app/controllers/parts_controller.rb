@@ -16,6 +16,14 @@ class PartsController < ApplicationController
     end
 
     def update 
+        # byebug
+        part = @current_user.parts.find(params[:id])
+        part.update(part_params)
+        if part.valid?
+            render json: part, status: :accepted
+        else
+            render json: { errors: part.errors.full_messages }, status: :unprocessable_entity
+        end
 
     end
 
@@ -26,6 +34,6 @@ class PartsController < ApplicationController
     private
 
     def part_params
-        params.require(:part).permit(:name, :model, :img, :price, :details, :item_id)
+        params.require(:part).permit(:name, :model, :img, :price, :details, :item_id, :id)
     end
 end
