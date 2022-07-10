@@ -17,7 +17,7 @@ const ItemShow = () => {
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
-    if (loggedIn == "true" && params.id != "new"){
+    // if (loggedIn == "true" && params.id != "new"){
       fetch(`/items/${params.id}`)
       .then(res => res.json())
       .then(data => {
@@ -28,7 +28,7 @@ const ItemShow = () => {
         setError(true)
       }
     })
-  } 
+  // } 
   }, [params])
 
   const toggle = () => {setShowForm(!showForm)}
@@ -36,8 +36,16 @@ const ItemShow = () => {
   const updateItem = (obj) => {
     setItem(obj)
   }
+  console.log(item)
 
-  const display = showForm == true ? <ItemForm item={item} toggle={toggle} updateItem={updateItem} /> : <div>map out item format here?</div>
+  const display = showForm == true ? <ItemForm item={item} toggle={toggle} updateItem={updateItem} /> : <div className="showPage">
+    <img style={{height: "350px", float: "right", paddingRight: "100px"}} src={item.img} alt="No Image Available" />
+    <h2>{item.name}</h2>
+    <h5>{item.year} {item.make} - {item.model}</h5>
+    <p>Warrenty Info: {item.warrenty}</p>
+    <p>Purchased: {item.purchase_year}</p>
+    <p></p>
+  </div>
 
   const handleDelete = () => {
     dispatch(deleteItem(item))
