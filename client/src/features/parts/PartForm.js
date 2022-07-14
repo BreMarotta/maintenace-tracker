@@ -23,7 +23,8 @@ const PartForm = (props) => {
         img: i,
         price: p,
         details: d,
-        id: x
+        id: x,
+        item_id: params.id
     })
 
     console.log(partObj)

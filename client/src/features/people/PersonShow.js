@@ -20,6 +20,7 @@ const PersonShow = () => {
     fetch(`/people/${params.id}`)
     .then(res => res.json())
     .then(data => {
+      console.log(data)
       if (!data.error && !data.errors){
         setColor(data.color)
         setPerson(data)
@@ -43,7 +44,7 @@ const PersonShow = () => {
   <p> Title: {person.title}</p>
 </div>
 
- if (loggedIn == "true" && !error) {
+ if (loggedIn && !error) {
   return (
     <div>
       <label>Update {peopleTypeName}</label>

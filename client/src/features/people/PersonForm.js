@@ -62,6 +62,7 @@ const PersonForm = (props) => {
     dispatch(updatePerson(personObj))
     // dispatch(updatePersonFront(personObj))
     props.updatePerson(personObj)
+    props.toggle()
   }
 
   const buttonText = props.person !== undefined || null ? "Save Changes" : "Add Person" 
