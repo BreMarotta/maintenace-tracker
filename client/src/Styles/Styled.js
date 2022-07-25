@@ -24,7 +24,7 @@ export const StyledLink = styled.label`
     background-color: ${(props) => props.backgroundColor};
     padding: 5px;
     color: white;
-    border-radius: 7%;
+    border-radius: 7%;her
 
     &:active {
         background-color: white;
