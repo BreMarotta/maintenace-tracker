@@ -1,7 +1,7 @@
 import React, { useContext} from 'react';
 import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
-import { Button } from '../../Styles/Styled';
+import { LogButton } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
 
 const LogoutButton = () => {
@@ -22,7 +22,7 @@ const LogoutButton = () => {
 
   return (
     <div>
-        <Button onClick={logout} backgroundColor={design.background} style={{float: "right"}}>Logout</Button>
+        <LogButton onClick={logout} backgroundColor={design.accent} style={{float: "right"}}>Logout</LogButton>
         </div>
   )
 }

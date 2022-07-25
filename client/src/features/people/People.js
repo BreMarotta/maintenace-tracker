@@ -3,10 +3,13 @@ import { useSelector } from 'react-redux'
 import Person from '../people/Person'
 import PersonForm from './PersonForm'
 import { DisperseInfo } from '../../Disperse'
+import { StyledList, Button } from '../../Styles/Styled'
+import { useDesign } from '../designs/useDesign'
 
 
 const People = () => {
   const { loggedIn } = useContext(DisperseInfo)
+  const design = useDesign()
   const people = useSelector(state => state.people.people)
   const currentDesign = useSelector(state => state.design.design[0])
 
@@ -22,15 +25,12 @@ const People = () => {
 
   if (loggedIn) {
     return (
-    <div>
-        <label>Add Person</label>
-          <input
-            type="checkbox"
-            checked={toggleDisplay}
-            onChange={toggle} />
-
+    <StyledList backgroundColor={design.background}>
+        <Button backgroundColor={design.main} onClick={toggle}>Add Person</Button>
+        <br/>
         {displaySettingUpdates}
-    </div>
+        
+    </StyledList>
 
   )} else {
     return (

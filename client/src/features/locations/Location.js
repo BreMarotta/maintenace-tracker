@@ -1,11 +1,14 @@
 import React from 'react'
+import { StyledLi } from '../../Styles/Styled'
 
 export const Location = ({ location }) => {
   return (
-    <div>
-        {location.name}
-        {location.address}
-        {location.address_2}
-    </div>
+    <StyledLi>
+      <span>
+        <strong>{location.name} </strong> {location.address} {location.address_2}
+        <hr/>
+      </span>
+        
+    </StyledLi>
   )
 }

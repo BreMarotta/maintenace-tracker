@@ -1,8 +1,9 @@
 import React from 'react'
+import { StyledLi } from '../../Styles/Styled'
 
 const Category = ({ category }) => {
   return (
-    <div>{category.name}</div>
+    <StyledLi>{category.name}</StyledLi>
   )
 }
 

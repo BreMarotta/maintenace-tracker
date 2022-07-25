@@ -3,19 +3,22 @@ import { useSelector } from 'react-redux'
 import Item from './Item'
 import { Link } from 'react-router-dom'
 import { DisperseInfo } from '../../Disperse'
+import { useDesign } from '../designs/useDesign'
+import { StyledList, Button } from '../../Styles/Styled'
 
 const Items = () => {
   const { loggedIn } = useContext(DisperseInfo)
+  const design = useDesign()
   const items = useSelector(state => state.items.items)
 
   const displayItems = items.map(i => <Item key={i.id} item={i} />)
   
   if (loggedIn){ 
     return (
-    <div>
-      <Link to="/items/new"><button>Add New Item</button></Link>
+    <StyledList backgroundColor={design.background}>
+      <Link to="/items/new"><Button backgroundColor={design.main}>Add New Item</Button></Link>
       {displayItems}
-    </div>
+    </StyledList>
   )
   } else {
     return (

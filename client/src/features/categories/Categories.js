@@ -3,19 +3,21 @@ import { useSelector } from "react-redux";
 import Category from './Category';
 import { NavLink } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
+import { useDesign } from '../designs/useDesign';
+import { StyledList, Button } from '../../Styles/Styled';
 
 const Categories = () => {
   const { loggedIn } = useContext(DisperseInfo)
+  const design = useDesign()
   const categories = useSelector(state => state.categories.categories)
 
   const displayCategories = categories.map(c => <Category key={c.id} category={c} />)
   if (loggedIn) {
     return (
-    <div>
+    <StyledList backgroundColor={design.background}>
+      <NavLink to="/categories/new" className="navigation"><Button backgroundColor={design.main}>Add Category</Button></NavLink>
       {displayCategories}
-      <br/>
-      <NavLink to="/categories/new" className="navigation">Add Category</NavLink>
-    </div>
+    </StyledList>
   ) 
   } else {
     return (
