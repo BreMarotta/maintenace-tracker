@@ -1,33 +1,30 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-    width: 200px;
-    height: 50px;
+    height: 30px;
+    margin: .2em;
+    border-radius: 3px;
     background-color: ${(props) => props.backgroundColor};
+    font-size: .75em;
 
     &:hover {
-        & label {
-            color: green;
-        }
-    }
-    &:active {
-        background-color: white;
+        padding: .45em .95em;
+        font-weight: bold;
     }
 `;
 
-export const ButtonLabel = styled.label`
-    font-size: 25px;
-    color: white;
-`
-
 export const StyledLink = styled.label`
     background-color: ${(props) => props.backgroundColor};
-    padding: 5px;
+    /* background-image: linear-gradient(gray, ${(props) => props.backgroundColor});  */
+    padding: .25em .75em;
+    margin: .2em;
+    border-radius: 3px;
     color: white;
-    border-radius: 7%;her
+    opacity: .95;
 
-    &:active {
-        background-color: white;
-        color: black;
+    &:hover {
+        opacity: 1;
+        padding: .45em .95em;
+        font-weight: bold;
     }
 `
