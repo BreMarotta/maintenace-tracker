@@ -8,7 +8,6 @@ const CategoryForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch()
     const history = useHistory()
-    console.log(props)
     const n = (props.category !== undefined || null ? props.category.name : "")
     const x = (props.category !== undefined || null ? props.category.id : "")
     const [categoryObj, setCategoryObj] = useState({

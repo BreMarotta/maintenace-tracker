@@ -27,7 +27,6 @@ const PartForm = (props) => {
         item_id: params.id
     })
 
-    console.log(partObj)
     const errors = useSelector(state => state.parts.errors);
     const errorLis = errors.map(e => <li key={e}>{e}</li>)
 

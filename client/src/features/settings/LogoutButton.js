@@ -1,6 +1,7 @@
 import React, { useContext} from 'react'
 import { useDispatch } from 'react-redux'
 import { DisperseInfo } from '../../Disperse';
+import { Button } from '../../Styles/Styled';
 
 const LogoutButton = () => {
     const { handleLogout } = useContext(DisperseInfo)
@@ -15,7 +16,7 @@ const LogoutButton = () => {
 
   return (
     <div>
-        <button onClick={logout} style={{float: "right"}}>Logout</button>
+        <Button onClick={logout} style={{float: "right"}}>Logout</Button>
         </div>
   )
 }

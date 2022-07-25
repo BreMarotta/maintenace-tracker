@@ -20,7 +20,6 @@ const PersonShow = () => {
     fetch(`/people/${params.id}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       if (!data.error && !data.errors){
         setColor(data.color)
         setPerson(data)

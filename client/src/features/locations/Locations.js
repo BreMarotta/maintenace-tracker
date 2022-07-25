@@ -6,7 +6,6 @@ import { DisperseInfo } from '../../Disperse';
 
 const Locations = () => {
   const { loggedIn } = useContext(DisperseInfo)
-  console.log(loggedIn)
     const locations = useSelector(state => state.locations.locations)
 
     const displayLocations = locations.map(l => <Location key={l.id} location={l} />)
