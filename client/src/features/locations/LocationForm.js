@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addLocation, updateLocation } from './locationsSlice';
 import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
+import { useDesign } from '../designs/useDesign'
+import { Form, StyledList, Button } from '../../Styles/Styled';
 
 const LocationForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch()
     const history = useHistory()
+    const design = useDesign()
     const n = (props.location !== undefined || null ? props.location.name : "")
     const add_1 = (props.location !== undefined || null ? props.location.address : "")
     const add_2 = (props.location !== undefined || null ? props.location.address_2 : "")
@@ -33,21 +36,25 @@ const LocationForm = (props) => {
     }
 
     const displayAddressLines = toggleAddress == true ? <div>
-        <label>Street Address: </label>
+        <label>Street Address: 
+            <br/>
             <input
                 type="text"
                 id="address"
                 name="address"
                 value={locationObj.address}
                 onChange={handleChange} />
+        </label>
             <br/>
-        <label>City, State, and Zipcode </label>
+        <label>City, State, and Zipcode 
+            <br/>
             <input
                 type="text"
                 id="address_2"
                 name="address_2"
                 value={locationObj.address_2}
                 onChange={handleChange} />
+        </label>
             <br/>
     </div> : ""
 
@@ -73,8 +80,8 @@ const LocationForm = (props) => {
 
     if (loggedIn){
     return (
-        <div>
-            <form className="locationForm" onSubmit={submitFunction}>
+        <StyledList backgroundColor={design.background}>
+            <Form className="locationForm" onSubmit={submitFunction}>
                 <label>Location Name: </label>
                     <input
                         type="text"
@@ -83,17 +90,18 @@ const LocationForm = (props) => {
                         value={locationObj.name}
                         onChange={handleChange} />
                     <br/>
-                <label>Include Address ?</label>
+                <label>Include Address ?
                     <input
                         type="checkbox"
                         checked={toggleAddress}
                         onChange={toggle} />
+                </label>
                 {displayAddressLines}
                 <br/>
-                <button type="submit">{buttonText}</button>
-            </form> 
+                <Button backgroundColor={design.main} type="submit">{buttonText}</Button>
+            </Form> 
             {errorLis}
-        </div>
+        </StyledList>
     )
 } else {
     return (

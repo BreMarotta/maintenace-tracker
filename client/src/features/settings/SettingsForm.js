@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { designUpdate } from '../designs/designSlice';
+import { Form, Button } from '../../Styles/Styled';
+import { useDesign } from '../designs/useDesign';
 
 const SettingsForm = ({ toggle }) => {
     const dispatch = useDispatch()
+    const design = useDesign()
     const errors = useSelector((state) => state.design.errors);
     const designInArray = useSelector(state => state.design.design[0])
     const designAsObj = useSelector(state => state.design.design)
@@ -30,7 +33,7 @@ const SettingsForm = ({ toggle }) => {
     <div>
         <div>Please take a moment to set up some preferences for your Maintenance Tracker.</div>
         <div>These updates are available at all times under settings.</div>
-        <form className="form" onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <label>Organization or Company Name:</label>
                 <input
                     type="text"
@@ -49,8 +52,8 @@ const SettingsForm = ({ toggle }) => {
                     value={settingsObj.members}
                     onChange={handleChange}></input>
                     <br/>
-            <button type="submit">Apply Changes</button>
-        </form>
+            <Button backgroundColor={design.main}type="submit">Apply Changes</Button>
+        </Form>
     </div>
   )
 }

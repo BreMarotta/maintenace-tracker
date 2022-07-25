@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react'
-import { CirclePicker } from 'react-color';
+import { SliderPicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { addPerson, updatePerson, updatePersonFront } from './peopleSlice';
 import { DisperseInfo } from '../../Disperse';
+import { Form, Button } from '../../Styles/Styled';
+import { useDesign } from '../designs/useDesign';
+
 
 
 const PersonForm = (props) => {
@@ -11,6 +14,8 @@ const PersonForm = (props) => {
   const dispatch = useDispatch()
   const params = useParams()
   const history = useHistory()
+  const design = useDesign()
+
 
  const n = (props.person !== undefined || null ? props.person.name : "")
  const t = (props.person !== undefined || null ? props.person.title : "")
@@ -65,7 +70,7 @@ const PersonForm = (props) => {
     props.toggle()
   }
 
-  const buttonText = props.person !== undefined || null ? "Save Changes" : "Add Person" 
+  const buttonText = props.person !== undefined || null ? "Save Changes" : "Save Information" 
   const submitFunction = props.person !== undefined || null ? handleUpdate : handleSubmit
 
   const toggleCurrent = () => {
@@ -75,42 +80,49 @@ const PersonForm = (props) => {
 
   if (loggedIn){
   return (
-    <form className="personForm" onSubmit={submitFunction}>
-      <label>Name: </label>
+    <Form onSubmit={submitFunction}>
+      <label>Name: 
+        <br/>
         <input
+          style={{width: "95%"}}
           type="text"
           id="name"
           name="name"
           value={personObj.name}
           onChange={handleChange} />
+      </label>
         <br/>
 
-      <label>Title: </label>
+      <label>Title: 
+        <br/>
         <input
+          style={{width: "95%"}}
           type="text"
           id="title"
           name="title"
           value={personObj.title}
           onChange={handleChange} />
+      </label>
         <br/>
 
-        <label style={{color: 'white', background: "blue"}}>
+        <label>
                 Color: 
-          <CirclePicker 
+          <SliderPicker
             color={personObj.background} 
             name="color" 
             onChange={(e) => handleColorChange("color", e.hex)} />
           </label>    
           <br/>
 
-        <label>Mark as inactive?</label>
+        <label>Mark as inactive?
           <input
             type="checkbox"
             checked={current}
             onChange={toggleCurrent}/>
+        </label>
 
-        <button type="submit">{buttonText}</button>
-    </form>
+        <Button backgroundColor={design.main}type="submit">{buttonText}</Button>
+    </Form>
   )
 } else {
     return (

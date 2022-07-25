@@ -73,3 +73,13 @@ export const StyledLi = styled.div`
         opacity: .65;
     }
 `
+
+export const Form = styled.form`
+    /* background-color: lavender; */
+    padding: .25em .75em;
+    /* text-align: left; */
+    padding-left: 25px;
+    display: inline-grid;
+    width: 80%;
+    
+`

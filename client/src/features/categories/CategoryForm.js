@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCategory, updateCategory } from './categoriesSlice';
 import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
+import { useDesign } from '../designs/useDesign'
+import { StyledList, Form, Button } from '../../Styles/Styled';
 
 const CategoryForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch()
     const history = useHistory()
+    const design = useDesign()
     const n = (props.category !== undefined || null ? props.category.name : "")
     const x = (props.category !== undefined || null ? props.category.id : "")
     const [categoryObj, setCategoryObj] = useState({
@@ -47,8 +50,8 @@ const CategoryForm = (props) => {
 
     if (loggedIn){
         return (
-            <div>
-                <form className="categoryForm" onSubmit={submitFunction}>
+            <StyledList backgroundColor={design.background}>
+                <Form className="categoryForm" onSubmit={submitFunction}>
                     <label>Category Name: </label>
                         <input
                             type="text"
@@ -57,10 +60,10 @@ const CategoryForm = (props) => {
                             value={categoryObj.name}
                             onChange={handleChange} />
                         <br/>
-                    <button type="submit">{buttonText}</button>
-                </form>
+                    <Button backgroundColor={design.main} type="submit">{buttonText}</Button>
+                </Form>
                 {errorLis}
-            </div>
+            </StyledList>
         ) 
     } else {
         return (

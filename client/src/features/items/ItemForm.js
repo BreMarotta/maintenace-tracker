@@ -5,12 +5,15 @@ import CategoriesDropDown from '../categories/CategoriesDropDown';
 import LocationsDropDown from '../locations/LocationsDropDown';
 import { addItem, updateItem } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
+import { useDesign } from '../designs/useDesign';
+import { StyledList, Form, Button } from '../../Styles/Styled';
 
 const ItemForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch();
     const params = useParams()
     const history = useHistory()
+    const design = useDesign()
     const [showCategory, setShowCategory] = useState(false)
     const [showLocation, setShowLocation] = useState(false)
     // console.log(props)
@@ -102,9 +105,9 @@ const ItemForm = (props) => {
 
  if (loggedIn) {
   return (
-    <div>
-        <form className="itemForm" onSubmit={submitFunction}>
-        <button type="submit">{buttonText}</button>
+    <StyledList backgroundColor={design.background}>
+        <Form onSubmit={submitFunction}>
+        <Button backgroundColor={design.main} type="submit">{buttonText}</Button>
             <label>Name: </label>
                 <input
                     type="text"
@@ -112,7 +115,6 @@ const ItemForm = (props) => {
                     name="name"
                     value={itemObj.name}
                     onChange={handleChange} />
-                <br/>
 
                 <label>Model Year: </label>
                 <input
@@ -121,7 +123,6 @@ const ItemForm = (props) => {
                     name="year"
                     value={itemObj.year}
                     onChange={handleChange} />
-                <br/>
 
                 <label>Make: </label>
                 <input
@@ -130,7 +131,6 @@ const ItemForm = (props) => {
                     name="make"
                     value={itemObj.make}
                     onChange={handleChange} />
-                <br/>
 
                 <label>Model: </label>
                 <input
@@ -139,7 +139,6 @@ const ItemForm = (props) => {
                     name="model"
                     value={itemObj.model}
                     onChange={handleChange} />
-                <br/>
 
                 <label>Year Purchased: </label>
                 <input
@@ -148,7 +147,6 @@ const ItemForm = (props) => {
                     name="purchase_year"
                     value={itemObj.purchase_year}
                     onChange={handleChange} />
-                <br/>
 
                 <label>Warrenty Information: </label>
                 <input
@@ -157,7 +155,6 @@ const ItemForm = (props) => {
                     name="warrenty"
                     value={itemObj.warrenty}
                     onChange={handleChange} />
-                <br/>
 
                 <label>Image: </label>
                 <input
@@ -168,9 +165,9 @@ const ItemForm = (props) => {
                     onChange={handleChange} />
                 <br/>           
             {errorLis}
-        </form>
+        </Form>
         {catLocPart}
-    </div>
+    </StyledList>
   )
 } else {
     return (

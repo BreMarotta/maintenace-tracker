@@ -31,10 +31,7 @@
     margin-right: auto;
 }
 
-form {
-    background-color: linen;
-    align-content: center;
-}
+
 .personForm {
     /* float: right; */
     max-width: 50%;
