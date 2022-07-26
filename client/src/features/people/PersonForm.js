@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { SliderPicker } from 'react-color';
+import { CirclePicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { addPerson, updatePerson, updatePersonFront } from './peopleSlice';
@@ -84,7 +84,7 @@ const PersonForm = (props) => {
       <label>Name: 
         <br/>
         <input
-          style={{width: "95%"}}
+          style={{width: "100%"}}
           type="text"
           id="name"
           name="name"
@@ -96,7 +96,7 @@ const PersonForm = (props) => {
       <label>Title: 
         <br/>
         <input
-          style={{width: "95%"}}
+          style={{width: "100%"}}
           type="text"
           id="title"
           name="title"
@@ -104,11 +104,12 @@ const PersonForm = (props) => {
           onChange={handleChange} />
       </label>
         <br/>
+        <br/>
 
         <label>
-                Color: 
-          <SliderPicker
-            color={personObj.background} 
+          <CirclePicker
+            style={{circleSize: "100"}}
+            color={personObj.color} 
             name="color" 
             onChange={(e) => handleColorChange("color", e.hex)} />
           </label>    

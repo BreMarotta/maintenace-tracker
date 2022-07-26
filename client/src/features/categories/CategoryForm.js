@@ -54,6 +54,7 @@ const CategoryForm = (props) => {
                 <Form className="categoryForm" onSubmit={submitFunction}>
                     <label>Category Name: </label>
                         <input
+                            style={{width: "100%"}}
                             type="text"
                             id="name"
                             name="name"

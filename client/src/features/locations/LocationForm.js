@@ -92,6 +92,7 @@ const LocationForm = (props) => {
                     <br/>
                 <label>Include Address ?
                     <input
+                        style={{width: "100%"}}
                         type="checkbox"
                         checked={toggleAddress}
                         onChange={toggle} />

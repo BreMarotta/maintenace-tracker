@@ -55,7 +55,7 @@ export const StyledLink = styled.label`
 
 export const StyledList = styled.ul`
     background-color: ${(props) => props.backgroundColor};
-    padding: .25em .75em;
+    padding: .9em 1em 5em 1em;
     margin-top: 0em;
     margin-left: 5em;
     margin-right: 5em;
@@ -78,8 +78,8 @@ export const Form = styled.form`
     /* background-color: lavender; */
     padding: .25em .75em;
     /* text-align: left; */
-    padding-left: 25px;
+    /* padding-left: 25px; */
     display: inline-grid;
-    width: 80%;
+    align-content: center;
     
 `

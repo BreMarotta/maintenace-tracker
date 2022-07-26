@@ -108,56 +108,65 @@ const ItemForm = (props) => {
     <StyledList backgroundColor={design.background}>
         <Form onSubmit={submitFunction}>
         <Button backgroundColor={design.main} type="submit">{buttonText}</Button>
+        <br/>
             <label>Name: </label>
+            
                 <input
+                    style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="name"
                     name="name"
                     value={itemObj.name}
                     onChange={handleChange} />
-
+                <br/>
                 <label>Model Year: </label>
                 <input
+                    style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="year"
                     name="year"
                     value={itemObj.year}
                     onChange={handleChange} />
-
+                <br/>
                 <label>Make: </label>
                 <input
+                    style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="make"
                     name="make"
                     value={itemObj.make}
                     onChange={handleChange} />
-
+                <br/>
                 <label>Model: </label>
                 <input
+                    style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="model"
                     name="model"
                     value={itemObj.model}
                     onChange={handleChange} />
-
+                <br/>
                 <label>Year Purchased: </label>
                 <input
+                    style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="purchase_year"
                     name="purchase_year"
                     value={itemObj.purchase_year}
                     onChange={handleChange} />
-
+                <br/>
                 <label>Warrenty Information: </label>
                 <input
+                    style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="warrenty"
                     name="warrenty"
                     value={itemObj.warrenty}
                     onChange={handleChange} />
-
+                <br/>
                 <label>Image: </label>
                 <input
+                    style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="img"
                     name="img"
