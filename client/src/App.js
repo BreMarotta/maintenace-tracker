@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./App.css"
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Navigation from "./features/settings/Navigation";
+import Footer from "./features/settings/Footer";
 import Home from "./features/settings/Home";
 import Signup from "./features/settings/Signup";
 import Login from "./features/settings/Login";
@@ -68,7 +69,7 @@ function App() {
           <Route path="/items/:id" >
             <ItemShow />
           </Route>
-
+      <Footer />
 
     </BrowserRouter>
   );

@@ -4,7 +4,7 @@ import LogoutButton from './LogoutButton';
 import { useSelector } from 'react-redux';
 import { useDesign } from '../designs/useDesign';
 import { DisperseInfo } from '../../Disperse';
-import { LogButton, StyledLink, StyledName } from '../../Styles/Styled';
+import { LogButton, StyledLink, Name } from '../../Styles/Styled';
 
 const Navigation = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -22,7 +22,7 @@ const Navigation = () => {
       <div className="" style={navStyles}>
         <NavLink to='/settings' style={{float: "right"}}><LogButton backgroundColor={design.main}>⚙️</LogButton></NavLink>
         <LogoutButton />
-        <StyledName color={design.main} backgroundColor={design.background}>{design.company_name}</StyledName>
+        <Name color={design.main} backgroundColor={design.background}>{design.company_name}</Name>
           <NavLink to="/"><StyledLink backgroundColor={design.main}>Home</StyledLink></NavLink>
           <NavLink to='/people'><StyledLink backgroundColor={design.main}>{design.members}</StyledLink></NavLink>
          

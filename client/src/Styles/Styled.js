@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledName = styled.h1`
+export const Name = styled.h1`
     background-image: radial-gradient(whitesmoke, ${(props) => props.backgroundColor}); 
     color: ${(props) => props.color};
     padding-top: .25em;
@@ -16,7 +16,7 @@ export const StyledName = styled.h1`
 
 export const Banner = styled.h1`
     background-image: radial-gradient(whitesmoke, ${(props) => props.backgroundColor}); 
-    color: ${(props) => props.color};
+    color: ${(props) => props.main};
     padding-top: .25em;
     padding-bottom: .15em;
     margin-top: -20px;
@@ -25,6 +25,7 @@ export const Banner = styled.h1`
     border-radius: 5px;
     font-size: 1.2em;
     max-width: 50%;
+    border: 1.5px solid ${(props) => props.accent};
 `
 
 export const Button = styled.button`
@@ -76,8 +77,7 @@ export const StyledBackground = styled.ul`
     margin-left: 5em;
     margin-right: 5em;
     border-radius: 8px;
-    text-align: center;
-    
+    text-align: center;   
 `
 export const StyledLi = styled.div`
     background-color: ${(props) => props.backgroundColor};
@@ -98,4 +98,16 @@ export const Form = styled.form`
     display: inline-grid;
     align-content: center;
     
+`
+export const StyledFooter = styled.footer`
+    background-color: ${(props) => props.backgroundColor};
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+    padding-left: 25px;
+`
+export const StyledFooterLink = styled.a`
+    color: white;
+    padding: 10px;
 `

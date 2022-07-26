@@ -1,12 +1,7 @@
 body {
     background-color: whitesmoke;
     align-content: center;
-}
-footer {
-    background-color: gray;
-    text-align: center;
-    padding: 15px 0px 25px;
-    background-position: bottom;
+    min-height: 100vh;
 }
 
 .partsContainer {

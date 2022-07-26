@@ -24,7 +24,7 @@ const Home = () => {
     } else {
     return (
         <StyledBackground backgroundColor={design.background}>
-          <Banner color={design.main} backgroundColor={design.background}> {username}: </Banner>
+          <Banner main={design.main} backgroundColor={design.background} accent={design.accent}> {username}: </Banner>
           <ul>
             <StyledLi><li>Eventually, this will have instructions about how to properly use the site.</li></StyledLi>
             <StyledLi><li>Will also include quick StyledLinks???</li> </StyledLi>
