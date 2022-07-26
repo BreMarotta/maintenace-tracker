@@ -122,7 +122,7 @@ const PersonForm = (props) => {
             onChange={toggleCurrent}/>
         </label>
 
-        <Button backgroundColor={design.main}type="submit">{buttonText}</Button>
+        <Button backgroundColor={design.accent}type="submit">{buttonText}</Button>
     </Form>
   )
 } else {

@@ -4,7 +4,7 @@ import DesignForm from '../designs/DesignForm'
 import PersonForm from '../people/PersonForm'
 import { DisperseInfo } from '../../Disperse'
 import { useDesign } from '../designs/useDesign'
-import { StyledList } from '../../Styles/Styled'
+import { StyledBackground } from '../../Styles/Styled'
 
 const SettingsContainer = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -33,7 +33,7 @@ const SettingsContainer = () => {
   
 if (loggedIn ){
   return (
-    <StyledList backgroundColor={design.background}> 
+    <StyledBackground backgroundColor={design.background}> 
       <h3>Settings:  </h3>
       <hr/>
       <label>User Settings: </label>
@@ -58,7 +58,7 @@ if (loggedIn ){
       {displayPerson}
       
         
-    </StyledList>
+    </StyledBackground>
     
   )} else {
     return (

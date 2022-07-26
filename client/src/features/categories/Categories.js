@@ -4,7 +4,7 @@ import Category from './Category';
 import { NavLink } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign';
-import { StyledList, Button } from '../../Styles/Styled';
+import { StyledBackground, Button } from '../../Styles/Styled';
 
 const Categories = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -14,10 +14,10 @@ const Categories = () => {
   const displayCategories = categories.map(c => <Category key={c.id} category={c} />)
   if (loggedIn) {
     return (
-    <StyledList backgroundColor={design.background}>
+    <StyledBackground backgroundColor={design.background}>
       <NavLink to="/categories/new" className="navigation"><Button backgroundColor={design.main}>Add Category</Button></NavLink>
       {displayCategories}
-    </StyledList>
+    </StyledBackground>
   ) 
   } else {
     return (

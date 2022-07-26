@@ -4,7 +4,7 @@ import { addCategory, updateCategory } from './categoriesSlice';
 import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign'
-import { StyledList, Form, Button } from '../../Styles/Styled';
+import { StyledBackground, Form, Button } from '../../Styles/Styled';
 
 const CategoryForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
@@ -50,7 +50,7 @@ const CategoryForm = (props) => {
 
     if (loggedIn){
         return (
-            <StyledList backgroundColor={design.background}>
+            <StyledBackground backgroundColor={design.background}>
                 <Form className="categoryForm" onSubmit={submitFunction}>
                     <label>Category Name: </label>
                         <input
@@ -61,10 +61,10 @@ const CategoryForm = (props) => {
                             value={categoryObj.name}
                             onChange={handleChange} />
                         <br/>
-                    <Button backgroundColor={design.main} type="submit">{buttonText}</Button>
+                    <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
                 </Form>
                 {errorLis}
-            </StyledList>
+            </StyledBackground>
         ) 
     } else {
         return (

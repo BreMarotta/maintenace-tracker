@@ -4,7 +4,7 @@ import Item from './Item'
 import { Link } from 'react-router-dom'
 import { DisperseInfo } from '../../Disperse'
 import { useDesign } from '../designs/useDesign'
-import { StyledList, Button } from '../../Styles/Styled'
+import { StyledBackground, Button } from '../../Styles/Styled'
 
 const Items = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -15,10 +15,10 @@ const Items = () => {
   
   if (loggedIn){ 
     return (
-    <StyledList backgroundColor={design.background}>
+    <StyledBackground backgroundColor={design.background}>
       <Link to="/items/new"><Button backgroundColor={design.main}>Add New Item</Button></Link>
       {displayItems}
-    </StyledList>
+    </StyledBackground>
   )
   } else {
     return (

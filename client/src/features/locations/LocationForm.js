@@ -4,7 +4,7 @@ import { addLocation, updateLocation } from './locationsSlice';
 import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign'
-import { Form, StyledList, Button } from '../../Styles/Styled';
+import { Form, StyledBackground, Button } from '../../Styles/Styled';
 
 const LocationForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
@@ -80,7 +80,7 @@ const LocationForm = (props) => {
 
     if (loggedIn){
     return (
-        <StyledList backgroundColor={design.background}>
+        <StyledBackground backgroundColor={design.background}>
             <Form className="locationForm" onSubmit={submitFunction}>
                 <label>Location Name: </label>
                     <input
@@ -99,10 +99,10 @@ const LocationForm = (props) => {
                 </label>
                 {displayAddressLines}
                 <br/>
-                <Button backgroundColor={design.main} type="submit">{buttonText}</Button>
+                <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
             </Form> 
             {errorLis}
-        </StyledList>
+        </StyledBackground>
     )
 } else {
     return (

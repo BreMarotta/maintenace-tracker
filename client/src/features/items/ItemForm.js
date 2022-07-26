@@ -6,7 +6,7 @@ import LocationsDropDown from '../locations/LocationsDropDown';
 import { addItem, updateItem } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign';
-import { StyledList, Form, Button } from '../../Styles/Styled';
+import { StyledBackground, Form, Button } from '../../Styles/Styled';
 
 const ItemForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
@@ -105,9 +105,9 @@ const ItemForm = (props) => {
 
  if (loggedIn) {
   return (
-    <StyledList backgroundColor={design.background}>
+    <StyledBackground backgroundColor={design.background}>
         <Form onSubmit={submitFunction}>
-        <Button backgroundColor={design.main} type="submit">{buttonText}</Button>
+        <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
         <br/>
             <label>Name: </label>
             
@@ -176,7 +176,7 @@ const ItemForm = (props) => {
             {errorLis}
         </Form>
         {catLocPart}
-    </StyledList>
+    </StyledBackground>
   )
 } else {
     return (

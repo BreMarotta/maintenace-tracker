@@ -1,15 +1,30 @@
 import styled from 'styled-components';
 
 export const StyledName = styled.h1`
-    background-color: ${(props) => props.backgroundColor};
+    background-image: radial-gradient(whitesmoke, ${(props) => props.backgroundColor}); 
     color: ${(props) => props.color};
-    padding: .25em .75em;
+    padding-top: .25em;
+    padding-bottom: .15em;
     margin-top: .2em;
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 5px;
     text-align: center;
     font-size: 3em;
+    max-width: 50%;
+`
+
+export const Banner = styled.h1`
+    background-image: radial-gradient(whitesmoke, ${(props) => props.backgroundColor}); 
+    color: ${(props) => props.color};
+    padding-top: .25em;
+    padding-bottom: .15em;
+    margin-top: -20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    font-size: 1.2em;
+    max-width: 50%;
 `
 
 export const Button = styled.button`
@@ -18,6 +33,7 @@ export const Button = styled.button`
     border-radius: 5px;
     background-color: ${(props) => props.backgroundColor};
     color: whitesmoke;
+    border-style: none;
     font-size: 14px;
 
     &:hover {
@@ -27,6 +43,7 @@ export const Button = styled.button`
 export const LogButton = styled.button`
     height: 30px;
     margin: .2em;
+    border-style: none;
     border-radius: 5px;
     background-color: ${(props) => props.backgroundColor};
     font-size: .75em;
@@ -39,7 +56,6 @@ export const LogButton = styled.button`
 
 export const StyledLink = styled.label`
     background-color: ${(props) => props.backgroundColor};
-    /* background-image: linear-gradient(gray, ${(props) => props.backgroundColor});  */
     padding: .25em .75em;
     margin: .2em;
     border-radius: 5px;
@@ -53,13 +69,13 @@ export const StyledLink = styled.label`
     }
 `
 
-export const StyledList = styled.ul`
-    background-color: ${(props) => props.backgroundColor};
+export const StyledBackground = styled.ul`
+    background-image: radial-gradient(white, ${(props) => props.backgroundColor}); 
     padding: .9em 1em 5em 1em;
     margin-top: 0em;
     margin-left: 5em;
     margin-right: 5em;
-    border-radius: 3px;
+    border-radius: 8px;
     text-align: center;
     
 `
@@ -68,17 +84,17 @@ export const StyledLi = styled.div`
     color: black;
     font-size: 15px;
     border-radius: 5px;
+    text-align: left;
 
     &:hover {
-        opacity: .65;
+        font-weight: bold;
+        background-color: slategray;
+        color: white;
     }
 `
 
 export const Form = styled.form`
-    /* background-color: lavender; */
     padding: .25em .75em;
-    /* text-align: left; */
-    /* padding-left: 25px; */
     display: inline-grid;
     align-content: center;
     

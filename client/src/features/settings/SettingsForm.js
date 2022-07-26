@@ -52,7 +52,7 @@ const SettingsForm = ({ toggle }) => {
                     value={settingsObj.members}
                     onChange={handleChange}></input>
                     <br/>
-            <Button backgroundColor={design.main}type="submit">Apply Changes</Button>
+            <Button backgroundColor={design.accent}type="submit">Apply Changes</Button>
         </Form>
     </div>
   )

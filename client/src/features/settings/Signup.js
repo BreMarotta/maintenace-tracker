@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse'
+import { Form, StyledBackground } from '../../Styles/Styled';
 
 const Signup = () => {
   const { handleLogin } = useContext(DisperseInfo)
@@ -57,8 +58,8 @@ const Signup = () => {
   }
 
   return (
-    <div>
-      <form className="form" onSubmit={handleSubmit}>
+    <StyledBackground backgroundColor="white">
+      <Form onSubmit={handleSubmit}>
         <h3>Create new account: </h3>
         <label>Username: </label>
             <input 
@@ -87,9 +88,9 @@ const Signup = () => {
                 <input type="submit"/>
                 <br/>
                 <ul>{errorLis}</ul>           
-      </form>   
+      </Form>   
       <h5>Already have an account? <NavLink to='/login' ><strong>Login</strong></NavLink>!</h5>   
-    </div>
+    </StyledBackground>
   )
 }
 

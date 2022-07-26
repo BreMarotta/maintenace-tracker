@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Person from '../people/Person'
 import PersonForm from './PersonForm'
 import { DisperseInfo } from '../../Disperse'
-import { StyledList, Button } from '../../Styles/Styled'
+import { StyledBackground, Button } from '../../Styles/Styled'
 import { useDesign } from '../designs/useDesign'
 
 
@@ -25,12 +25,12 @@ const People = () => {
 
   if (loggedIn) {
     return (
-    <StyledList backgroundColor={design.background}>
+    <StyledBackground backgroundColor={design.background}>
         <Button backgroundColor={design.main} onClick={toggle}>Add Person</Button>
         <br/>
         {displaySettingUpdates}
         
-    </StyledList>
+    </StyledBackground>
 
   )} else {
     return (

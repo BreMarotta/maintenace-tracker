@@ -22,7 +22,7 @@ const LogoutButton = () => {
 
   return (
     <div>
-        <LogButton onClick={logout} backgroundColor={design.accent} style={{float: "right"}}>Logout</LogButton>
+        <LogButton onClick={logout} backgroundColor={design.main} style={{float: "right"}}>Logout</LogButton>
         </div>
   )
 }

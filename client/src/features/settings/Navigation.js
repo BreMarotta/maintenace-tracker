@@ -20,7 +20,7 @@ const Navigation = () => {
   if (loggedIn){
     return (
       <div className="" style={navStyles}>
-        <NavLink to='/settings' style={{float: "right"}}><LogButton backgroundColor={design.accent}>⚙️</LogButton></NavLink>
+        <NavLink to='/settings' style={{float: "right"}}><LogButton backgroundColor={design.main}>⚙️</LogButton></NavLink>
         <LogoutButton />
         <StyledName color={design.main} backgroundColor={design.background}>{design.company_name}</StyledName>
           <NavLink to="/"><StyledLink backgroundColor={design.main}>Home</StyledLink></NavLink>
@@ -32,7 +32,7 @@ const Navigation = () => {
           <NavLink to="/repairs"><StyledLink backgroundColor={design.main}>Repairs</StyledLink></NavLink>
           
           
-          
+          <hr color={design.accent}/>
       </div>
     )
   } else {

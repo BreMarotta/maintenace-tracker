@@ -2,9 +2,12 @@ import React, { useContext } from 'react'
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
+import { useDesign } from '../designs/useDesign';
+import { StyledBackground, StyledLi, Banner } from '../../Styles/Styled';
 
 const Home = () => {
   const { loggedIn } = useContext(DisperseInfo)
+  const design = useDesign()
   const username = useSelector((state) => state.users.user.username)
   
     if (!loggedIn){
@@ -20,13 +23,13 @@ const Home = () => {
       )
     } else {
     return (
-        <div>
-          <h1>Welcome {username}! </h1>
+        <StyledBackground backgroundColor={design.background}>
+          <Banner color={design.main} backgroundColor={design.background}> {username}: </Banner>
           <ul>
-            <li>Eventually, this will have instructions about how to properly use the site.</li>
-            <li> Will also include quick links???</li>
+            <StyledLi><li>Eventually, this will have instructions about how to properly use the site.</li></StyledLi>
+            <StyledLi><li>Will also include quick StyledLinks???</li> </StyledLi>
           </ul>      
-        </div>
+        </StyledBackground>
     )
     }
 }
