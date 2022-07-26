@@ -6,7 +6,7 @@ import { deleteItem, deleteItemFront } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
 import PartsContainer from '../parts/PartsContainer';
 import { initParts } from '../parts/partsSlice';
-import { Button, StyledBackground } from '../../Styles/Styled';
+import { Button, StyledBackground, Banner } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
 
 
@@ -45,8 +45,8 @@ const ItemShow = () => {
   }
 
   const display = showForm == true ? <ItemForm item={item} toggle={toggle} updateItem={updateItem} /> : <div className="showPage">
-    <img style={{height: "350px", float: "right", paddingRight: "100px"}} src={item.img} alt="No Image Available" />
-    <h2>{item.name}</h2>
+    <img src={item.img} alt="No Image Available" />
+
     <h5>{item.year} {item.make} - {item.model}</h5>
     <p>Warrenty Info: {item.warrenty}</p>
     <p>Purchased: {item.purchase_year}</p>
@@ -64,6 +64,7 @@ const ItemShow = () => {
       
       
         <StyledBackground backgroundColor={design.background}> 
+        <Banner backgroundColor={design.background}>{item.name}</Banner>
         {display}
         <Button backgroundColor={design.main} onClick={toggle}>Update</Button>
         </StyledBackground>

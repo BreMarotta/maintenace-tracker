@@ -26,6 +26,7 @@ export const Banner = styled.h1`
     font-size: 1.2em;
     max-width: 50%;
     border: 1.5px solid ${(props) => props.accent};
+    float: center;
 `
 
 export const Button = styled.button`
@@ -73,11 +74,21 @@ export const StyledLink = styled.label`
 export const StyledBackground = styled.ul`
     background-image: radial-gradient(white, ${(props) => props.backgroundColor}); 
     padding: .9em 1em 5em 1em;
+    height: auto;
     margin-top: 0em;
     margin-left: 5em;
     margin-right: 5em;
     border-radius: 8px;
-    text-align: center;   
+    text-align: center; 
+    align-content: center; 
+    & img {
+        border: solid black;
+        max-height: 230px;
+        max-width: 50%;
+        float: right;
+        margin-right: 15%;
+        margin-top: -15px;
+    } 
 `
 export const StyledLi = styled.div`
     background-color: ${(props) => props.backgroundColor};
