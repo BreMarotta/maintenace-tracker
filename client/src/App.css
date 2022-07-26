@@ -9,14 +9,6 @@ body {
     padding-left: .8%;
 }
 
-.card {
-    margin: .35%;
-    border: solid black 3px;
-    width: 31.5%;
-    display: inline-grid;
-    height: 300px;
-}
-
 .partPic {
     border: solid black;
     max-height: 150px;

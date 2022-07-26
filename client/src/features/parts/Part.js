@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDesign } from '../designs/useDesign'
 import PartForm from './PartForm';
+import { Card } from '../../Styles/Cards.style';
+import { Button } from '../../Styles/Styled';
 
 const Part = ({ part }) => {
     const design = useDesign()
@@ -16,11 +18,12 @@ const Part = ({ part }) => {
         setShowDetails(!showDetails)
     }
 
-    const displayInfo = showDetails == true ? <div>{part.details}</div> :  <div>
-    <h3>{part.name} ${part.price}</h3>
-    <img clasName="partPic" style={{height: "50%"}} src={part.img} alt={part.name} />
+    const displayInfo = 
+    <div>
+        <h3>{part.name} ${part.price}</h3>
+        <img clasName="partPic" style={{height: "50%"}} src={part.img} alt={part.name} />
     <span>Model: {part.model}</span>
-</div>
+    </div>
 
     const displayPart = showForm == true ? <PartForm toggle={toggleForm} part={part}/> : 
         <div>
@@ -34,11 +37,11 @@ const Part = ({ part }) => {
     const buttonText = showForm == true ? "Hide Form" : "Update"
 
   return (
-    <div  className="card"   style={{borderColor: `${design.accent}`}}  onMouseEnter={toggleDetails} onMouseLeave={toggleDetails}>
+    <Card  accent={design.accent} details={displayInfo}>
         
         {displayPart}
-        <button onClick={toggleForm}>{buttonText}</button>
-    </div>
+        <Button backgroundColor={design.accent}onClick={toggleForm}>{buttonText}</Button>
+    </Card>
   )
 }
 

@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addPart, updatePart } from './partsSlice';
 import { DisperseInfo } from '../../Disperse';
+import { Form, Button } from '../../Styles/Styled';
+import { useDesign } from '../designs/useDesign';
 
 const PartForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch();
     const params = useParams();
-    console.log(props)
+    const design = useDesign()
 
     const n = (props.part !== undefined || null ? props.part.name  : "")
     const m = (props.part !== undefined || null ? props.part.model  : "")
@@ -54,10 +56,7 @@ const PartForm = (props) => {
 
 if (loggedIn) {
     return (
-        <div>Form to add Part
-            <form className="partForm" onSubmit={submitFunction}>
-            <button type="submit">{buttonText}</button>
-            <br/>
+            <Form onSubmit={submitFunction}>
                 <label>Part Name: </label>
                     <input
                         type="text"
@@ -98,9 +97,8 @@ if (loggedIn) {
                         value={partObj.details}
                         onChange={handleChange} />
                     <br/>
-
-            </form>
-        </div>
+                    <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
+            </Form>
     )
 } else {
     return (

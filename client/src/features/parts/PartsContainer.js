@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PartForm from './PartForm';
 import Parts from './Parts'
 import { useDesign } from '../designs/useDesign'
+import { StyledBackground } from '../../Styles/Styled';
 
 const PartsContainer = () => {
     const design = useDesign()
@@ -13,8 +14,7 @@ const PartsContainer = () => {
 
     const displayContainer = displayPartForm == true ? <PartForm toggle={toggleDisplay}/> : <Parts />
   return (
-    <div className="partsContainer" style={{backgroundColor: `${design.background}`}}> 
-        <h3>Container</h3>
+    <StyledBackground backgroundColor={design.background}> 
         <label>Add Part to This Item: </label>
             <input
                 type="checkbox"
@@ -22,7 +22,7 @@ const PartsContainer = () => {
                 onChange={toggleDisplay} />
         {displayContainer}
         {/* <Parts /> */}
-    </div>
+    </StyledBackground>
   )
 }
 

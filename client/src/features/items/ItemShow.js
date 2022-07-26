@@ -6,12 +6,15 @@ import { deleteItem, deleteItemFront } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
 import PartsContainer from '../parts/PartsContainer';
 import { initParts } from '../parts/partsSlice';
+import { Button, StyledBackground } from '../../Styles/Styled';
+import { useDesign } from '../designs/useDesign';
 
 
 const ItemShow = () => {
   const params = useParams()
   const dispatch = useDispatch()
   const history = useHistory()
+  const design = useDesign()
   const { loggedIn } = useContext(DisperseInfo)
 
 
@@ -57,14 +60,15 @@ const ItemShow = () => {
   }
   if (loggedIn && !error && params.id != "new") {
     return (
-    <div>
-      <PartsContainer />
-      <label>Update {item.name}</label>
-        <input
-        type="checkbox"
-        checked={showForm}
-        onChange={toggle}/>
+    <>
+      
+      
+        <StyledBackground backgroundColor={design.background}> 
         {display}
+        <Button backgroundColor={design.main} onClick={toggle}>Update</Button>
+        </StyledBackground>
+       
+        <PartsContainer />
 
         <br/>
         <br/>
@@ -76,7 +80,7 @@ const ItemShow = () => {
         <br/>
         
         <button onClick={handleDelete}>Delete {item.name}</button>
-    </div>
+    </>
   )} else if (error) {
     return (
       <div>
