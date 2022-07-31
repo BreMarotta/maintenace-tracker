@@ -16,7 +16,7 @@ const Part = ({ part }) => {
 
     const details = showDetails ? 
         <div>
-            {part.name}
+            <h1>{part.name}</h1>
             <hr/>
             {part.model ? <span>Model: {part.model} <br/></span> : ""}
             {part.price ? <span>Price: ${part.price}<br/></span> : "" }
@@ -28,20 +28,15 @@ const Part = ({ part }) => {
     const buttonText = showForm == true ? "Hide Form" : "Update"
 
     const displayPart = showForm == true ? <PartForm toggle={toggleForm} part={part}/> : 
-        <Card onMouseEnter={() => setShowDetails(true)} onMouseLeave={() => setShowDetails(false)}>  
+        <Card   accent={design.accent} onMouseEnter={() => setShowDetails(true)} onMouseLeave={() => setShowDetails(false)}>  
             <img src={part.img} alt={part.name} />
             <br/>
             <h3>{details}</h3>
-            {showDetails}
-            <Button backgroundColor={design.accent} onClick={toggleForm}>{buttonText}</Button>           
+            <Button onClick={toggleForm}>{buttonText}</Button>           
         </Card>
-    
-
-
 
   return (
-    <div  accent={design.accent}>
-        {showDetails}
+    <div>
         {displayPart}
     </div>
   )

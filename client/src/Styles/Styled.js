@@ -81,14 +81,14 @@ export const StyledBackground = styled.ul`
     border-radius: 8px;
     text-align: center; 
     align-content: center; 
-    & img {
+    /* & img {
         border: solid black;
         max-height: 230px;
         max-width: 50%;
         float: right;
         margin-right: 15%;
         margin-top: -15px;
-    } 
+    }  */
 `
 export const StyledLi = styled.div`
     background-color: ${(props) => props.backgroundColor};

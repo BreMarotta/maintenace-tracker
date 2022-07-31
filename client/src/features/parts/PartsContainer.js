@@ -21,7 +21,6 @@ const PartsContainer = () => {
                 checked={displayPartForm}
                 onChange={toggleDisplay} />
         {displayContainer}
-        {/* <Parts /> */}
     </StyledBackground>
   )
 }

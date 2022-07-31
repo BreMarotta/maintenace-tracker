@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { useSelector } from 'react-redux';
 import Part from './Part';
-import { Link } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { Grid } from '../../Styles/Cards.style';
 
@@ -18,7 +17,7 @@ const Parts = () => {
     } else {
         return (
             <div>
-            <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
+            <h3 className="unauthorized"> Not Authorized - Please Login or Signup</h3>
             </div>
         ) 
     }

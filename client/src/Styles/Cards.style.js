@@ -32,6 +32,7 @@ export const Card = styled.div`
         margin-top: 10px;
         margin-left: auto;
         margin-right: auto;
+        border-radius: 5px;
     }
     & h3 {
         display: flex;
@@ -46,13 +47,51 @@ export const Card = styled.div`
         font-size: 150%;
     }
     & button {
+        background-color: ${(props) => props.accent};
         display: flex;
-        /* grid-column: 2/2; */
         grid-row: 4/4;
-        /* flex: 3; */
         padding-bottom: 15px;
         margin-left: 5px;
         margin-right: 5px;
     }
 
+`
+
+export const ShowGrid = styled.div`
+    display: inline-grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 98% 2%;
+    margin-top: 25px;
+    grid-gap: 10px;
+    width: 85%;
+    height: 350px;
+
+    &:hover {
+ 
+    }
+
+    & img {
+        display: flex;
+        grid-column: 1;
+        grid-row: 1/2;
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+        border: ${(props) => props.accent} solid 3px;
+        box-shadow: 3px 4px slategray;
+    }
+
+    & h5 {
+        font-size: 100%;
+    }
+
+    & button {
+        grid-row: 2/2;
+        max-width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 `
