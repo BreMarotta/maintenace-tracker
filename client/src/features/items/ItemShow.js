@@ -10,6 +10,7 @@ import { Button, StyledBackground, Banner } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
 
 
+
 const ItemShow = () => {
   const params = useParams()
   const dispatch = useDispatch()
@@ -68,8 +69,8 @@ const ItemShow = () => {
         {display}
         <Button backgroundColor={design.main} onClick={toggle}>Update</Button>
         </StyledBackground>
-       
         <PartsContainer />
+        
 
         <br/>
         <br/>

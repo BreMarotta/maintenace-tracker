@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDesign } from '../designs/useDesign'
 import PartForm from './PartForm';
-import { Card } from '../../Styles/Cards.style';
+import { Card, Grid } from '../../Styles/Cards.style';
 import { Button, Banner } from '../../Styles/Styled';
 
 const Part = ({ part }) => {
@@ -26,24 +26,25 @@ const Part = ({ part }) => {
             {part.details ? <span>Additional Information: {part.details}</span> : ""}
         </div>
 
-    const displayPart = showForm == true ? <PartForm toggle={toggleForm} part={part}/> : 
-        <div>
-            <h3>{part.name}</h3>
-            <img className="partPic" src={part.img} alt={part.name} />
-            <br/>
-            {showDetails} 
-            
-        </div>
-    
-
     const buttonText = showForm == true ? "Hide Form" : "Update"
 
+    const displayPart = showForm == true ? <PartForm toggle={toggleForm} part={part}/> : 
+        <Card>  
+            <img src={part.img} alt={part.name} />
+            <br/>
+            <h3>{part.name}</h3>
+            {showDetails}
+            <Button backgroundColor={design.accent} onClick={toggleForm}>{buttonText}</Button>           
+        </Card>
+    
+
+
+
   return (
-    <Card  accent={design.accent}>
+    <div  accent={design.accent}>
         {showDetails}
         {displayPart}
-        <Button backgroundColor={design.accent}onClick={toggleForm}>{buttonText}</Button>
-    </Card>
+    </div>
   )
 }
 

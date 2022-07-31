@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Part from './Part';
 import { Link } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
+import { Grid } from '../../Styles/Cards.style';
 
 const Parts = () => {
     const { loggedIn } = useContext(DisperseInfo)
@@ -12,7 +13,7 @@ const Parts = () => {
 
     if (loggedIn){
         return (
-        <div>{displayParts}</div>
+        <Grid>{displayParts}</Grid>
         )  
     } else {
         return (
