@@ -17,6 +17,21 @@ const UserProvider = ({children}) => {
     const [loggedIn, setLoggedIn] = useState(false)
 
     useEffect(() => {
+        getMe()
+        // fetch('/me')
+        // .then(res => res.json())
+        // .then((data) => {
+        //     if(!data.errors) {
+        //         setLoggedIn(true)
+        //         initAll(data) 
+        //     } else {
+        //         setLoggedIn(false)
+        //         clearAll()
+        //     }            
+        // })
+    }, [])
+
+    const getMe = () => {
         fetch('/me')
         .then(res => res.json())
         .then((data) => {
@@ -28,7 +43,7 @@ const UserProvider = ({children}) => {
                 clearAll()
             }            
         })
-    }, [loggedIn])
+    }
 
     const initAll = (user) => {
         setLoggedIn(true)
@@ -49,8 +64,9 @@ const UserProvider = ({children}) => {
         dispatch(logoutPeople())
     }
 
-    const handleLogin = () => {
+    const handleLogin = (user) => {
         setLoggedIn(true)
+        initAll(user)
     }
     const handleLogout = () => {
         setLoggedIn(false)

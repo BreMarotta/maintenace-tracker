@@ -29,7 +29,7 @@ const Login = () => {
         .then(data => {
             console.log(data)
             if (!data.error && !data.errors){
-                handleLogin()
+                handleLogin(data)
             } else {
                 setUserObj({
                     username: "",
