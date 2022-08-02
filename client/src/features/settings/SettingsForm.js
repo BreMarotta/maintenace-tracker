@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { designUpdate } from '../designs/designSlice';
-import { Form, Button } from '../../Styles/Styled';
+import { Button } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
+import { Form } from '../../Styles/Form.style';
 
 const SettingsForm = ({ toggle }) => {
     const dispatch = useDispatch()

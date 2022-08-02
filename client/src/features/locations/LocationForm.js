@@ -4,7 +4,8 @@ import { addLocation, updateLocation } from './locationsSlice';
 import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign'
-import { Form, StyledBackground, Button } from '../../Styles/Styled';
+import { StyledBackground, Button } from '../../Styles/Styled';
+import { Form } from '../../Styles/Form.style';
 
 const LocationForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)

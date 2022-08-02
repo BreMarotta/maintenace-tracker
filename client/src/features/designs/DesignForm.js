@@ -3,7 +3,8 @@ import { CompactPicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
 import { designUpdate } from './designSlice'
 import { useDesign } from './useDesign';
-import { Form, Button } from '../../Styles/Styled';
+import { Button } from '../../Styles/Styled';
+import { Form } from '../../Styles/Form.style';
 
 const DesignForm = ({ toggle }) => {;
     const dispatch = useDispatch()
@@ -55,36 +56,36 @@ const DesignForm = ({ toggle }) => {;
   return (
     <div>
         <Form onSubmit={handleSubmit}>
-            <label>Change Banner Background:
+            <label>Change Banner Background:</label>
                 <input
                     type="checkbox"
                     checked={showBannerInput}
                     onChange={(e) => setShowBannerInput(!showBannerInput)} />
                 {bannerInput}
-            </label>
+            
             <br/>
             
-            <label style={{ background: design.background, border: "1px solid black", borderRadius: "5px"}}>
-                <strong>Background Color:</strong>    
-                <br/>
-                <CompactPicker color={designObj.background} name="background" onChange={(e) => handleChange("background", e.hex)} />
-            </label>    
+            <label>
+                Background Color:  </label>   
+                    <div>
+                        <CompactPicker color={designObj.background} name="background" onChange={(e) => handleChange("background", e.hex)} />
+                    </div>
             <br/>
 
-            <label style={{background: design.main, border: "1px solid black", borderRadius: "5px"}}>
-                <strong>Main Color:</strong>
-                 
-                <br/>
-                <CompactPicker color={designObj.main} onChange={(e) => handleChange("main", e.hex)} />
-            </label>    
+            <label>
+                Main Color:</label>
+                    <div>
+                        <CompactPicker color={designObj.main} onChange={(e) => handleChange("main", e.hex)} />
+                    </div>
             <br/>
 
-            <label style={{color: 'white', background: design.accent, border: "1px solid black", borderRadius: "5px"}}>
-                <strong>Accent Color:</strong>
-                 
-                <br/>
-                <CompactPicker color={designObj.accent} onChange={(e) => handleChange("accent", e.hex)} />
-            </label>    
+            <label>
+                Accent Color:</label>
+                    <div>
+                        <CompactPicker color={designObj.accent} onChange={(e) => handleChange("accent", e.hex)} />
+                    </div>
+                
+                
             <br/>
 
             <Button backgroundColor={design.accent}type="submit">Set Design Preferences</Button>

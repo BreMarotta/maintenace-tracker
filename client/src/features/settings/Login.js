@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { DisperseInfo } from '../../Disperse'
-import { Form, StyledBackground } from '../../Styles/Styled'
+import { StyledBackground } from '../../Styles/Styled'
+import { Form } from '../../Styles/Form.style'
 
 const Login = () => {
     const { handleLogin } = useContext(DisperseInfo)

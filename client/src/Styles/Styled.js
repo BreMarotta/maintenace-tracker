@@ -76,19 +76,12 @@ export const StyledBackground = styled.ul`
     padding: .9em 1em 5em 1em;
     height: auto;
     margin-top: 0em;
-    margin-left: 5em;
-    margin-right: 5em;
+    margin-left: 15%;
+    margin-right: 15%;
     border-radius: 8px;
     text-align: center; 
-    align-content: center; 
-    /* & img {
-        border: solid black;
-        max-height: 230px;
-        max-width: 50%;
-        float: right;
-        margin-right: 15%;
-        margin-top: -15px;
-    }  */
+    /* align-content: center;  */
+
 `
 export const StyledLi = styled.div`
     background-color: ${(props) => props.backgroundColor};
@@ -104,12 +97,6 @@ export const StyledLi = styled.div`
     }
 `
 
-export const Form = styled.form`
-    padding: .25em .75em;
-    display: inline-grid;
-    align-content: center;
-    
-`
 export const StyledFooter = styled.footer`
     background-color: ${(props) => props.backgroundColor};
     position: fixed;

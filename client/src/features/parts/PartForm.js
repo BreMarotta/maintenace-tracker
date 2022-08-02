@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addPart, updatePart } from './partsSlice';
 import { DisperseInfo } from '../../Disperse';
-import { Form, Button } from '../../Styles/Styled';
+import { Button } from '../../Styles/Styled';
+import { Form } from '../../Styles/Form.style';
 import { useDesign } from '../designs/useDesign';
 
 const PartForm = (props) => {

@@ -4,7 +4,8 @@ import { addCategory, updateCategory } from './categoriesSlice';
 import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign'
-import { StyledBackground, Form, Button } from '../../Styles/Styled';
+import { StyledBackground, Button } from '../../Styles/Styled';
+import { Form } from '../../Styles/Form.style';
 
 const CategoryForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)

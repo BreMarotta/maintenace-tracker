@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { addPerson, updatePerson, updatePersonFront } from './peopleSlice';
 import { DisperseInfo } from '../../Disperse';
-import { Form, Button } from '../../Styles/Styled';
+import { Button } from '../../Styles/Styled';
+import { CenteredForm } from '../../Styles/Form.style';
 import { useDesign } from '../designs/useDesign';
 
 
@@ -80,21 +81,18 @@ const PersonForm = (props) => {
 
   if (loggedIn){
   return (
-    <Form onSubmit={submitFunction}>
-      <label>Name: 
-        <br/>
+    <CenteredForm onSubmit={submitFunction}>
+      <label>Name: </label>
         <input
-          style={{width: "100%"}}
           type="text"
           id="name"
           name="name"
           value={personObj.name}
           onChange={handleChange} />
-      </label>
         <br/>
 
-      <label>Title: 
-        <br/>
+      <label>Title:</label> 
+
         <input
           style={{width: "100%"}}
           type="text"
@@ -102,28 +100,29 @@ const PersonForm = (props) => {
           name="title"
           value={personObj.title}
           onChange={handleChange} />
-      </label>
         <br/>
         <br/>
 
-        <label>
-          <CirclePicker
-            style={{circleSize: "100"}}
+        <label>Personalize Color:</label>
+          <div>
+            <CirclePicker
             color={personObj.color} 
             name="color" 
             onChange={(e) => handleColorChange("color", e.hex)} />
-          </label>    
+          </div>
+          
+              
           <br/>
 
-        <label>Mark as inactive?
+        <label>Mark as inactive?</label>
           <input
             type="checkbox"
             checked={current}
             onChange={toggleCurrent}/>
-        </label>
+        
 
         <Button backgroundColor={design.accent}type="submit">{buttonText}</Button>
-    </Form>
+    </CenteredForm>
   )
 } else {
     return (
