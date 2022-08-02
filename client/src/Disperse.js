@@ -5,6 +5,7 @@ import { initCategories, logoutCategories } from './features/categories/categori
 import { initLocations, logoutLocations } from "./features/locations/locationsSlice";
 import { initItems, logoutItems } from "./features/items/itemsSlice";
 import { initUser, logOut } from './features/settings/manageUsersSlice';
+import { initRepairs, logoutRepairs } from './features/repairs/repairsSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 
@@ -53,6 +54,7 @@ const UserProvider = ({children}) => {
         dispatch(initCategories(user.categories))
         dispatch(initLocations(user.locations))
         dispatch(initItems(user.items))
+        dispatch(initRepairs(user.repairs))
     }
 
     const clearAll = () => {
@@ -62,6 +64,7 @@ const UserProvider = ({children}) => {
         dispatch(logoutItems())
         dispatch(logoutLocations())
         dispatch(logoutPeople())
+        dispatch(logoutRepairs())
     }
 
     const handleLogin = (user) => {

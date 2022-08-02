@@ -1,23 +1,47 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const addRepair = createAsyncThunk('repair/addRepair', (repairObj) => {
+    return fetch('/repairs', {
+        method: "POST",
+        headers: {"Content-Type": "applicaiton/json"},
+        body: JSON.stringify(repairObj)
+    })
+    .then(res => res.json())
+    .then(data => data)
+})
 
 const repairsSlice = createSlice({
     name: "repairs",
     initialState: {
-        entities: [],
+        repairs: [],
+        errors: [],
+        status: "idle"
     },
     reducers: {
-        repairAdded(state, action) {
-            state.entities.push({
-                ...action.payload
-            });
+        initRepairs(state, action) {
+            state.repairs = action.payload
         },
-        // repairUpdated(state, action) {
-        //     const index = state.entities.findIndex(r => r.id === action.payload.id);
-        // }
+        logoutRepairs(state){
+            state.repairs = []
+        }
     },
-    
+    extraReducers: {
+        [addRepair.pending](state){
+            state.status = "loading"
+        },
+        [addRepair.fulfilled](state, action){
+            if(!action.payload.error && !action.payload.errors) {
+                state.repairs.push(action.payload);
+                state.status = "idle";
+                state.errors =[];
+            } else {
+                state.errors = action.payload.errors;
+                state.status = "idle";
+            }
+        }
+    }
 });
 
-export const { repairAdded } =repairsSlice.actions;
+export const { initRepairs, logoutRepairs } = repairsSlice.actions;
 
 export default repairsSlice.reducer;

@@ -17,6 +17,7 @@ import Locations from "./features/locations/Locations";
 import Items from "./features/items/Items";
 import ItemForm from "./features/items/ItemForm";
 import ItemShow from "./features/items/ItemShow";
+import RepairsContainer from "./features/repairs/RepairsContainer";
 import { DisperseInfo } from './Disperse'
 
 
@@ -68,6 +69,9 @@ function App() {
           </Route>
           <Route path="/items/:id" >
             <ItemShow />
+          </Route>
+          <Route path="/repairs" >
+            <RepairsContainer />
           </Route>
       <Footer />
 

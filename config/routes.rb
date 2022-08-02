@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   resources :parts
 
+  resources :repairs
 
   get '*path',
   to: 'fallback#index',

@@ -11,7 +11,7 @@ const PartForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch();
     const params = useParams();
-    const design = useDesign()
+    const design = useDesign();
 
     const n = (props.part !== undefined || null ? props.part.name  : "")
     const m = (props.part !== undefined || null ? props.part.model  : "")
@@ -106,7 +106,7 @@ if (loggedIn) {
         <div>
           <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
         </div>
-      )    
+    )    
 }
   
 }
