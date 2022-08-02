@@ -3,18 +3,21 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PersonForm from './PersonForm';
 import { DisperseInfo } from '../../Disperse';
+import { StyledBackground, Banner, StyledLi } from '../../Styles/Styled';
+import { useDesign } from '../designs/useDesign';
 
 const PersonShow = () => {
   const { loggedIn } = useContext(DisperseInfo)
   const params = useParams()
-  // const people = useSelector(state => state.people.people)
+  const design = useDesign()
+  console.log(design)
   const [person, setPerson] = useState({}) 
   const [color, setColor] = useState("")
   const [current, setCurrent] = useState(true)
   const [error, setError] = useState(false)
   const [showForm, setShowForm] = useState(false)
-  const peopleType = useSelector((state) => state.users.user.type)
-  const peopleTypeName = peopleType == null ? "Person" : peopleType
+
+  const peopleTypeName = design.members == null ? "Person" : design.members
 
   useEffect(() => {
     fetch(`/people/${params.id}`)
@@ -38,28 +41,30 @@ const PersonShow = () => {
     setPerson(obj)
   }
 
-  const displayUpdate = showForm == true ? <PersonForm person={person} toggle={toggle} updatePerson={updatePerson}/> : <div>
-  <p>{person.name}</p>
-  <p> Title: {person.title}</p>
-</div>
+  const displayUpdate = showForm == true ? <PersonForm person={person} toggle={toggle} updatePerson={updatePerson}/> : 
+  <Banner  style={{background: color}}>
+    <p>{person.name}</p>
+    <p>{person.title}</p>
+    <p>Repair Cost Total: </p>
+  </Banner>
 
  if (loggedIn && !error) {
   return (
     <div>
-      <label>Update {peopleTypeName}</label>
-        <input
-          type="checkbox"
-          checked={showForm}
-          onChange={toggle}/>
-      <ul>
-        <li style={{background: color}}>{displayUpdate}</li>
-        <hr/>
-        <li>I eventually want to have this as a list of cards of this person's repairs</li>
-        <li>Each card would be a link to that specific repair.</li>
-        <li>This way a manager/company/parent could look at an overview of what each person/employee has contributed.</li>
-        <li> Might be nice to also include a total expense for repairs by person? </li>
-        <li> Might be nice to include charts or graphs of dates or somethings?</li>
-      </ul>
+      <StyledBackground backgroundColor={design.background}>
+        <div>{displayUpdate}</div>
+        
+        <label>Update Information </label>
+          <input
+            type="checkbox"
+            checked={showForm}
+            onChange={toggle}/>        
+          <hr/>
+          
+      </StyledBackground>
+      <StyledBackground backgroundColor={design.background}>
+        <p>Need to put a "Repairs Container" that holds the repairs of this person.</p>
+      </StyledBackground>
     </div>
   )
  } else if (error) {

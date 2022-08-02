@@ -71,7 +71,7 @@ const PersonForm = (props) => {
     props.toggle()
   }
 
-  const buttonText = props.person !== undefined || null ? "Save Changes" : "Save Information" 
+  // const buttonText = props.person !== undefined || null ? "Save" : "Save" 
   const submitFunction = props.person !== undefined || null ? handleUpdate : handleSubmit
 
   const toggleCurrent = () => {
@@ -92,9 +92,7 @@ const PersonForm = (props) => {
         <br/>
 
       <label>Title:</label> 
-
         <input
-          style={{width: "100%"}}
           type="text"
           id="title"
           name="title"
@@ -121,7 +119,7 @@ const PersonForm = (props) => {
             onChange={toggleCurrent}/>
         
 
-        <Button backgroundColor={design.accent}type="submit">{buttonText}</Button>
+        <Button backgroundColor={design.accent}type="submit">Save</Button>
     </CenteredForm>
   )
 } else {

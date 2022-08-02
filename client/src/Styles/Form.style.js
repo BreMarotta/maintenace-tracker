@@ -42,7 +42,7 @@ export const CenteredForm = styled.form`
     grid-template-columns: 100%;
     grid-template-rows: repeat(2);
     grid-gap: 10px;
-    width: 100%;
+    width: 50%;
 
     & button {
         display: flex;
@@ -54,7 +54,6 @@ export const CenteredForm = styled.form`
 
     & label {
         display: flex;
-        /* grid-row: 1; */
         max-width: 100%;
         font-size: 85%;
         object-fit: cover;
@@ -62,13 +61,12 @@ export const CenteredForm = styled.form`
 
     & input {
         display: flex;
-        /* grid-row: 2; */
         width: 100%;
     }
 
     & div {
-        grid-column-start: 1;
-        grid-column-end: 3;
+        /* grid-column-start: 1;
+        grid-column-end: 3; */
         width: auto;
         object-fit: cover;
         float: left;
