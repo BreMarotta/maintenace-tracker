@@ -8,6 +8,7 @@ import { initUser, logOut } from './features/settings/manageUsersSlice';
 import { initRepairs, logoutRepairs } from './features/repairs/repairsSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import { initParts } from './features/parts/partsSlice';
 
 const DisperseInfo = React.createContext()
 
@@ -54,6 +55,7 @@ const UserProvider = ({children}) => {
         dispatch(initCategories(user.categories))
         dispatch(initLocations(user.locations))
         dispatch(initItems(user.items))
+        dispatch(initParts(user.parts))
         dispatch(initRepairs(user.repairs))
     }
 

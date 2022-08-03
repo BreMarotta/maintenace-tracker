@@ -6,5 +6,6 @@ class UserSerializer < ActiveModel::Serializer
   has_many :categories
   has_many :locations
   has_many :items, through: :categories
+  has_many :parts, through: :items
 
 end

@@ -6,14 +6,16 @@ import { DisperseInfo } from '../../Disperse'
 import { Button, StyledBackground } from '../../Styles/Styled'
 import { Form } from '../../Styles/Form.style'
 import { useDesign } from '../designs/useDesign'
-import { DatePicker } from 'react-datepicker'
 import PeopleDropDown from '../people/PeopleDropDown'
+import ItemsDropDown from '../items/ItemsDropDown'
+import PartsDropDown from '../parts/PartsDropDown'
 
 const RepairForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch();
     const params = useParams();
     const design = useDesign();
+    const [itemId, setItemId] = useState("")
 
     const x = (props.repair !== undefined || null ? props.repair : "")
     const part = (props.repair !== undefined || null ? props.repair.part_id : "")
@@ -42,10 +44,14 @@ const RepairForm = (props) => {
         const newObj = {...repairObj, [type]: id}
         setRepairObj(newObj)
     }
+    const handleItemSelect = (id) => {
+        setItemId(id)
+    }
 
     const handleChange = (e) => {
         const newObj = {...repairObj, [e.target.name]: e.target.value}
         setRepairObj(newObj)
+        console.log(repairObj)
     }
 
     const handleSubmit = (e) => {
@@ -66,9 +72,18 @@ const RepairForm = (props) => {
     if (loggedIn) {
         return (
             <StyledBackground backgroundColor={design.background}>
+                <PeopleDropDown handleSelect={handleSelect} />
+                <ItemsDropDown handleItemSelect={handleItemSelect} />
+                <PartsDropDown handleSelect={handleSelect} itemId={itemId}/>
                 <Form onSubmit={submitFunction}>
                     <label>Date Completed</label>
-                        {/* <DatePicker selected={repairObj.date} onChange={(e) => {console.log(e)}}/> */}
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            onChange={handleChange}
+                            selected={repairObj.date} 
+                            />
                         <br/>
                     <label>Cost of Repair</label>
                         <input
@@ -88,7 +103,6 @@ const RepairForm = (props) => {
                         <br/>
                     <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
                 </Form>
-                <PeopleDropDown handleSelect={handleSelect} />
             </StyledBackground>
         )
         
