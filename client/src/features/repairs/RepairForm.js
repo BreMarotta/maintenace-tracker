@@ -18,7 +18,8 @@ const RepairForm = (props) => {
     const [itemId, setItemId] = useState("")
 
     const x = (props.repair !== undefined || null ? props.repair : "")
-    const part = (props.repair !== undefined || null ? props.repair.part_id : "")
+    const repairable = (props.repair !== undefined || null ? props.repair.repairable_id : "")
+    const type = (props.repair !== undefined || null ? props.repair.repairable_type : "")
     const person = (props.repair !== undefined || null ? props.repair.person_id : "")
     const d = (props.repair !== undefined || null ? props.repair.date : "")
     const comp = (props.repair !== undefined || null ? props.repair.complete : "")
@@ -28,7 +29,8 @@ const RepairForm = (props) => {
 
     const [repairObj, setRepairObj] = useState({
         id: x,
-        part_id: part,
+        repairable_id: repairable,
+        repairable_type: type,
         person_id: person,
         date: d,
         complete: comp,
