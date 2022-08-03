@@ -19,6 +19,7 @@ const PartForm = (props) => {
     const p = (props.part !== undefined || null ? props.part.price  : "")
     const d = (props.part !== undefined || null ? props.part.details  : "")
     const x = (props.part !== undefined || null ? props.part.id : "")
+    const y = (props.itemId ? props.itemId : params.id)
     
     const [partObj, setPartObj] = useState({
         name: n,
@@ -27,7 +28,7 @@ const PartForm = (props) => {
         price: p,
         details: d,
         id: x,
-        item_id: params.id
+        item_id: y
     })
 
     const errors = useSelector(state => state.parts.errors);
@@ -40,6 +41,7 @@ const PartForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(partObj)
         dispatch(addPart(partObj))
         props.toggle()
     }

@@ -16,10 +16,11 @@ const RepairForm = (props) => {
     const params = useParams();
     const design = useDesign();
     const [itemId, setItemId] = useState("")
+    const [partId, setPartId] = useState("")
 
     const x = (props.repair !== undefined || null ? props.repair : "")
-    const repairable = (props.repair !== undefined || null ? props.repair.repairable_id : "")
-    const type = (props.repair !== undefined || null ? props.repair.repairable_type : "")
+    // const repairable = (props.repair !== undefined || null ? props.repair.repairable_id : "")
+    // const type = (props.repair !== undefined || null ? props.repair.repairable_type : "")
     const person = (props.repair !== undefined || null ? props.repair.person_id : "")
     const d = (props.repair !== undefined || null ? props.repair.date : "")
     const comp = (props.repair !== undefined || null ? props.repair.complete : "")
@@ -27,6 +28,7 @@ const RepairForm = (props) => {
     const t = (props.repair !== undefined || null ? props.repair.title : "")
     const s = (props.repair !== undefined || null ? props.repair.summary : "")
 
+    
     const [repairObj, setRepairObj] = useState({
         id: x,
         repairable_id: repairable,
@@ -48,6 +50,9 @@ const RepairForm = (props) => {
     }
     const handleItemSelect = (id) => {
         setItemId(id)
+    }
+    const handlePartSelect = (id) => {
+
     }
 
     const handleChange = (e) => {
@@ -76,7 +81,7 @@ const RepairForm = (props) => {
             <StyledBackground backgroundColor={design.background}>
                 <PeopleDropDown handleSelect={handleSelect} />
                 <ItemsDropDown handleItemSelect={handleItemSelect} />
-                <PartsDropDown handleSelect={handleSelect} itemId={itemId}/>
+                <PartsDropDown handlePartSelect={handleSelect} itemId={itemId}/>
                 <Form onSubmit={submitFunction}>
                     <label>Date Completed</label>
                         <input

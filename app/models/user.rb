@@ -7,6 +7,7 @@ class User < ApplicationRecord
     has_many :categories
     has_many :items, through: :categories
     has_many :parts, through: :items
+    has_many :repairs, through: :people
 
     validates :username, :password, presence: true
     validates :username, uniqueness: { case_sensitive: false }

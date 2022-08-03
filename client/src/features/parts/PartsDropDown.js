@@ -6,13 +6,14 @@ const PartsDropDown = (props) => {
     const parts = useSelector(state => state.parts.parts)
     const [showForm, setShowForm] = useState(false)
 
+
     const filteredParts = props.itemId !== "" ? parts.filter(x => x.item_id == props.itemId) : parts
 
     const dropDown = filteredParts.map(x => <option value={x.id} key={x.id}>{x.name}</option>)
 
     const toggle = () => setShowForm(!showForm)
 
-    const formFlag = showForm == true ? <PartForm toggle={toggle} /> : ""
+    const formFlag = showForm == true ? <PartForm toggle={toggle} itemId={props.itemId}/> : ""
 
     const handlePartSelect = (e) => {
         e.target.value == "add" ? toggle() : props.handleSelect("part_id", e.target.value)
