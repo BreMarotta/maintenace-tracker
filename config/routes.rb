@@ -10,21 +10,22 @@ Rails.application.routes.draw do
 
   patch '/users', to: 'users#update'
 
+  namespace :api do
 
-  resources :designs
+    resources :designs
 
-  resources :people
+    resources :people
 
-  resources :categories
+    resources :categories
 
-  resources :locations
+    resources :locations
 
-  resources :items
+    resources :items
 
-  resources :parts
+    resources :parts
 
-  resources :repairs
-
+    resources :repairs
+  end
   get '*path',
   to: 'fallback#index',
   constraints: ->(req) { !req.xhr? && req.format.html? }
