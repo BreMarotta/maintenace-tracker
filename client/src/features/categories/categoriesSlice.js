@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const addCategory = createAsyncThunk('categories/addCategory', (categoryObj) => {
-    return fetch('/categories', {
+    return fetch('/api/categories', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(categoryObj)
@@ -11,7 +11,7 @@ export const addCategory = createAsyncThunk('categories/addCategory', (categoryO
 })
 
 export const updateCategory = createAsyncThunk('categories/updateCategory', (categoryObj) => {
-    return fetch(`/categories/${categoryObj.id}`, {
+    return fetch(`/api/categories/${categoryObj.id}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(categoryObj)

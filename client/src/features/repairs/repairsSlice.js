@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const addRepair = createAsyncThunk('repair/addRepair', (repairObj) => {
-    return fetch('/repairs', {
+    return fetch('/api/repairs', {
         method: "POST",
         headers: {"Content-Type": "applicaiton/json"},
         body: JSON.stringify(repairObj)

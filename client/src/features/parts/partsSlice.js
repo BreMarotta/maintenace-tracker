@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const addPart = createAsyncThunk('parts/addPart', (partObj) => {
-    return fetch('/parts', {
+    return fetch('/api/parts', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(partObj)
@@ -11,7 +11,7 @@ export const addPart = createAsyncThunk('parts/addPart', (partObj) => {
 })
 
 export const updatePart = createAsyncThunk('parts/updatePart', (partObj) => {
-    return fetch(`/parts/${partObj.id}`, {
+    return fetch(`/api/parts/${partObj.id}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(partObj)
@@ -21,7 +21,7 @@ export const updatePart = createAsyncThunk('parts/updatePart', (partObj) => {
 })
 
 export const deletePart = createAsyncThunk('parts/deletePart', (partObj) => {
-    return fetch(`/parts/${partObj.id}`, {
+    return fetch(`/api/parts/${partObj.id}`, {
         method: "DELETE",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(partObj)

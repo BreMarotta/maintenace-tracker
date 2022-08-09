@@ -25,7 +25,7 @@ const ItemShow = () => {
 
   useEffect(() => {
     // if (loggedIn == "true" && params.id != "new"){
-      fetch(`/items/${params.id}`)
+      fetch(`/api/items/${params.id}`)
       .then(res => res.json())
       .then(data => {
       if (!data.error && !data.errors){

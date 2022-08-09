@@ -20,7 +20,7 @@ const PersonShow = () => {
   const peopleTypeName = design.members == null ? "Person" : design.members
 
   useEffect(() => {
-    fetch(`/people/${params.id}`)
+    fetch(`/api/people/${params.id}`)
     .then(res => res.json())
     .then(data => {
       if (!data.error && !data.errors){

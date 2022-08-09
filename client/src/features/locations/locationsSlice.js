@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 export const addLocation = createAsyncThunk('/locations/addLocation', (locationObj) => {
-    return fetch('/locations', {
+    return fetch('/api/locations', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(locationObj)
@@ -11,7 +11,7 @@ export const addLocation = createAsyncThunk('/locations/addLocation', (locationO
 } )
 
 export const updateLocation = createAsyncThunk('/locations/updateLocation', (locationObj) => {
-    return fetch(`/locations/${locationObj.id}`, {
+    return fetch(`/api/locations/${locationObj.id}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(locationObj)

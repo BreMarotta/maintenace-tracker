@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const designBase = createAsyncThunk('design/base', () => {
-    return fetch('/designs')
+    return fetch('/api/designs')
     .then(res => res.json())
     .then(data => data)
 })
 
 
 export const designUpdate = createAsyncThunk('design/update', (designObj) => {
-    return fetch(`/designs/${designObj.id}`, {
+    return fetch(`/api/designs/${designObj.id}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(designObj)
