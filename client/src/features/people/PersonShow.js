@@ -10,7 +10,7 @@ const PersonShow = () => {
   const { loggedIn } = useContext(DisperseInfo)
   const params = useParams()
   const design = useDesign()
-  console.log(design)
+
   const [person, setPerson] = useState({}) 
   const [color, setColor] = useState("")
   const [current, setCurrent] = useState(true)

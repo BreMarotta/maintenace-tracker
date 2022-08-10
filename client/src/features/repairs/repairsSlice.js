@@ -1,10 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const addRepair = createAsyncThunk('repair/addRepair', (repairObj) => {
-    console.log(repairObj)
+export const addRepair = createAsyncThunk('repairs/addRepair', (repairObj) => {
     return fetch('/api/repairs', {
         method: "POST",
-        headers: {"Content-Type": "applicaiton/json"},
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(repairObj)
     })
     .then(res => res.json())
@@ -36,6 +35,8 @@ const repairsSlice = createSlice({
                 state.status = "idle";
                 state.errors =[];
             } else {
+                console.log(action.payload.errors)
+                console.log(action.payload.error)
                 state.errors = action.payload.errors;
                 state.status = "idle";
             }

@@ -16,7 +16,7 @@ const PartsDropDown = (props) => {
     const formFlag = showForm == true ? <PartForm toggle={toggle} itemId={props.itemId}/> : ""
 
     const handlePartSelect = (e) => {
-        e.target.value == "add" ? toggle() : props.handleRepairableSelect("part_id", e.target.value, "part")
+        e.target.value == "add" ? toggle() : props.handleRepairableSelect("repairable_id", e.target.value, "parts")
     }
 
   return (

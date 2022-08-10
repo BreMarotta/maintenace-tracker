@@ -49,6 +49,7 @@ const RepairForm = (props) => {
     const handleSelect = (type, id) => {
         const newObj = {...repairObj, [type]: id}
         setRepairObj(newObj)
+        console.log(repairObj)
     }
     const handleRepairableSelect = (type, id, x) => {
         const newObj = {...repairObj, [type]: id, ["repairable_type"]: x}
@@ -56,6 +57,7 @@ const RepairForm = (props) => {
         if(x = "item"){
             setItemId(id)
         }
+        console.log(repairObj)
     }
 
     const handleChange = (e) => {

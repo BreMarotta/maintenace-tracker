@@ -5,7 +5,7 @@ class PartsController < ApplicationController
     end
 
     def create 
-        byebug
+        # byebug
         item = @current_user.items.find(params[:item_id])
         if item.valid?
             new_part = item.parts.create!(part_params)

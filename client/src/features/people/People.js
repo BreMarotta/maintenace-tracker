@@ -11,7 +11,7 @@ const People = () => {
   const { loggedIn } = useContext(DisperseInfo)
   const design = useDesign()
   const people = useSelector(state => state.people.people)
-  const currentDesign = useSelector(state => state.design.design[0])
+  // const currentDesign = useSelector(state => state.design.design[0])
 
   const [toggleDisplay, setToggleDisplay] = useState(false)
 
