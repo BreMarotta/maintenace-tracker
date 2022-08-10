@@ -49,7 +49,7 @@ const UserProvider = ({children}) => {
 
     const initAll = (user) => {
         setLoggedIn(true)
-        console.log(user)
+        // console.log(user)
         dispatch(initUser(user))
         dispatch(initDesign(user.designs))
         dispatch(initPeople(user.people))

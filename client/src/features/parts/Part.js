@@ -16,7 +16,7 @@ const Part = ({ part }) => {
 
     const details = showDetails ? 
         <div>
-            <h1>{part.name}</h1>
+            <h3>{part.name}</h3>
             <hr/>
             {part.model ? <span>Model: {part.model} <br/></span> : ""}
             {part.price ? <span>Price: ${part.price}<br/></span> : "" }

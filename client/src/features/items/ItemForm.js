@@ -8,6 +8,7 @@ import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign';
 import { StyledBackground, Button } from '../../Styles/Styled';
 import { Form } from '../../Styles/Form.style';
+import DropDown from '../settings/DropDown';
 
 const ItemForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
@@ -15,6 +16,7 @@ const ItemForm = (props) => {
     const params = useParams()
     const history = useHistory()
     const design = useDesign()
+   
     const [showCategory, setShowCategory] = useState(false)
     const [showLocation, setShowLocation] = useState(false)
     // console.log(props)
@@ -101,6 +103,8 @@ const ItemForm = (props) => {
     <div>
         <CategoriesDropDown handleSelect={handleSelect} />
         <LocationsDropDown handleSelect={handleSelect} />
+        {/* <DropDown type={"locations"} handleSelect={handleSelect} /> */}
+        {/* {locationDrop} */}
     </div>
      )
 
@@ -113,7 +117,6 @@ const ItemForm = (props) => {
             <label>Name: </label>
             
                 <input
-                    // style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="name"
                     name="name"
@@ -122,7 +125,6 @@ const ItemForm = (props) => {
                 <br/>
                 <label>Model Year: </label>
                 <input
-                    // style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="year"
                     name="year"
@@ -131,7 +133,6 @@ const ItemForm = (props) => {
                 <br/>
                 <label>Make: </label>
                 <input
-                    // style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="make"
                     name="make"
@@ -140,7 +141,6 @@ const ItemForm = (props) => {
                 <br/>
                 <label>Model: </label>
                 <input
-                    // style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="model"
                     name="model"
@@ -149,7 +149,6 @@ const ItemForm = (props) => {
                 <br/>
                 <label>Year Purchased: </label>
                 <input
-                    // style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="purchase_year"
                     name="purchase_year"
@@ -158,7 +157,6 @@ const ItemForm = (props) => {
                 <br/>
                 <label>Warrenty Information: </label>
                 <input
-                    // style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="warrenty"
                     name="warrenty"
@@ -167,7 +165,6 @@ const ItemForm = (props) => {
                 <br/>
                 <label>Image: </label>
                 <input
-                    // style={{width: "300px", marginRight: "10px"}}
                     type="text"
                     id="img"
                     name="img"

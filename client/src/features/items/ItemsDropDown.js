@@ -13,7 +13,7 @@ const ItemsDropDown = (props) => {
     const formFlag = showForm == true ? <ItemForm toggle={toggle} /> : ""
 
     const handleItemSelect = (e) => {
-        e.target.value == "add" ? toggle() : props.handleItemSelect(e.target.value)
+        e.target.value == "add" ? toggle() : props.handleRepairableSelect("repairable_id", e.target.value, "item")
     }
 
   return (

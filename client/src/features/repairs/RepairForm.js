@@ -17,6 +17,8 @@ const RepairForm = (props) => {
     const design = useDesign();
     const [itemId, setItemId] = useState("")
     const [partId, setPartId] = useState("")
+    const [repairableId, setRepairableId] = useState("")
+    const [repairableType, setRepairableType] = useState("")
 
     const x = (props.repair !== undefined || null ? props.repair : "")
     const repairable = (props.repair !== undefined || null ? props.repair.repairable_id : "")
@@ -31,8 +33,8 @@ const RepairForm = (props) => {
 
     const [repairObj, setRepairObj] = useState({
         id: x,
-        repairable_id: repairable,
-        repairable_type: type,
+        repairable_id: repairableId,
+        repairable_type: repairableType,
         person_id: person,
         date: d,
         complete: comp,
@@ -48,11 +50,12 @@ const RepairForm = (props) => {
         const newObj = {...repairObj, [type]: id}
         setRepairObj(newObj)
     }
-    const handleItemSelect = (id) => {
-        setItemId(id)
-    }
-    const handlePartSelect = (id) => {
-
+    const handleRepairableSelect = (type, id, x) => {
+        const newObj = {...repairObj, [type]: id, ["repairable_type"]: x}
+        setRepairObj(newObj)
+        if(x = "item"){
+            setItemId(id)
+        }
     }
 
     const handleChange = (e) => {
@@ -63,11 +66,12 @@ const RepairForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(repairObj)
+        dispatch(addRepair(repairObj))
     }
 
     const handleUpdate = (e) => {
         e.preventDefault()
+        
     }
 
     const buttonText = props.repair !== undefined || null ? "Save Changes" : "Add Repair"
@@ -80,8 +84,8 @@ const RepairForm = (props) => {
         return (
             <StyledBackground backgroundColor={design.background}>
                 <PeopleDropDown handleSelect={handleSelect} />
-                <ItemsDropDown handleItemSelect={handleItemSelect} />
-                <PartsDropDown handlePartSelect={handleSelect} itemId={itemId}/>
+                <ItemsDropDown handleRepairableSelect={handleRepairableSelect} />
+                <PartsDropDown handleRepairableSelect={handleRepairableSelect} itemId={itemId}/>
                 <Form onSubmit={submitFunction}>
                     <label>Date Completed</label>
                         <input

@@ -24,7 +24,7 @@ const ItemShow = () => {
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
-    // if (loggedIn == "true" && params.id != "new"){
+    if (params.id != "new"){
       fetch(`/api/items/${params.id}`)
       .then(res => res.json())
       .then(data => {
@@ -36,7 +36,7 @@ const ItemShow = () => {
         setError(true)
       }
     })
-  // } 
+  } 
   }, [params])
 
   const toggle = () => {setShowForm(!showForm)}

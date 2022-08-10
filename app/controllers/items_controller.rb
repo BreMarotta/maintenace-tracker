@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
     def create
-        # byebug
+
         category = @current_user.categories.find(params[:category_id])
         if category.valid?
             new_item = category.items.create!(item_params)

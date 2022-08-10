@@ -2,12 +2,12 @@ class RepairsController < ApplicationController
 
     def create
         byebug
-        part = @current_user.parts.find(params [:part_id])
-        if part.valid?
-            new_repair = part.repairs.create!(repair_params)
+        person = @current_user.people.find(params[:person_id])
+        if person.valid?
+            new_repair = person.repairs.create!(repair_params)
             render json: new_repair, status: :created
         else
-            render json: { error: "Must Select Part" },
+            render json: { error: "Must Assign Person" },
             status: :unprocessable_entity   
         end
     end
