@@ -85,7 +85,7 @@ const ItemShow = () => {
   )} else if (error) {
     return (
       <div>
-        <h3 className="unauthorized"> Not Authorized - You do not have access to this person or their information </h3>
+        <StyledBackground className="unauthorized"><strong> Not Authorized - You do not have access to this information </strong></StyledBackground>
       </div>
     )
   }

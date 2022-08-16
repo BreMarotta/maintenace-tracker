@@ -5,6 +5,7 @@ import PersonForm from '../people/PersonForm'
 import { DisperseInfo } from '../../Disperse'
 import { useDesign } from '../designs/useDesign'
 import { StyledBackground } from '../../Styles/Styled'
+import Login from './Login'
 
 const SettingsContainer = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -62,9 +63,7 @@ if (loggedIn ){
     
   )} else {
     return (
-      <div>
-        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
-      </div>
+     <Login />
     )
   }
   

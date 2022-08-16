@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { StyledBackground, Button } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
+import Login from '../settings/Login';
 
 const Locations = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -22,9 +23,7 @@ const Locations = () => {
     )
   } else {
     return (
-      <div>
-        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
-      </div>
+      <Login />
     )
   }
   

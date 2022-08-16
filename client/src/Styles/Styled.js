@@ -21,6 +21,7 @@ export const Name = styled.h1`
 
 export const Banner = styled.h1`
     background-color: ${(props) => props.main}; 
+    opacity: ${(props) => props.opacity};
     color: whitesmoke;
     padding-top: .25em;
     padding-bottom: .15em;
@@ -67,6 +68,7 @@ export const StyledLink = styled.label`
     margin: .2em;
     border-radius: 5px;
     color: white;
+
     opacity: .95;
 
     &:hover {
@@ -90,7 +92,8 @@ export const StyledBackground = styled.ul`
 `
 export const StyledLi = styled.div`
     background-color: ${(props) => props.backgroundColor};
-    color: black;
+    opacity: ${(props) => props.opacity};
+    color: white;
     font-size: 15px;
     border-radius: 5px;
     text-align: left;

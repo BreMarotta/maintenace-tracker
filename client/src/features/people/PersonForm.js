@@ -21,7 +21,7 @@ const PersonForm = (props) => {
  const n = (props.person !== undefined || null ? props.person.name : "")
  const t = (props.person !== undefined || null ? props.person.title : "")
  const c = (props.person !== undefined || null ? props.person.color : "")
- const current = (props.person !== undefined || null ? props.person.current : "")
+ const current = (props.person !== undefined || null ? props.person.current : true)
 
 
   const [personObj, setPersonObj] = useState({
@@ -66,7 +66,6 @@ const PersonForm = (props) => {
   const handleUpdate = (e) => {
     e.preventDefault()
     dispatch(updatePerson(personObj))
-    // dispatch(updatePersonFront(personObj))
     props.updatePerson(personObj)
     props.toggle()
   }
@@ -75,6 +74,7 @@ const PersonForm = (props) => {
   const submitFunction = props.person !== undefined || null ? handleUpdate : handleSubmit
 
   const toggleCurrent = () => {
+
     const newObj = {... personObj, current: !personObj.current}
     setPersonObj(newObj)
   }
@@ -115,7 +115,7 @@ const PersonForm = (props) => {
         <label>Mark as inactive?</label>
           <input
             type="checkbox"
-            checked={current}
+            checked={!personObj.current}
             onChange={toggleCurrent}/>
         
 

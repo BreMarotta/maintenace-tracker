@@ -5,6 +5,7 @@ import PersonForm from './PersonForm'
 import { DisperseInfo } from '../../Disperse'
 import { StyledBackground, Button } from '../../Styles/Styled'
 import { useDesign } from '../designs/useDesign'
+import Login from '../settings/Login'
 
 
 const People = () => {
@@ -34,9 +35,7 @@ const People = () => {
 
   )} else {
     return (
-      <div>
-        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
-      </div>
+      <Login />
     )
   }
   

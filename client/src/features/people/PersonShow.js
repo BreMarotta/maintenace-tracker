@@ -5,6 +5,7 @@ import PersonForm from './PersonForm';
 import { DisperseInfo } from '../../Disperse';
 import { StyledBackground, Banner, StyledLi } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
+import Login from '../settings/Login';
 
 const PersonShow = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -17,14 +18,13 @@ const PersonShow = () => {
   const [error, setError] = useState(false)
   const [showForm, setShowForm] = useState(false)
 
-  const peopleTypeName = design.members == null ? "Person" : design.members
-
   useEffect(() => {
     fetch(`/api/people/${params.id}`)
     .then(res => res.json())
     .then(data => {
       if (!data.error && !data.errors){
         setColor(data.color)
+        setCurrent(data.current)
         setPerson(data)
         setError(false)
       } else{
@@ -38,11 +38,12 @@ const PersonShow = () => {
 
   const updatePerson = (obj) => {
     setColor(obj.color)
+    setCurrent(obj.current)
     setPerson(obj)
   }
 
   const displayUpdate = showForm == true ? <PersonForm person={person} toggle={toggle} updatePerson={updatePerson}/> : 
-  <Banner  style={{background: color}}>
+  <Banner  main={color ? color : "black"} opacity={current ? 1 : .75}>
     <p>{person.name}</p>
     <p>{person.title}</p>
     <p>Repair Cost Total: </p>
@@ -70,9 +71,12 @@ const PersonShow = () => {
  } else if (error) {
   return (
     <div>
-      <h3 className="unauthorized"> Not Authorized - You do not have access to this person or their information </h3>
+      <StyledBackground className="unauthorized"> <strong>Not Authorized - You do not have access to this information </strong></StyledBackground>
     </div>
-  )}
+  )} 
+  // else if (!loggedIn){
+  //   <Login />
+  // }
   
 }
 

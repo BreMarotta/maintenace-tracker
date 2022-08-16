@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { DisperseInfo } from '../../Disperse'
 import { useDesign } from '../designs/useDesign'
 import { StyledBackground, Button } from '../../Styles/Styled'
+import Login from '../settings/Login'
 
 const Items = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -22,9 +23,7 @@ const Items = () => {
   )
   } else {
     return (
-      <div>
-        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
-      </div>
+      <Login />
     )
   }
   
