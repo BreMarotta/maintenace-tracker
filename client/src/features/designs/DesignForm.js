@@ -88,7 +88,7 @@ const DesignForm = ({ toggle }) => {;
                 
             <br/>
 
-            <Button backgroundColor={design.accent}type="submit">Set Design Preferences</Button>
+            <Button backgroundColor={design.main}type="submit">Set Design Preferences</Button>
         </Form>
     </div>
   )

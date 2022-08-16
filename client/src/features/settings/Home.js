@@ -8,7 +8,7 @@ import { StyledBackground, StyledLi, Banner } from '../../Styles/Styled';
 const Home = () => {
   const { loggedIn } = useContext(DisperseInfo)
   const design = useDesign()
-  const username = useSelector((state) => state.users.user.username)
+  const user = useSelector((state) => state.users.user)
   
     if (!loggedIn){
       return (
@@ -24,7 +24,7 @@ const Home = () => {
     } else {
     return (
         <StyledBackground backgroundColor={design.background}>
-          <Banner main={design.main} backgroundColor={design.background} accent={design.accent}> {username}: </Banner>
+          <Banner main={design.main}> {user.username}: </Banner>
           <ul>
             <StyledLi><li>Eventually, this will have instructions about how to properly use the site.</li></StyledLi>
             <StyledLi><li>Will also include quick StyledLinks???</li> </StyledLi>

@@ -73,6 +73,7 @@ const UserProvider = ({children}) => {
     const handleLogin = (user) => {
         setLoggedIn(true)
         initAll(user)
+        history.push('/settings')
     }
     const handleLogout = () => {
         setLoggedIn(false)

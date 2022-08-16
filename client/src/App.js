@@ -18,13 +18,17 @@ import Items from "./features/items/Items";
 import ItemForm from "./features/items/ItemForm";
 import ItemShow from "./features/items/ItemShow";
 import RepairsContainer from "./features/repairs/RepairsContainer";
-import { DisperseInfo } from './Disperse'
+import { DisperseInfo } from './Disperse';
+import { useDesign } from './features/designs/useDesign';
+import { Background } from './Styles/Styled'
 
 
 function App() {
   const { loggedIn } = useContext(DisperseInfo)
+  const design = useDesign()
 
   return (
+    <Background backgroundColor={design.background}>
     <BrowserRouter>
         <Navigation />
         <Switch />
@@ -76,6 +80,7 @@ function App() {
       <Footer />
 
     </BrowserRouter>
+    </Background>
   );
 }
 

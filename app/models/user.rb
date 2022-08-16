@@ -13,4 +13,5 @@ class User < ApplicationRecord
     validates :username, uniqueness: { case_sensitive: false }
 
     accepts_nested_attributes_for :designs
+    
 end

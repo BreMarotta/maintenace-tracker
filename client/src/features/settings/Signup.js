@@ -15,8 +15,6 @@ const Signup = () => {
       username: "",
       password: "",
       password_confirmation: "",
-      type: "",
-      company_name: "",
       designs_attributes: [{
         background: "#666666",
         main: "#0062B1",
@@ -44,7 +42,7 @@ const Signup = () => {
     .then(data => {
       console.log(data)
       if (!data.errors) {
-      handleLogin()
+      handleLogin(data)
     } else {
       setErrorsList(data.errors)
       setUserObj({

@@ -1,22 +1,27 @@
 import styled from 'styled-components';
 
+export const Background = styled.div`
+    background-color: ${(props) => props.backgroundColor};
+    min-height: 100vh;
+`
+
 export const Name = styled.h1`
-    background-image: radial-gradient(whitesmoke, ${(props) => props.backgroundColor}); 
-    color: ${(props) => props.color};
+    background-color: ${(props) => props.main}; 
+    color: whitesmoke;
     padding-top: .25em;
     padding-bottom: .15em;
     margin-top: .2em;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 5px;
+    border-radius: 8px;
     text-align: center;
     font-size: 3em;
     max-width: 50%;
 `
 
 export const Banner = styled.h1`
-    background-image: radial-gradient(whitesmoke, ${(props) => props.backgroundColor}); 
-    color: ${(props) => props.main};
+    background-color: ${(props) => props.main}; 
+    color: whitesmoke;
     padding-top: .25em;
     padding-bottom: .15em;
     margin-top: -20px;
@@ -72,7 +77,7 @@ export const StyledLink = styled.label`
 `
 
 export const StyledBackground = styled.ul`
-    background-image: radial-gradient(white, ${(props) => props.backgroundColor}); 
+    background-color: whitesmoke; 
     padding: .9em 1em 5em 1em;
     height: auto;
     margin-top: 0em;

@@ -73,7 +73,7 @@ const ItemShow = () => {
     <>
 
       <StyledBackground backgroundColor={design.background}> 
-        <Banner backgroundColor={design.background}>{item.name}</Banner>
+        <Banner main={design.main}>{item.name}</Banner>
 
             {display}
       </StyledBackground>
