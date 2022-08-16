@@ -22,7 +22,7 @@ const Navigation = () => {
       <div className="" style={navStyles}>
         <NavLink to='/settings' style={{float: "right"}}><LogButton backgroundColor={design.main}>⚙️</LogButton></NavLink>
         <LogoutButton />
-        <Name main={design.main} backgroundColor={design.background}>{design.company_name}</Name>
+        <Name main={design.main} backgroundColor={design.background}>{design.company_name != "" ? design.company_name : user.username}</Name>
           <NavLink to="/"><StyledLink backgroundColor={design.main}>Home</StyledLink></NavLink>
           <NavLink to='/people'><StyledLink backgroundColor={design.main}>{design.members}</StyledLink></NavLink>
          
