@@ -64,6 +64,7 @@ export const LogButton = styled.button`
 
 export const StyledLink = styled.label`
     background-color: ${(props) => props.backgroundColor};
+    /* opacity: ${(props) => props.opacity}; */
     padding: .25em .75em;
     margin: .2em;
     border-radius: 5px;
@@ -100,7 +101,7 @@ export const StyledLi = styled.div`
 
     &:hover {
         font-weight: bold;
-        background-color: slategray;
+        background-color: ${(props) => props.highlight};
         color: white;
     }
 `

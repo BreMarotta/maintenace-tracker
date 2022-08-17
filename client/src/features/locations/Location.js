@@ -1,10 +1,11 @@
 import React from 'react'
 import { StyledLi } from '../../Styles/Styled'
+import { useDesign } from '../designs/useDesign'
 
 export const Location = ({ location }) => {
-  console.log(location)
+  const design = useDesign()
   return (
-    <StyledLi>
+    <StyledLi backgroundColor={design.background}>
       <span>
         <strong>{location.name} </strong> 
         <br/>{location.address} 

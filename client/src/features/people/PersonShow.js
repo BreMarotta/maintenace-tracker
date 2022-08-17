@@ -43,7 +43,7 @@ const PersonShow = () => {
   }
 
   const displayUpdate = showForm == true ? <PersonForm person={person} toggle={toggle} updatePerson={updatePerson}/> : 
-  <Banner  main={color ? color : "black"} opacity={current ? 1 : .75}>
+  <Banner  main={color ? color : "black"} opacity={current ? 1 : .85}>
     <p>{person.name}</p>
     <p>{person.title}</p>
     <p>Repair Cost Total: </p>
