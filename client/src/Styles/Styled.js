@@ -69,7 +69,7 @@ export const StyledLink = styled.label`
     margin: .2em;
     border-radius: 5px;
     color: white;
-
+    text-decoration: none;
     opacity: .95;
 
     &:hover {

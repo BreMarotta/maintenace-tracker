@@ -6,9 +6,11 @@ import { useDesign } from '../designs/useDesign';
 const Item = ({ item }) => {
   const design = useDesign()
   return (
+  <Link to={`/items/${item.id}`}>
     <StyledLi backgroundColor={design.background}>
-      <Link to={`/items/${item.id}`}>{item.name}</Link> 
+      {item.name}<hr/> 
     </StyledLi>
+  </Link>
   )
 }
 
