@@ -1,22 +1,15 @@
 class RepairsController < ApplicationController
 
-    def create
+    before_action :find_repairable
 
-        # type = params[:repairable_type]
-        if params[:repairable_type] = "items"
-            byebug
-            repair = @current_user.items.find(params[:repairable_id])
-        elsif params[:repairable_type] = "parts"
-            repair = @current_user.parts.find(params[:repairable_id])
+    def create
+        repair = @thing.repairs.create!(repair_params)
+        if repair.valid?
+            render json: repair, status: :created
+        else
+            render json: { error: "Must Assign Repair to an Item or a Part of an Item" },
+            status: :unprocessable_entity   
         end
-        # if repair.valid?
-        #     # byebug
-        #     new_repair = repair.repairs.create!(repair_params)
-        #     render json: new_repair, status: :created
-        # else
-        #     render json: { error: "Must Assign Repair to an Item or a Part of an Item" },
-        #     status: :unprocessable_entity   
-        # end
     end
 
     def show
@@ -36,5 +29,11 @@ class RepairsController < ApplicationController
 
     def repair_params
         params.require(:repair).permit(:repairable_id, :repairable_type, :person_id, :date, :complete, :cost, :title, :summary, :id)
+    end
+
+    def find_repairable
+        @klass = params[:repairable_type].capitalize.constantize
+        @thing = @klass.find(params[:repairable_id])
+        # @person = @klass.find(params[:person_id])
     end
 end
