@@ -7,7 +7,7 @@ export const Location = ({ location }) => {
   return (
     <StyledLi backgroundColor={design.background}>
       <span>
-        <strong>{location.name} </strong> 
+        {location.name} 
         <br/>{location.address} 
         <br/>{location.address_2}
         <hr/>

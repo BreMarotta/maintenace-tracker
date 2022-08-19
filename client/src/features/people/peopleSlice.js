@@ -30,12 +30,15 @@ const peopleSlice = createSlice({
         initPeople(state, action) {
             state.people = action.payload
         },
-        updatePersonFront(state, action) {
-            const updatedPeople = state.people.map(p => p.id === action.payload.id ? action.payload : p)
-            state.people = updatedPeople           
-        },
+        // updatePersonFront(state, action) {
+        //     const updatedPeople = state.people.map(p => p.id === action.payload.id ? action.payload : p)
+        //     state.people = updatedPeople           
+        // },
         logoutPeople(state){
             state.people = []
+        },
+        highlightPerson(state, action){
+            const index = state.people.findIndex((people) => people.id === action.payload);
         }
     },
     extraReducers: {
