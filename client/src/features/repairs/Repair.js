@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { RepairCard } from '../../Styles/Cards.style';
 import { Button } from '../../Styles/Styled';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,8 +18,6 @@ const Repair = (props) => {
   
   const p = props.repair.repairable_type == "Part" ? items.find(x => x.id === thing.item_id) : "repair on item"
 
-  console.log(p)
-
   const complete = props.repair.date !== null ? `Completed on ${props.repair.date}` : "" 
 
   return (
@@ -33,7 +32,7 @@ const Repair = (props) => {
           </div>
 
           <h5>{person ? `Repair by: ${person.name}` : ""}</h5>
-          <Button backgroundColor="black">Update Repair Info</Button>
+          <Button backgroundColor="black"><Link to={`/repairs/${props.repair.id}/update`} >Update Repair Info</Link></Button>
         </div>
     </RepairCard>
   )

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { addRepair } from './repairsSlice'
 import { DisperseInfo } from '../../Disperse'
 import { Button, StyledBackground } from '../../Styles/Styled'
@@ -9,35 +9,43 @@ import { useDesign } from '../designs/useDesign'
 import PeopleDropDown from '../people/PeopleDropDown'
 import ItemsDropDown from '../items/ItemsDropDown'
 import PartsDropDown from '../parts/PartsDropDown'
+import { updatePerson } from '../people/peopleSlice'
 
 const RepairForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch();
     const params = useParams();
+    const history = useHistory();
     const design = useDesign();
     const [itemId, setItemId] = useState("")
     const [partId, setPartId] = useState("")
-    const [repairableId, setRepairableId] = useState("")
-    const [repairableType, setRepairableType] = useState("")
+    // const [repairableId, setRepairableId] = useState("")
+    // const [repairableType, setRepairableType] = useState("")
     const [showDrop, setShowDrop] = useState(false)
     const [repairComplete, setRepairComplete] = useState(false)
     const [addSummary, setAddSummary] = useState(false)
 
-    const x = (props.repair !== undefined || null ? props.repair : "")
-    const repairable = (props.repair !== undefined || null ? props.repair.repairable_id : "")
-    const type = (props.repair !== undefined || null ? props.repair.repairable_type : "")
-    const person = (props.repair !== undefined || null ? props.repair.person_id : "")
-    const d = (props.repair !== undefined || null ? props.repair.date : "")
-    const comp = (props.repair !== undefined || null ? props.repair.complete : repairComplete)
-    const c = (props.repair !== undefined || null ? props.repair.cost : "")
-    const t = (props.repair !== undefined || null ? props.repair.title : "")
-    const s = (props.repair !== undefined || null ? props.repair.summary : "")
+    const repairs = useSelector((state) => state.repairs.repairs)
+    // console.log(repairs)
+    const upRepair = repairs.find(x => x.id == params.id)
+
+    // console.log(upRepair)
+
+    const x = (upRepair !== undefined || null ? upRepair.id : "")
+    const repairable = (upRepair !== undefined || null ? upRepair.repairable_id : "")
+    const type = (upRepair !== undefined || null ? upRepair.repairable_type : "")
+    const person = (upRepair !== undefined || null ? upRepair.person_id : "")
+    const d = (upRepair !== undefined || null ? upRepair.date : "")
+    const comp = (upRepair !== undefined || null ? upRepair.complete : repairComplete)
+    const c = (upRepair !== undefined || null ? upRepair.cost : "")
+    const t = (upRepair !== undefined || null ? upRepair.title : "")
+    const s = (upRepair !== undefined || null ? upRepair.summary : "")
 
 
     const [repairObj, setRepairObj] = useState({
         id: x,
-        repairable_id: repairableId,
-        repairable_type: repairableType,
+        repairable_id: repairable,
+        repairable_type: type,
         person_id: person,
         date: d,
         complete: comp,
@@ -70,8 +78,8 @@ const RepairForm = (props) => {
         setRepairObj(newObj)
     }
     const handleDateAndComplete = (e) => {
-        const newObj = {...repairObj, ["complete"]: !repairComplete}
-        setRepairComplete(!repairComplete)
+        const newObj = {...repairObj, ["complete"]: !repairObj.complete}
+        // setRepairComplete(!repairComplete)
         setRepairObj(newObj)
     }
 
@@ -79,16 +87,16 @@ const RepairForm = (props) => {
         e.preventDefault()
         console.log(repairObj)
         dispatch(addRepair(repairObj))
-        props.toggle()
+        history.push('/repairs')
     }
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        
+        console.log(repairObj)
     }
 
     const partDrop = showDrop ? <PartsDropDown handleRepairableSelect={handleRepairableSelect} itemId={itemId}/> : ""
-    const setupDate = repairComplete ? 
+    const setupDate = repairObj.complete ? 
         <div>
             <label>Date Completed</label>
                 <input
@@ -113,16 +121,19 @@ const RepairForm = (props) => {
                 <br/>
         </> : ""
 
-    const buttonText = props.repair !== undefined || null ? "Save Changes" : "Add Repair"
+    const buttonText = upRepair !== undefined || null ? "Save Changes" : "Add Repair"
 
-    const submitFunction = props.repair !== undefined || null ? handleUpdate : handleSubmit
+    const submitFunction = upRepair !== undefined || null ? handleUpdate : handleSubmit
 
+    const upPerson = upRepair !== undefined || null ? upRepair.person_id : ""
+
+    const upItem = upRepair 
     
 
     if (loggedIn) {
         return (
             <StyledBackground backgroundColor={design.background}>
-                <PeopleDropDown handleSelect={handleSelect} />
+                <PeopleDropDown handleSelect={handleSelect} upPerson={upPerson}/>
                 <ItemsDropDown handleRepairableSelect={handleRepairableSelect} />
                 <label>Specify Part?</label>
                 <input
@@ -143,7 +154,7 @@ const RepairForm = (props) => {
                     <label>Repair Complete?</label>
                         <input
                             type="checkbox"
-                            checked={repairComplete}
+                            checked={repairObj.complete}
                             onChange={handleDateAndComplete} />
                         {setupDate}
                     <label>Cost of Repair: </label>

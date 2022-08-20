@@ -81,6 +81,9 @@ function App() {
           <Route exact path="/repairs/new" >
             <RepairForm />
           </Route>
+          <Route exact path='/repairs/:id/update'>
+            <RepairForm />
+          </Route>
       <Footer />
 
     </BrowserRouter>
