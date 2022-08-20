@@ -34,11 +34,14 @@ const repairsSlice = createSlice({
                 state.repairs.push(action.payload);
                 state.status = "idle";
                 state.errors =[];
-            } else {
-                console.log(action.payload.errors)
+            } else if (action.payload.error){
                 console.log(action.payload.error)
-                state.errors = action.payload.errors;
+                state.errors = action.payload.error;
                 state.status = "idle";
+            } else if (action.payload.errors){
+                console.log(action.payload.errors)
+                state.errors = action.payload.errors;
+                state.status = "idle"
             }
         }
     }

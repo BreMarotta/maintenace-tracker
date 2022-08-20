@@ -12,8 +12,10 @@ const Repair = (props) => {
 
   const person  = people.find(y => y.id === props.repair.person_id)
 
-  const thing = props.repair.repairable_type === "item" ? items.find(x => x.id === props.repair.repairable_id) : parts.find(x => x.id === props.repair.repairable_id)
-  console.log(props.repair)
+  const thing = props.repair.repairable_type == "item" ? items.find(x => x.id === props.repair.repairable_id) : parts.find(x => x.id === props.repair.repairable_id)
+  // console.log(props.repair)
+
+  const complete = props.repair.date !== null ? `Completed on ${props.repair.date}` : "Completed" 
 
   return (
     <div>
@@ -21,7 +23,7 @@ const Repair = (props) => {
           <h3>{props.repair.title == "" ? "" : `${props.repair.title}`}</h3>
           <h3>{thing ? thing.name : ""}</h3>
           <span>
-            {props.repair.complete == false || "null" ? "Ongoing Repair"  : `Completed on: ${props.repair.date}`}
+            {props.repair.complete == false || null ? "Ongoing Repair"  : complete}
             
             {props.repair.cost == "" ? "" : `Cost: ${props.repair.cost}`}
           </span>
