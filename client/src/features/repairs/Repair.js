@@ -1,5 +1,6 @@
 import React from 'react';
-import { RepairCard, Grid } from '../../Styles/Cards.style';
+import { RepairCard } from '../../Styles/Cards.style';
+import { Button } from '../../Styles/Styled';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Repair = (props) => {
@@ -12,25 +13,29 @@ const Repair = (props) => {
 
   const person  = people.find(y => y.id === props.repair.person_id)
 
-  const thing = props.repair.repairable_type == "item" ? items.find(x => x.id === props.repair.repairable_id) : parts.find(x => x.id === props.repair.repairable_id)
-  // console.log(props.repair)
+  const thing = props.repair.repairable_type == "Item" ? items.find(x => x.id === props.repair.repairable_id) : parts.find(x => x.id === props.repair.repairable_id)
+  
+  const p = props.repair.repairable_type == "Part" ? items.find(x => x.id === thing.item_id) : "repair on item"
 
-  const complete = props.repair.date !== null ? `Completed on ${props.repair.date}` : "Completed" 
+  console.log(p)
+
+  const complete = props.repair.date !== null ? `Completed on ${props.repair.date}` : "" 
 
   return (
-    <div>
-        <RepairCard accent={person ? person.color : "black"}>
-          <h3>{props.repair.title == "" ? "" : `${props.repair.title}`}</h3>
-          <h3>{thing ? thing.name : ""}</h3>
-          <span>
+    <RepairCard  accent={person ? person.color : "black"}>
+        <div>
+          <h2>{p.name ? <div><span>{p.name} - {thing.name}</span></div> : thing.name}</h2>
+          <h4>{props.repair.title == "" ? "" : `${props.repair.title}`}</h4>
+          <div>
             {props.repair.complete == false || null ? "Ongoing Repair"  : complete}
-            
-            {props.repair.cost == "" ? "" : `Cost: ${props.repair.cost}`}
-          </span>
+            <br/>
+            {props.repair.cost == "" ? "" : `Cost: $${props.repair.cost}`}
+          </div>
 
-          <h5>Repair by: {person ? person.name : ""}</h5>
-        </RepairCard>
-    </div>
+          <h5>{person ? `Repair by: ${person.name}` : ""}</h5>
+          <Button backgroundColor="black">Update Repair Info</Button>
+        </div>
+    </RepairCard>
   )
 }
 

@@ -57,29 +57,9 @@ export const Card = styled.div`
 
 `
 export const RepairCard = styled.div`
-    display: inline-grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 40% 20% 15% 15%;
-    grid-row-gap: 5%;
-    grid-column-gap: 7%;
-    border: ${(props) => props.accent} solid 2px;
+    border: ${(props) => props.accent} solid 3px;
     border-radius: 5px;
-    width: 100%;
-    height: 100%;
     box-shadow: 3px 4px slategray;
-
-    & h3 {
-        display: flex;
-        grid-row:1/1;
-    }
-    & span {
-        display: flex;
-        grid-row: 2/2;
-    }
-    & h5 {
-        display: flex;
-        grid-row:3/3;
-    }
 `
 
 export const ShowGrid = styled.div`

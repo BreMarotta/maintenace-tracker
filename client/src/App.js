@@ -18,6 +18,7 @@ import Items from "./features/items/Items";
 import ItemForm from "./features/items/ItemForm";
 import ItemShow from "./features/items/ItemShow";
 import RepairsContainer from "./features/repairs/RepairsContainer";
+import RepairForm from "./features/repairs/RepairForm";
 import { DisperseInfo } from './Disperse';
 import { useDesign } from './features/designs/useDesign';
 import { Background } from './Styles/Styled'
@@ -74,8 +75,11 @@ function App() {
           <Route path="/items/:id" >
             <ItemShow />
           </Route>
-          <Route path="/repairs" >
+          <Route exact path="/repairs" >
             <RepairsContainer />
+          </Route>
+          <Route exact path="/repairs/new" >
+            <RepairForm />
           </Route>
       <Footer />
 
