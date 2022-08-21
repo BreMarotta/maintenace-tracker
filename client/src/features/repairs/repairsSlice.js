@@ -59,6 +59,15 @@ const repairsSlice = createSlice({
         },
         [updateRepair.fulfilled](state, action){
             console.log(action.payload)
+            if(!action.payload.errors && !action.payload.error){
+                const updatedRepairs = state.repairs.map(r => r.id === action.payload.id ? action.payload : r)
+                state.repairs = updatedRepairs
+                state.status = "idle"
+                state.errors = []
+            } else {
+                state.errors = action.payload.errors
+                state.status = "idle"
+            }
         }
     }
 });
