@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { CirclePicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { addPerson, updatePerson, updatePersonFront } from './peopleSlice';
 import { DisperseInfo } from '../../Disperse';
-import { Button } from '../../Styles/Styled';
+import { Button, StyledBackground } from '../../Styles/Styled';
 import { CenteredForm } from '../../Styles/Form.style';
 import { useDesign } from '../designs/useDesign';
 
@@ -13,31 +13,24 @@ import { useDesign } from '../designs/useDesign';
 const PersonForm = (props) => {
   const { loggedIn } = useContext(DisperseInfo)
   const dispatch = useDispatch()
-  const params = useParams()
   const history = useHistory()
   const design = useDesign()
 
-
- const n = (props.person !== undefined || null ? props.person.name : "")
- const t = (props.person !== undefined || null ? props.person.title : "")
- const c = (props.person !== undefined || null ? props.person.color : "")
- const current = (props.person !== undefined || null ? props.person.current : true)
-
+  console.log(props)
 
   const [personObj, setPersonObj] = useState({
-    name: n,
-    title: t,
-    color: c,
-    current: current,
-    id: params.id
+    name: "",
+    title: "",
+    color: "",
+    current: true,
+    id: ""
   })
 
-  const [toggleDisplay, setToggleDisplay] = useState(false)
-
-  const toggle = () => {
-      setToggleDisplay(!toggleDisplay)
-  }
-
+  useEffect(() => {
+    if(props.person){
+      setPersonObj(props.person)
+    }
+  }, [])
 
   const handleChange = (e) => {
     const newObj = {
@@ -58,9 +51,7 @@ const PersonForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(addPerson(personObj))
-    if(props.toggle) {
-      props.toggle();
-    }
+    history.push('/people')
   }
 
   const handleUpdate = (e) => {
@@ -70,7 +61,6 @@ const PersonForm = (props) => {
     props.toggle()
   }
 
-  // const buttonText = props.person !== undefined || null ? "Save" : "Save" 
   const submitFunction = props.person !== undefined || null ? handleUpdate : handleSubmit
 
   const toggleCurrent = () => {
@@ -81,25 +71,27 @@ const PersonForm = (props) => {
 
   if (loggedIn){
   return (
-    <CenteredForm onSubmit={submitFunction}>
-      <label>Name: </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={personObj.name}
-          onChange={handleChange} />
-        <br/>
+    <StyledBackground>
+      <CenteredForm onSubmit={submitFunction}>
 
-      <label>Title:</label> 
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={personObj.title}
-          onChange={handleChange} />
-        <br/>
-        <br/>
+        <label>Name: </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={personObj.name}
+            onChange={handleChange} />
+          <br/>
+
+        <label>Title:</label> 
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={personObj.title}
+            onChange={handleChange} />
+          <br/>
+          <br/>
 
         <label>Personalize Color:</label>
           <div>
@@ -120,7 +112,8 @@ const PersonForm = (props) => {
         
 
         <Button backgroundColor={design.accent}type="submit">Save</Button>
-    </CenteredForm>
+      </CenteredForm>
+    </StyledBackground>
   )
 } else {
     return (

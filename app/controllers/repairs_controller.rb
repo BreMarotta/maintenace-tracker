@@ -18,7 +18,6 @@ class RepairsController < ApplicationController
     end
 
     def update 
-        # byebug
         repair = @current_user.repairs.find(params[:id])
         repair.update(repair_params)
         if repair.valid?

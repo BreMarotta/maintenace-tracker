@@ -58,6 +58,7 @@ export const Card = styled.div`
 `
 export const RepairCard = styled.div`
     border: ${(props) => props.accent} solid 3px;
+    background-color: ${(props) => props.background};
     border-radius: 5px;
     box-shadow: 3px 4px slategray;
 `

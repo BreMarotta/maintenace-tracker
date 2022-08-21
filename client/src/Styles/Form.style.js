@@ -46,7 +46,7 @@ export const CenteredForm = styled.form`
 
     & button {
         display: flex;
-        grid-row: 1;
+        /* grid-row: ; */
         max-width: 50%;
         margin-left: auto;
         margin-right: auto;

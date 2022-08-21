@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import PersonForm from './PersonForm';
 import { DisperseInfo } from '../../Disperse';
 import { StyledBackground, Banner, StyledLi } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
-import Login from '../settings/Login';
+import Repairs from '../repairs/Repairs';
 
 const PersonShow = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -19,6 +18,7 @@ const PersonShow = () => {
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
+    if(params.id != "new"){
     fetch(`/api/people/${params.id}`)
     .then(res => res.json())
     .then(data => {
@@ -32,6 +32,7 @@ const PersonShow = () => {
       }
       
     })
+  }
   }, [params])
 
   const toggle = () => {setShowForm(!showForm)}
@@ -42,29 +43,29 @@ const PersonShow = () => {
     setPerson(obj)
   }
 
-  const displayUpdate = showForm == true ? <PersonForm person={person} toggle={toggle} updatePerson={updatePerson}/> : 
+  const display = showForm == true ? <PersonForm person={person} toggle={toggle} updatePerson={updatePerson}/> : 
+  <div>
   <Banner  main={color ? color : "black"} opacity={current ? 1 : .85}>
     <p>{person.name}</p>
     <p>{person.title}</p>
     <p>Repair Cost Total: </p>
-  </Banner>
-
- if (loggedIn && !error) {
-  return (
-    <div>
-      <StyledBackground backgroundColor={design.background}>
-        <div>{displayUpdate}</div>
-        
-        <label>Update Information </label>
+    <label>Update Information </label>
           <input
             type="checkbox"
             checked={showForm}
             onChange={toggle}/>        
           <hr/>
           
-      </StyledBackground>
+  </Banner>
+  <StyledBackground backgroundColor={design.background}>
+        <Repairs person={person}/>
+  </StyledBackground>
+</div>
+ if (loggedIn && !error && params.id != "new") {
+  return (
+    <div>
       <StyledBackground backgroundColor={design.background}>
-        <p>Need to put a "Repairs Container" that holds the repairs of this person.</p>
+        <div>{display}</div>
       </StyledBackground>
     </div>
   )

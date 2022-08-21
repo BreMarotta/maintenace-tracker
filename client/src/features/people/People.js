@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Person from '../people/Person'
 import PersonForm from './PersonForm'
 import { DisperseInfo } from '../../Disperse'
@@ -12,24 +13,21 @@ const People = () => {
   const { loggedIn } = useContext(DisperseInfo)
   const design = useDesign()
   const people = useSelector(state => state.people.people)
-  // const currentDesign = useSelector(state => state.design.design[0])
 
-  const [toggleDisplay, setToggleDisplay] = useState(false)
+  // const [toggleDisplay, setToggleDisplay] = useState(false)
 
-  const toggle = () => {
-      setToggleDisplay(!toggleDisplay)
-  }
+  // const toggle = () => {
+  //     setToggleDisplay(!toggleDisplay)
+  // }
 
-  const displaySettingUpdates = toggleDisplay === true ? <div>
-      <PersonForm toggle={toggle}/>
-  </div> : people.map(p => <Person key={p.id} person={p}/>)
+  const display = people.map(p => <Person key={p.id} person={p}/>)
 
   if (loggedIn) {
     return (
     <StyledBackground backgroundColor={design.background}>
-        <Button backgroundColor={design.main} onClick={toggle}>Add Person</Button>
+        <Button backgroundColor={design.main}><Link to='/people/new'>Add Person</Link></Button>
         <br/>
-        {displaySettingUpdates}
+        {display}
         
     </StyledBackground>
 

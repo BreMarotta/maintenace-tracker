@@ -95,6 +95,7 @@ const RepairForm = () => {
     const handleUpdate = (e) => {
         e.preventDefault()
         dispatch(updateRepair(repairObj))
+        history.push('/repairs')
     }
 
     const setupDate = repairObj.complete ? 

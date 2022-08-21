@@ -33,6 +33,11 @@ export const Banner = styled.h1`
     max-width: 50%;
     border: 1.5px solid ${(props) => props.accent};
     float: center;
+
+    & label {
+        font-size: .5em;
+
+    }
 `
 
 export const Button = styled.button`
