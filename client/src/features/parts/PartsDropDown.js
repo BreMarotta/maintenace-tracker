@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import PartForm from './PartForm'
 
 const PartsDropDown = (props) => {
     const parts = useSelector(state => state.parts.parts)
+    const [s, setS] =useState(<option defaultValue="">Select Part from List</option>)
     const [showForm, setShowForm] = useState(false)
 
+    useEffect(() => {
+        if(props.upPart == ''){
+
+        }else if(props.upPart.id){
+            setS(<option defaultValue={props.upPart.id}>{props.upPart.name}</option>)
+        }
+    }, [props])
 
     const filteredParts = props.itemId !== "" ? parts.filter(x => x.item_id == props.itemId) : parts
 
@@ -23,9 +31,7 @@ const PartsDropDown = (props) => {
     <div>
         <label>Part: </label>
             <select onChange={handlePartSelect}>
-                <option defaultValue="None">
-                    Select Part from List
-                </option>
+                {s}
                 {dropDown}
                 <option value="add" key="addPart">Add New Part</option>
             </select>

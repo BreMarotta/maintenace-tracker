@@ -16,13 +16,13 @@ const ItemsDropDown = (props) => {
         e.target.value == "add" ? toggle() : props.handleRepairableSelect("repairable_id", e.target.value, "item")
     }
 
+    const d = props.upItem ? <option defaultValue={props.upItem.id}>{props.upItem.name}</option> : <option defaultValue="">Select Item from List</option>
+
   return (
     <div>
         <label>Item: </label>
             <select onChange={handleItemSelect}>
-                <option defaultValue="None">
-                    Select Item from List
-                </option>
+                {d}
                 {dropDown}
                 <option value="add" key="addItem">Add New Item</option>
             </select>
