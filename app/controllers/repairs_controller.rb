@@ -18,7 +18,14 @@ class RepairsController < ApplicationController
     end
 
     def update 
-
+        # byebug
+        repair = @current_user.repairs.find(params[:id])
+        repair.update(repair_params)
+        if repair.valid?
+            render json: repair, status: :accepted
+        else
+            render json: { errors: repair.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def destroy
@@ -34,6 +41,5 @@ class RepairsController < ApplicationController
     def find_repairable
         @klass = params[:repairable_type].capitalize.constantize
         @thing = @klass.find(params[:repairable_id])
-        # @person = @klass.find(params[:person_id])
     end
 end

@@ -10,6 +10,16 @@ export const addRepair = createAsyncThunk('repairs/addRepair', (repairObj) => {
     .then(data => data)
 })
 
+export const updateRepair = createAsyncThunk('repairs/updateRepair', (repairObj) => {
+    return fetch(`/api/repairs/${repairObj.id}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(repairObj)
+    })
+    .then(res => res.json())
+    .then(data => data)
+})
+
 const repairsSlice = createSlice({
     name: "repairs",
     initialState: {
@@ -43,6 +53,12 @@ const repairsSlice = createSlice({
                 state.errors = action.payload.errors;
                 state.status = "idle"
             }
+        },
+        [updateRepair.pending](state){
+            state.status = "loading"
+        },
+        [updateRepair.fulfilled](state, action){
+            console.log(action.payload)
         }
     }
 });

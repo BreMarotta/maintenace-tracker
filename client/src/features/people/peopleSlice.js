@@ -30,10 +30,6 @@ const peopleSlice = createSlice({
         initPeople(state, action) {
             state.people = action.payload
         },
-        // updatePersonFront(state, action) {
-        //     const updatedPeople = state.people.map(p => p.id === action.payload.id ? action.payload : p)
-        //     state.people = updatedPeople           
-        // },
         logoutPeople(state){
             state.people = []
         },

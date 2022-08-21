@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
-import { addRepair } from './repairsSlice'
+import { addRepair, updateRepair } from './repairsSlice'
 import { DisperseInfo } from '../../Disperse'
 import { Button, StyledBackground } from '../../Styles/Styled'
 import { Form } from '../../Styles/Form.style'
@@ -69,7 +69,7 @@ const RepairForm = () => {
     const handleRepairableSelect = (type, id, x) => {
         const newObj = {...repairObj, [type]: id, ["repairable_type"]: x}
         setRepairObj(newObj)
-        if(x == "item"){
+        if(x == "Item"){
             setItemId(id)
         } else {
             setPartId(id)
@@ -94,7 +94,7 @@ const RepairForm = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        console.log(repairObj)
+        dispatch(updateRepair(repairObj))
     }
 
     const setupDate = repairObj.complete ? 
