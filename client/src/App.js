@@ -6,7 +6,7 @@ import Footer from "./features/settings/Footer";
 import Home from "./features/settings/Home";
 import Signup from "./features/settings/Signup";
 import Login from "./features/settings/Login";
-import SettingsContainer from "./features/settings/SettingsContainer";
+import SettingsForm from "./features/settings/SettingsForm"
 import People from "./features/people/People"
 import PersonForm from "./features/people/PersonForm";
 import PersonShow from "./features/people/PersonShow";
@@ -40,7 +40,7 @@ function App() {
             {loggedIn ? <Redirect to="/" /> : <Login />}
           </Route>
           <Route path="/settings" >
-           <SettingsContainer />
+           <SettingsForm />
           </Route>
           <Route exact path="/">
             <Home />

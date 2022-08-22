@@ -60,6 +60,7 @@ const designSlice = createSlice({
             }else{
                 console.log("errors from fetch: ", action.payload)
                 // state.errors = action.payload.error;
+                // state.status = "idle";
             }
         }
     },

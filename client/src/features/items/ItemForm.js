@@ -8,7 +8,6 @@ import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign';
 import { StyledBackground, Button } from '../../Styles/Styled';
 import { Form } from '../../Styles/Form.style';
-import DropDown from '../settings/DropDown';
 
 const ItemForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
