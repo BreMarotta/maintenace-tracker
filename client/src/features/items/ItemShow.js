@@ -5,7 +5,6 @@ import ItemForm from './ItemForm';
 import { deleteItem, deleteItemFront } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
 import PartsContainer from '../parts/PartsContainer';
-import { initParts } from '../parts/partsSlice';
 import { Button, StyledBackground, Banner } from '../../Styles/Styled';
 import { ShowGrid } from '../../Styles/Cards.style';
 import { useDesign } from '../designs/useDesign';
@@ -29,7 +28,6 @@ const ItemShow = () => {
       .then(res => res.json())
       .then(data => {
       if (!data.error && !data.errors){
-        dispatch(initParts(data.parts))
         setItem(data)
         setError(false)
       } else {
@@ -71,16 +69,12 @@ const ItemShow = () => {
   if (loggedIn && !error && params.id != "new") {
     return (
     <>
-
       <StyledBackground backgroundColor={design.background}> 
         <Banner main={design.main}>{item.name}</Banner>
 
             {display}
       </StyledBackground>
-      <PartsContainer />
-
-        
-        
+      <PartsContainer parts={item.parts}/>
     </>
   )} else if (error) {
     return (

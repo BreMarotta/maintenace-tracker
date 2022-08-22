@@ -2,13 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { RepairCard } from '../../Styles/Cards.style';
 import { Button, StyledLink } from '../../Styles/Styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Repair = (props) => {
-  const dispatch = useDispatch()
-  const people = useSelector((state) =>
-    state.people.people
-  )
+  const people = useSelector((state) =>state.people.people)
   const items = useSelector((state) => state.items.items)
   const parts = useSelector((state) => state.parts.parts)
 

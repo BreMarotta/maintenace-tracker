@@ -4,7 +4,7 @@ import Parts from './Parts'
 import { useDesign } from '../designs/useDesign'
 import { StyledBackground } from '../../Styles/Styled';
 
-const PartsContainer = () => {
+const PartsContainer = (props) => {
     const design = useDesign()
     const [displayPartForm, setDisplayPartForm] = useState(false)
 
@@ -12,7 +12,7 @@ const PartsContainer = () => {
         setDisplayPartForm(!displayPartForm)
     }
 
-    const displayContainer = displayPartForm == true ? <PartForm toggle={toggleDisplay}/> : <Parts />
+    const displayContainer = displayPartForm == true ? <PartForm toggle={toggleDisplay}/> : <Parts parts={props.parts}/>
   return (
     <StyledBackground backgroundColor={design.background}> 
         <label>Add Part to This Item: </label>
