@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { DisperseInfo } from '../../Disperse'
-import { StyledBackground } from '../../Styles/Styled'
-import { Form } from '../../Styles/Form.style'
+import { Button, Background } from '../../Styles/Styled'
+import { CenteredForm, FormBackground, FormBanner, AppLabel, ErrorLi } from '../../Styles/Form.style'
 
 const Login = () => {
     const { handleLogin } = useContext(DisperseInfo)
@@ -43,31 +43,35 @@ const Login = () => {
 
 
   return (
-    <StyledBackground backgroundColor="white">
-        <Form onSubmit={handleSubmit}>
-            <h3>Log in to existing account: </h3>
-            <label>Username: </label>
-            <input 
-                type="text"
-                id="username"
-                name="username"
-                value={userObj.username}
-                onChange={handleChange} />
-                <br/>
-            <label>Password: </label>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                value={userObj.password}
-                onChange={handleChange} />
-                <br/>
-                <input type="submit"/>
-                <br/>
-            {error}
-        </Form>
-        <h5>No account yet? <NavLink to='/signup' ><strong>Signup</strong></NavLink>!</h5>
-    </StyledBackground>
+    <Background backgroundColor="gainsboro" image ="url('https://media.istockphoto.com/vectors/work-tools-pattern-of-hammer-screwdriver-spanner-vector-id1177622447?k=20&m=1177622447&s=612x612&w=0&h=VtiVLiAnbMUJKXQxwGcl2hq8XDN-pPOJQKiu1zWV6kU=')">
+    <FormBackground backgroundColor="whitesmoke">
+      <AppLabel main="darkslateblue" >Maintenance Tracker Application <h5>by Breanne Marotta</h5></AppLabel>
+            <CenteredForm onSubmit={handleSubmit}>
+                <FormBanner main="darkslateblue">Login:</FormBanner>
+                <div>No account yet? <NavLink to='/signup' ><strong>Signup</strong></NavLink>!</div>
+                <ErrorLi>{error}</ErrorLi>
+                <label>Username: </label>
+                <input 
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={userObj.username}
+                    onChange={handleChange} />
+                    <br/>
+                <label>Password: </label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={userObj.password}
+                    onChange={handleChange} />
+                    <br/>
+                
+                <Button type="submit" backgroundColor="darkslateblue">Submit</Button>
+            </CenteredForm>
+            
+        </FormBackground>
+    </Background>
   )
 }
 

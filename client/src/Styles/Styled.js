@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Background = styled.div`
     background-color: ${(props) => props.backgroundColor};
+    background-image: ${(props) => props.image};
     min-height: 100vh;
 `
 

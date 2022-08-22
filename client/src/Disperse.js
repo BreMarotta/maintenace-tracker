@@ -77,6 +77,7 @@ const UserProvider = ({children}) => {
     }
     const handleLogout = () => {
         setLoggedIn(false)
+        clearAll()
     }
 
 

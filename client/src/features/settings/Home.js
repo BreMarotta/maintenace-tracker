@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign';
 import { StyledBackground, StyledLi, Banner } from '../../Styles/Styled';
+import Login from './Login'
 
 const Home = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -13,13 +14,7 @@ const Home = () => {
   
     if (!loggedIn){
       return (
-        <div className="">
-        <br/>
-          Please 
-          <NavLink to='/login' ><strong>Login</strong></NavLink> 
-          or 
-          <NavLink to='/signup' ><strong>Signup</strong></NavLink>!
-          </div>
+        <Login />
       
       )
     } else {
