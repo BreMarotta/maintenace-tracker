@@ -50,10 +50,10 @@ const Signup = () => {
           password: "",
           password_confirmation: "",
           designs_attributes: [{
-            background: "#666666",
-            main: "#0062B1",
-            accent: "#A4DD00",
-            banner: "https://cdn.pixabay.com/photo/2015/10/29/14/38/web-1012467__340.jpg",
+            background: "#A9A9A9",
+            main: "#483D8B",
+            accent: "#FF7F50",
+            banner: "https://media.istockphoto.com/vectors/work-tools-pattern-of-hammer-screwdriver-spanner-vector-id1177622447?k=20&m=1177622447&s=612x612&w=0&h=VtiVLiAnbMUJKXQxwGcl2hq8XDN-pPOJQKiu1zWV6kU=",
             company_name: "",
             members: "Members"
           }] 

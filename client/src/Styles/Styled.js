@@ -119,6 +119,7 @@ export const StyledFooter = styled.footer`
     width: 100%;
     height: 2rem;
     padding-left: 25px;
+    padding-top: 5px;
 `
 export const StyledFooterLink = styled.a`
     color: white;
