@@ -29,7 +29,7 @@ const Repair = (props) => {
           </div>
 
           <h5>{person ? `Repair by: ${person.name}` : ""}</h5>
-          <Button backgroundColor="black"><Link to={`/repairs/${props.repair.id}/update`} ><StyledLink>Update Repair Info</StyledLink></Link></Button>
+          <Button backgroundColor={person.color ? person.color : "black"}><Link to={`/repairs/${props.repair.id}/update`} ><StyledLink>Update Repair Info</StyledLink></Link></Button>
         </div>
     </RepairCard>
   )

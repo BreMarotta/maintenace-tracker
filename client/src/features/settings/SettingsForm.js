@@ -7,10 +7,12 @@ import { Button, StyledBackground } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
 import { Form } from '../../Styles/Form.style';
 import Login from './Login';
+import { useHistory } from 'react-router-dom';
 
 const SettingsForm = () => {
     const dispatch = useDispatch()
     const design = useDesign()
+    const history = useHistory()
     const { loggedIn } = useContext(DisperseInfo)
     const errors = useSelector((state) => state.design.errors);   
     const [showBannerInput, setShowBannerInput] = useState(false)
@@ -64,6 +66,7 @@ const SettingsForm = () => {
         e.preventDefault()
         setD(false)
         dispatch(designUpdate(settingsObj))
+        history.push('/')
     }
 
     const errorLis = errors.map(x => <li key={x}>{x}</li>)

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import Login from '../settings/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLocation, updateLocation } from './locationsSlice';
 import { useHistory } from 'react-router-dom';
@@ -23,10 +24,6 @@ const LocationForm = (props) => {
     })
     const errors = useSelector(state => state.locations.errors)
     const errorLis = errors.map(e => <li key={e}>{e}</li>)
-    
-    const [toggleAddress, setToggleAddress] = useState(false)
-
-    const toggle = () => {setToggleAddress(!toggleAddress)}
 
     const handleChange = (e) => {
         const newObj = {
@@ -35,29 +32,6 @@ const LocationForm = (props) => {
         }
         setLocationObj(newObj)
     }
-
-    const displayAddressLines = toggleAddress == true ? <div>
-        <label>Street Address: 
-            <br/>
-            <input
-                type="text"
-                id="address"
-                name="address"
-                value={locationObj.address}
-                onChange={handleChange} />
-        </label>
-            <br/>
-        <label>City, State, and Zipcode 
-            <br/>
-            <input
-                type="text"
-                id="address_2"
-                name="address_2"
-                value={locationObj.address_2}
-                onChange={handleChange} />
-        </label>
-            <br/>
-    </div> : ""
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -72,7 +46,6 @@ const LocationForm = (props) => {
     const handleUpdate = (e) => {
         e.preventDefault()
         dispatch(updateLocation(locationObj))
-        // dispatch(updateLocationFront(locationObj))
     }
 
     const buttonText = props.location !== undefined || null ? "Save Changes" : "Add Location"
@@ -91,14 +64,21 @@ const LocationForm = (props) => {
                         value={locationObj.name}
                         onChange={handleChange} />
                     <br/>
-                <label>Include Address ?
+                <label>Street Address:</label> 
                     <input
-                        style={{width: "100%"}}
-                        type="checkbox"
-                        checked={toggleAddress}
-                        onChange={toggle} />
-                </label>
-                {displayAddressLines}
+                        type="text"
+                        id="address"
+                        name="address"
+                        value={locationObj.address}
+                        onChange={handleChange} />
+                    <br/>
+                <label>City, State, and Zipcode: </label> 
+                    <input
+                        type="text"
+                        id="address_2"
+                        name="address_2"
+                        value={locationObj.address_2}
+                        onChange={handleChange} />
                 <br/>
                 <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
             </Form> 
@@ -107,9 +87,7 @@ const LocationForm = (props) => {
     )
 } else {
     return (
-      <div>
-        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
-      </div>
+      <Login />
     )
   }
   

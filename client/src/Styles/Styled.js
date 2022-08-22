@@ -70,7 +70,6 @@ export const LogButton = styled.button`
 
 export const StyledLink = styled.label`
     background-color: ${(props) => props.backgroundColor};
-    /* opacity: ${(props) => props.opacity}; */
     padding: .25em .75em;
     margin: .2em;
     border-radius: 5px;
@@ -94,7 +93,6 @@ export const StyledBackground = styled.ul`
     margin-right: 15%;
     border-radius: 8px;
     text-align: center; 
-    /* align-content: center;  */
 
 `
 export const StyledLi = styled.div`

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import RepairForm from './RepairForm'
 import Repairs from './Repairs'
 import { useDesign } from '../designs/useDesign'
-import { StyledBackground, Button } from '../../Styles/Styled'
+import { StyledBackground, Button, StyledLink } from '../../Styles/Styled'
 import { DisperseInfo } from '../../Disperse';
 import Login from '../settings/Login'
 
@@ -14,7 +14,7 @@ const RepairsContainer = () => {
     if (loggedIn){
       return (
         <StyledBackground backgroundColor={design.background}>
-            <Button backgroundColor={design.main}><Link to={`/repairs/new`}>Log New Repair</Link></Button>
+            <Button backgroundColor={design.main}><Link to={`/repairs/new`}><StyledLink>Log New Repair</StyledLink></Link></Button>
             <Repairs />
         </StyledBackground>
       )
