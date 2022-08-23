@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyledLi } from '../../Styles/Styled'
-import { useDesign } from '../designs/useDesign'
+import React from 'react';
+import { StyledLi } from '../../Styles/Styled';
+import { useDesign } from '../designs/useDesign';
 
-export const Location = ({ location }) => {
+const Location = ({ location }) => {
   const design = useDesign()
   return (
     <StyledLi backgroundColor={design.background}>
@@ -16,3 +16,4 @@ export const Location = ({ location }) => {
     </StyledLi>
   )
 }
+ export default Location

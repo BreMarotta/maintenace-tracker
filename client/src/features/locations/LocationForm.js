@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addLocation, updateLocation } from './locationsSlice';
 import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
-import { useDesign } from '../designs/useDesign'
+import { useDesign } from '../designs/useDesign';
 import { StyledBackground, Button } from '../../Styles/Styled';
-import { Form } from '../../Styles/Form.style';
+import { Form, ErrorLi } from '../../Styles/Form.style';
 
 const LocationForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
@@ -23,7 +23,7 @@ const LocationForm = (props) => {
         address_2: add_2
     })
     const errors = useSelector(state => state.locations.errors)
-    const errorLis = errors.map(e => <li key={e}>{e}</li>)
+    const errorLis = errors ? errors.map(e => <ErrorLi key={e}>{e}</ErrorLi>) : ""
 
     const handleChange = (e) => {
         const newObj = {
@@ -36,11 +36,15 @@ const LocationForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addLocation(locationObj))
-        if(props.toggle) {
-            props.toggle()
-        } else {  
-            history.push('/locations')
-        }
+        .then(data => {
+            if(!data.payload.errors){
+                if(props.toggle) {
+                    props.toggle()
+                } else {  
+                    history.push('/locations')
+                }
+            }
+        })   
     }
 
     const handleUpdate = (e) => {
@@ -56,6 +60,7 @@ const LocationForm = (props) => {
     return (
         <StyledBackground backgroundColor={design.background}>
             <Form className="locationForm" onSubmit={submitFunction}>
+            {errorLis}
                 <label>Location Name: </label>
                     <input
                         type="text"
@@ -82,15 +87,13 @@ const LocationForm = (props) => {
                 <br/>
                 <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
             </Form> 
-            {errorLis}
         </StyledBackground>
     )
 } else {
     return (
       <Login />
     )
-  }
-  
+  } 
 }
 
 export default LocationForm

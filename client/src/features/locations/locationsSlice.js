@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { clearErrors } from "../people/peopleSlice"
 
 export const addLocation = createAsyncThunk('/locations/addLocation', (locationObj) => {
     return fetch('/api/locations', {
@@ -30,11 +31,11 @@ const locationsSlice = createSlice({
         initLocations(state, action) {
             state.locations = action.payload
         },
-        updateLocationFront(state, action) {
-            console.log(action.payload)   
-        },
         logoutLocations(state){
             state.locations = []
+        },
+        clearLocErrors(state){
+            state.errors = []
         }
         },
     extraReducers: {
@@ -63,6 +64,6 @@ const locationsSlice = createSlice({
     }
 });
 
-export const { initLocations, addLocationFront, logoutLocations } = locationsSlice.actions;
+export const { initLocations, logoutLocations, clearLocErrors } = locationsSlice.actions;
 
 export default locationsSlice.reducer;

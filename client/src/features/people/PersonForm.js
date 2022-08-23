@@ -59,7 +59,6 @@ const PersonForm = (props) => {
         }else{
           history.push('/people')
         }
-      
       } 
     })    
   }

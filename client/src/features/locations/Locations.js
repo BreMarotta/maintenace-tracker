@@ -1,18 +1,29 @@
-import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
-import { Location } from './Location';
+import React, { useContext, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { StyledBackground, Button } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
 import Login from '../settings/Login';
+import Location from './Location';
+import { clearLocErrors } from './locationsSlice';
 
 const Locations = () => {
   const { loggedIn } = useContext(DisperseInfo)
   const design = useDesign()
-    const locations = useSelector(state => state.locations.locations)
+  const dispatch = useDispatch()
+  const errors = useSelector(state => state.locations.errors)
+  const locations = useSelector(state => state.locations.locations)
 
-    const displayLocations = locations.map(l => <Location key={l.id} location={l} />)
+  const displayLocations = locations.map(l => <Location key={l.id} location={l} />)
+
+  useEffect(() => {
+    if(errors){
+      dispatch(clearLocErrors())
+    }
+  }, [])
+
+
   
   if (loggedIn){
     return (
