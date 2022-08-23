@@ -2,6 +2,6 @@ class Person < ApplicationRecord
     belongs_to :user
     has_many :repairs
 
-    validates :name, presence: true
-    validates :name, uniqueness: { case_sensitive: false }
+    validates :name, presence: true, uniqueness: { scope: :user_id}
+
 end
