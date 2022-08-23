@@ -54,7 +54,12 @@ const PersonForm = (props) => {
     dispatch(addPerson(personObj))
     .then(data => {
       if (!data.payload.errors){
-      history.push('/people')
+        if(props.toggle){
+          props.toggle()
+        }else{
+          history.push('/people')
+        }
+      
       } 
     })    
   }
