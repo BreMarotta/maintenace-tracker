@@ -6,6 +6,7 @@ import { DisperseInfo } from '../../Disperse'
 import { StyledBackground, Button, StyledLink } from '../../Styles/Styled'
 import { useDesign } from '../designs/useDesign'
 import Login from '../settings/Login'
+import { PersonGrid } from '../../Styles/Cards.style'
 
 
 const People = () => {
@@ -18,10 +19,11 @@ const People = () => {
   if (loggedIn) {
     return (
     <StyledBackground backgroundColor={design.background}>
-        <Button backgroundColor={design.main}><Link to='/people/new'><StyledLink>Add Person</StyledLink></Link></Button>
+        <Link to='/people/new'><StyledLink><Button backgroundColor={design.main}>Add Person</Button></StyledLink></Link>
         <br/>
+        <PersonGrid>
         {display}
-        
+        </PersonGrid>
     </StyledBackground>
 
   )} else {

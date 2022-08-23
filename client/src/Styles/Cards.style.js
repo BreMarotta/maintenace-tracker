@@ -63,6 +63,50 @@ export const RepairCard = styled.div`
     box-shadow: 3px 4px slategray;
 `
 
+export const PersonGrid = styled.div`
+    display: inline-grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 25px;
+    grid-gap: 15px;
+    padding: 15;
+`
+
+export const PersonCard = styled.div`
+    display: inline-grid;
+    grid-template-columns: 100%;
+    border: ${(props) => props.highlight} solid 2px;
+    background-color: ${(props) => props.backgroundColor};
+    /* opacity: ${(props) => props.opacity}; */
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 3px 4px slategray;
+
+    &:hover {
+        background-color: ${(props) => props.highlight}
+    }
+`
+
+export const ItemCard = styled.div`
+    display: inline-grid;
+    grid-template-columns: 100%;
+    border: ${(props) => props.highlight} 2px solid;
+    background-color: ${(props) => props.backgroundColor};
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 3px 4px slategray;
+
+    & div{
+        font-size: 18px;
+        font-weight: bolder;
+    }
+    &:hover {
+        background-color: ${(props) => props.highlight}
+    }
+`
+
 export const ShowGrid = styled.div`
     display: inline-grid;
     grid-template-columns: 50% 50%;

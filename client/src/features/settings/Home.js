@@ -22,7 +22,7 @@ const Home = () => {
         <StyledBackground backgroundColor={design.background}>
           <Banner main={design.main}>{design.company_name != "" ? design.company_name : user.username}</Banner>
           <ul>
-            <StyledLi><li>Eventually, this will have instructions about how to properly use the site.</li></StyledLi>
+            <StyledLi backgroundColor="black"><li>Eventually, this will have instructions about how to properly use the site.</li></StyledLi>
             <StyledLi><li>Will also include quick StyledLinks???</li> </StyledLi>
           </ul>      
         </StyledBackground>

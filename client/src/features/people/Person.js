@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledLi, StyledLink } from '../../Styles/Styled';
+import { StyledLink, Button } from '../../Styles/Styled';
+import { PersonCard } from '../../Styles/Cards.style';
 import { useDesign } from '../designs/useDesign';
 
 const Person = ({ person }) => {
   const design = useDesign()
   return (
-    <StyledLi highlight={person.color ? person.color : "black"} backgroundColor={design.background} opacity={person.current == false || null ? .5 : 1}>
-      <span><Link to={`/people/${person.id}`}><StyledLink>{person.name}</StyledLink></Link>
-          - {person.title}</span><hr/>        
-    </StyledLi>
+    <PersonCard highlight={person.color ? person.color : "black"} backgroundColor={person.current ? "white" : "lightgray"} >
+          <Link to={`/people/${person.id}`}>
+                    <StyledLink>
+                      <Button backgroundColor={person.color ? person.color : "black"}>{person.name}</Button>
+                    </StyledLink>
+                  </Link>
+              {person.title}    
+    </PersonCard>
   )
 }
 

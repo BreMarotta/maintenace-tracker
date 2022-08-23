@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useSelector } from "react-redux";
 import Category from './Category';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign';
 import { StyledBackground, Button } from '../../Styles/Styled';
@@ -16,7 +16,7 @@ const Categories = () => {
   if (loggedIn) {
     return (
     <StyledBackground backgroundColor={design.background}>
-      <NavLink to="/categories/new" className="navigation"><Button backgroundColor={design.main}>Add Category</Button></NavLink>
+      <Link to="/categories/new" className="navigation"><Button backgroundColor={design.main}>Add Category</Button></Link>
       {displayCategories}
     </StyledBackground>
   ) 

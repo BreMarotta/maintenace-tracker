@@ -4,7 +4,7 @@ import LogoutButton from './LogoutButton';
 import { useSelector } from 'react-redux';
 import { useDesign } from '../designs/useDesign';
 import { DisperseInfo } from '../../Disperse';
-import { LogButton, StyledLink, Name } from '../../Styles/Styled';
+import { StyledLink, Name, Button } from '../../Styles/Styled';
 
 const Navigation = () => {
   const { loggedIn } = useContext(DisperseInfo)
@@ -20,16 +20,17 @@ const Navigation = () => {
   if (loggedIn){
     return (
       <div className="" style={navStyles}>
-        <NavLink to='/settings' style={{float: "right"}}><LogButton backgroundColor={design.main}>⚙️</LogButton></NavLink>
         <LogoutButton />
         <Name main={design.main} backgroundColor={design.background}>{design.company_name != "" ? design.company_name : user.username}</Name>
           <NavLink to="/"><StyledLink backgroundColor={design.main}>Home</StyledLink></NavLink>
+
           <NavLink to='/people'><StyledLink backgroundColor={design.main}>{design.members}</StyledLink></NavLink>
-         
-          <NavLink to="/locations"><StyledLink backgroundColor={design.main}>Locations</StyledLink></NavLink>
-          <NavLink to="/categories"><StyledLink backgroundColor={design.main}>Categories</StyledLink></NavLink>
           <NavLink to="/items"><StyledLink backgroundColor={design.main}>Items</StyledLink></NavLink>
           <NavLink to="/repairs"><StyledLink backgroundColor={design.main}>Repairs</StyledLink></NavLink>
+          
+          <NavLink to="/locations" ><StyledLink backgroundColor={design.main}>Locations</StyledLink></NavLink>
+          <NavLink to="/categories" ><StyledLink backgroundColor={design.main}>Categories</StyledLink></NavLink>
+          <NavLink to='/settings' ><StyledLink backgroundColor={design.main}>⚙️ Settings</StyledLink></NavLink>
           
           
           <hr color={design.accent}/>

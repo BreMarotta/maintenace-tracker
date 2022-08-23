@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { Location } from './Location';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { StyledBackground, Button } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
@@ -17,7 +17,7 @@ const Locations = () => {
   if (loggedIn){
     return (
     <StyledBackground backgroundColor={design.background}>
-        <NavLink to="/locations/new" className="navigation"><Button backgroundColor={design.main}>Add a Location to List</Button></NavLink>
+        <Link to="/locations/new" className="navigation"><Button backgroundColor={design.main}>Add a Location to List</Button></Link>
         {displayLocations}
     </StyledBackground>
     )
