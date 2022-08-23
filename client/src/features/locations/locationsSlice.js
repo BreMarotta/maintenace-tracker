@@ -20,6 +20,15 @@ export const updateLocation = createAsyncThunk('/locations/updateLocation', (loc
     .then(res => res.json())
     .then(data => data)
 })
+
+export const deleteLocation = createAsyncThunk(`/locations/deleteLocation`, (locationObj) => {
+    return fetch(`/api/locations/${locationObj.id}`, {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(locationObj)
+    })
+    .then(res => res.json())
+})
 const locationsSlice = createSlice({
     name: "locations",
     initialState: {
@@ -65,6 +74,16 @@ const locationsSlice = createSlice({
                 state.errors = []
             } else {
                 state.errors = action.payload.errors
+                state.status = "idle"
+            }
+        },
+        [deleteLocation.pending](state) {
+            state.status = "loading"
+        },
+        [deleteLocation.fulfilled](state, action) {
+            if (action.payload.errors || action.payload.error){
+                console.log(action.payload)
+                state.errors.push(action.payload.errors) 
                 state.status = "idle"
             }
         }

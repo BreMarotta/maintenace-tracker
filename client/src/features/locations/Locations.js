@@ -29,6 +29,8 @@ const Locations = () => {
     return (
     <StyledBackground backgroundColor={design.background}>
         <Link to="/locations/new" className="navigation"><Button backgroundColor={design.main}>Add a Location to List</Button></Link>
+        <br/>
+        <br/>
         {displayLocations}
     </StyledBackground>
     )
