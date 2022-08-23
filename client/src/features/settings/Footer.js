@@ -4,7 +4,7 @@ import { StyledFooter, StyledFooterLink } from '../../Styles/Styled'
 
 const Footer = () => {
     const design = useDesign()
-    const color = design.accent ? design.accent : "darkslateblue"
+    const color = design.main ? design.main : "darkslategray"
   return (
     <StyledFooter backgroundColor={color}>
       <StyledFooterLink><strong>Site Creator information: </strong></StyledFooterLink>

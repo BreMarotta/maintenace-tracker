@@ -6,7 +6,7 @@ export const Background = styled.div`
     min-height: 100vh;
 `
 
-export const Name = styled.h1`
+export const Name = styled.div`
     background-color: ${(props) => props.main}; 
     color: whitesmoke;
     padding-top: .25em;
@@ -20,7 +20,7 @@ export const Name = styled.h1`
     max-width: 50%;
 `
 
-export const Banner = styled.h1`
+export const Banner = styled.div`
     background-color: ${(props) => props.main}; 
     opacity: ${(props) => props.opacity};
     color: whitesmoke;
@@ -70,7 +70,7 @@ export const LogButton = styled.button`
 `
 
 export const EditButton = styled.button`
-    float: left;
+    float: ${(props) => props.side};
     background-color: ${(props) => props.backgroundColor};
     border: none;
     border-radius: 5px;

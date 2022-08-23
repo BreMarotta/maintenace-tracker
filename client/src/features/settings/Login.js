@@ -45,9 +45,9 @@ const Login = () => {
   return (
     <Background backgroundColor="gainsboro" image ="url('https://media.istockphoto.com/vectors/work-tools-pattern-of-hammer-screwdriver-spanner-vector-id1177622447?k=20&m=1177622447&s=612x612&w=0&h=VtiVLiAnbMUJKXQxwGcl2hq8XDN-pPOJQKiu1zWV6kU=')">
     <FormBackground backgroundColor="whitesmoke">
-      <AppLabel main="darkslateblue" >Maintenance Tracker Application <h5>by Breanne Marotta</h5></AppLabel>
+      <AppLabel main="darkslategray" >Maintenance Tracker Application <h5>by Breanne Marotta</h5></AppLabel>
             <CenteredForm onSubmit={handleSubmit}>
-                <FormBanner main="darkslateblue">Login:</FormBanner>
+                <FormBanner main="darkslategray">Login:</FormBanner>
                 <div>No account yet? <NavLink to='/signup' ><strong>Signup</strong></NavLink>!</div>
                 <ErrorLi>{error}</ErrorLi>
                 <label>Username: </label>
@@ -67,7 +67,7 @@ const Login = () => {
                     onChange={handleChange} />
                     <br/>
                 
-                <Button type="submit" backgroundColor="darkslateblue">Submit</Button>
+                <Button type="submit" backgroundColor="darkslategray">Submit</Button>
             </CenteredForm>
             
         </FormBackground>

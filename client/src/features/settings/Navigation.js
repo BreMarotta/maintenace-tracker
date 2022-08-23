@@ -13,7 +13,7 @@ const Navigation = () => {
 
   const navStyles = {
     backgroundImage: `url(${design.banner})`,
-    padding: 25,
+    padding: 5,
   }
 
 
@@ -22,6 +22,7 @@ const Navigation = () => {
       <div className="" style={navStyles}>
         <LogoutButton />
         <Name main={design.main} backgroundColor={design.background}>{design.company_name != "" ? design.company_name : user.username}</Name>
+        <br/>
           <NavLink to="/"><StyledLink backgroundColor={design.main}>Home</StyledLink></NavLink>
 
           <NavLink to='/people'><StyledLink backgroundColor={design.main}>{design.members}</StyledLink></NavLink>
@@ -33,6 +34,7 @@ const Navigation = () => {
           <NavLink to='/settings' ><StyledLink backgroundColor={design.main}>⚙️ Settings</StyledLink></NavLink>
           
           
+          <hr color={design.accent}/>
           <hr color={design.accent}/>
       </div>
     )

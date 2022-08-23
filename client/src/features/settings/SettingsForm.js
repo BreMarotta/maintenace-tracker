@@ -81,7 +81,7 @@ const SettingsForm = () => {
         setD(!d)
         const newObj = {...settingsObj, 
             background: "#A9A9A9",
-            main: "#483D8B",
+            main: "#2F4F4F",
             accent: "#FF7F50",
             banner: "https://media.istockphoto.com/vectors/work-tools-pattern-of-hammer-screwdriver-spanner-vector-id1177622447?k=20&m=1177622447&s=612x612&w=0&h=VtiVLiAnbMUJKXQxwGcl2hq8XDN-pPOJQKiu1zWV6kU=",
             };
