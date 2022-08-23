@@ -69,6 +69,17 @@ export const LogButton = styled.button`
     }
 `
 
+export const EditButton = styled.button`
+    float: left;
+    background-color: ${(props) => props.backgroundColor};
+    border: none;
+    border-radius: 5px;
+    
+    &:hover {
+        background-color: ${(props) => props.accent};
+    }
+`
+
 export const StyledLink = styled.label`
     background-color: ${(props) => props.backgroundColor};
     padding: .25em .75em;

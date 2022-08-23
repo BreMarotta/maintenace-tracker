@@ -65,7 +65,7 @@ function App() {
           </Route>
           <Route path="/locations/new" >
             <LocationForm />
-          </Route>          
+          </Route>       
           <Route exact path="/items" >
             <Items />
           </Route>

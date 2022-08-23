@@ -13,11 +13,13 @@ const LocationForm = (props) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const design = useDesign()
+    const x = (props.location !== undefined || null ? props.location.id : "")
     const n = (props.location !== undefined || null ? props.location.name : "")
     const add_1 = (props.location !== undefined || null ? props.location.address : "")
     const add_2 = (props.location !== undefined || null ? props.location.address_2 : "")
     
     const [locationObj, setLocationObj] = useState({
+        id: x,
         name: n,
         address: add_1,
         address_2: add_2
@@ -50,11 +52,20 @@ const LocationForm = (props) => {
     const handleUpdate = (e) => {
         e.preventDefault()
         dispatch(updateLocation(locationObj))
+        .then(data => {
+            if(!data.payload.errors){
+                if(props.toggle) {
+                    props.toggle()
+                } else {  
+                    history.push('/locations')
+                }
+            }
+        })   
     }
 
     const buttonText = props.location !== undefined || null ? "Save Changes" : "Add Location"
 
-    const submitFunction = props.category !== undefined || null ? handleUpdate : handleSubmit
+    const submitFunction = props.location !== undefined || null ? handleUpdate : handleSubmit
 
     if (loggedIn){
     return (

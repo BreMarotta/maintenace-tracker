@@ -26,6 +26,7 @@ const locationsSlice = createSlice({
         locations: [],
         errors: [],
         status: "idle",
+        one: []
     },
     reducers: {
         initLocations(state, action) {
@@ -58,12 +59,18 @@ const locationsSlice = createSlice({
         },
         [updateLocation.fulfilled](state, action) {
             if(!action.payload.errors && !action.payload.error) {
-                //Need to figure this out still 
+                const updatedLoc = state.locations.map(l => l.id === action.payload.id ? action.payload : l)
+                state.locations = updatedLoc 
+                state.status = "idle"
+                state.errors = []
+            } else {
+                state.errors = action.payload.errors
+                state.status = "idle"
             }
         }
     }
 });
 
-export const { initLocations, logoutLocations, clearLocErrors } = locationsSlice.actions;
+export const { initLocations, logoutLocations, clearLocErrors, getOneLocation } = locationsSlice.actions;
 
 export default locationsSlice.reducer;

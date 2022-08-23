@@ -10,7 +10,13 @@ class LocationsController < ApplicationController
     end
     
     def update
-
+        location = @current_user.locations.find(params[:id])
+        location.update(location_params)
+        if location.valid?
+            render json: location, status: :accepted
+        else
+            render json: { errors: location.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def destroy
@@ -20,6 +26,6 @@ class LocationsController < ApplicationController
     private
 
     def location_params
-        params.require(:location).permit(:name, :address, :address_2)
+        params.require(:location).permit(:id, :name, :address, :address_2)
     end
 end
