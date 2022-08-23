@@ -1,22 +1,22 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react';
 import { CirclePicker } from 'react-color';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
-import { addPerson, updatePerson, updatePersonFront } from './peopleSlice';
+import { useHistory } from 'react-router-dom';
+import { addPerson, updatePerson, clearErrors } from './peopleSlice';
 import { DisperseInfo } from '../../Disperse';
 import { Button, StyledBackground } from '../../Styles/Styled';
-import { CenteredForm } from '../../Styles/Form.style';
+import { CenteredForm, ErrorLi } from '../../Styles/Form.style';
 import { useDesign } from '../designs/useDesign';
-
-
 
 const PersonForm = (props) => {
   const { loggedIn } = useContext(DisperseInfo)
   const dispatch = useDispatch()
   const history = useHistory()
   const design = useDesign()
+ 
+  const errors = useSelector(state => state.people.errors);
 
-  console.log(props)
+  const errorLis = errors ? errors.map(e => <ErrorLi key={e}>{e}</ErrorLi>) : ""
 
   const [personObj, setPersonObj] = useState({
     name: "",
@@ -30,6 +30,7 @@ const PersonForm = (props) => {
     if(props.person){
       setPersonObj(props.person)
     }
+    dispatch(clearErrors())
   }, [])
 
   const handleChange = (e) => {
@@ -51,14 +52,23 @@ const PersonForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(addPerson(personObj))
-    history.push('/people')
+    .then(data => {
+      if (!data.payload.errors){
+      history.push('/people')
+      } 
+    })    
   }
 
   const handleUpdate = (e) => {
     e.preventDefault()
     dispatch(updatePerson(personObj))
-    props.updatePerson(personObj)
-    props.toggle()
+    .then(data => {
+      if (!data.payload.errors){
+        props.updatePerson(personObj)
+        props.toggle()
+      }
+    })
+    
   }
 
   const submitFunction = props.person !== undefined || null ? handleUpdate : handleSubmit
@@ -73,7 +83,7 @@ const PersonForm = (props) => {
   return (
     <StyledBackground>
       <CenteredForm onSubmit={submitFunction}>
-
+        {errorLis}
         <label>Name: </label>
           <input
             type="text"

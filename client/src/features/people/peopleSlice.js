@@ -33,8 +33,8 @@ const peopleSlice = createSlice({
         logoutPeople(state){
             state.people = []
         },
-        highlightPerson(state, action){
-            const index = state.people.findIndex((people) => people.id === action.payload);
+        clearErrors(state){
+            state.errors = []
         }
     },
     extraReducers: {
@@ -47,7 +47,9 @@ const peopleSlice = createSlice({
                 state.status = "idle";
                 state.errors = [];
             } else {
-                console.log("returned from fetch: ", action.payload)    
+                console.log("returned from fetch: ", action.payload) 
+                state.errors = action.payload.errors
+                state.status = "idle"   
             }
         },
         [updatePerson.pending](state) {
@@ -68,6 +70,6 @@ const peopleSlice = createSlice({
     }
 });
 
-export const { initPeople, updatePersonFront, logoutPeople } = peopleSlice.actions;
+export const { initPeople, logoutPeople, clearErrors } = peopleSlice.actions;
 
 export default peopleSlice.reducer;
