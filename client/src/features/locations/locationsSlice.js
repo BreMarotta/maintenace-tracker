@@ -44,6 +44,10 @@ const locationsSlice = createSlice({
         logoutLocations(state){
             state.locations = []
         },
+        deleteLocFront(state, action){
+            const index = state.locations.findIndex(l => l.id === action.payload.id);
+            state.locations.splice(index, 1);
+        },
         clearLocErrors(state){
             state.errors = []
         }
@@ -85,11 +89,11 @@ const locationsSlice = createSlice({
                 console.log(action.payload)
                 state.errors.push(action.payload.errors) 
                 state.status = "idle"
-            }
+            } 
         }
     }
 });
 
-export const { initLocations, logoutLocations, clearLocErrors, getOneLocation } = locationsSlice.actions;
+export const { initLocations, logoutLocations, clearLocErrors, deleteLocFront } = locationsSlice.actions;
 
 export default locationsSlice.reducer;

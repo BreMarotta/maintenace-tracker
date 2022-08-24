@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { deleteLocation, clearLocErrors } from './locationsSlice';
+import { deleteLocation, clearLocErrors, deleteLocFront } from './locationsSlice';
 import { StyledLi, EditButton } from '../../Styles/Styled';
 import { useDesign } from '../designs/useDesign';
 import LocationForm from './LocationForm';
@@ -24,11 +24,20 @@ const Location = ({ location }) => {
 
   const handleDelete = () => {
     dispatch(deleteLocation(location))
+    .then(data => {
+      if(!data.payload.errors){
+        dispatch(deleteLocFront(location))
+      }
+    })
   }
   
   const handleBack = () => {
     setDel(!del)
     dispatch(clearLocErrors())
+  }
+  const handleShowDel = () => {
+    setShowItems(false)
+    setDel(!del)
   }
 
   const display = showForm ? 
@@ -38,14 +47,17 @@ const Location = ({ location }) => {
     </div> 
     : showItems ? 
     <div>
+      <br/>
       <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setShowItems(!showItems)}>...</EditButton>
+      <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={handleShowDel}>🗑️</EditButton>
       <Banner main={design.main}>{location.name}</Banner>
       <Items location={location}/>
     </div> 
     : del ?
     <div><StyledLi backgroundColor={design.background}>
+      <br/>
         <Banner main={design.main}>{location.name}</Banner>{errorLis ? errorLis : "To delete a location, there cannot be any items assigned to that location. Are you ready to delete?"}
-        <br/><Button backgroundColor="black" onClick={handleBack}>No, go back</Button><Button backgroundColor="black" onClick={handleDelete}>Yep, I'm sure!</Button>
+        <br/><Button backgroundColor={design.main} onClick={handleBack}>Go Back</Button><Button backgroundColor={design.main} onClick={handleDelete}>Delete</Button>
       </StyledLi><br/></div>
     :
     <StyledLi backgroundColor={design.background}>
