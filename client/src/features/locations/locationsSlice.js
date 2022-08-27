@@ -58,6 +58,7 @@ const locationsSlice = createSlice({
         },
         [addLocation.fulfilled](state, action) {
             if(!action.payload.error && !action.payload.errors){
+                console.log(action.payload)
                 state.locations.push(action.payload);
                 state.status = "idle";
                 state.errors = [];

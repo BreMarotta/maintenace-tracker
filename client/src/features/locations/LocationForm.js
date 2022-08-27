@@ -51,7 +51,7 @@ const LocationForm = (props) => {
             }
         })  
     }
-    console.log(locationObj)
+    // console.log(locationObj)
 
     const handleUpdate = (e) => {
         e.preventDefault()

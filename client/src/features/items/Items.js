@@ -12,6 +12,7 @@ const Items = (props) => {
   const { loggedIn } = useContext(DisperseInfo)
   const design = useDesign()
   const items = useSelector(state => state.items.items)
+  // console.log(props)
 
   const fItems = props.location ? items.filter(x => x.location_id == props.location.id) 
     : props.category ? items.filter(x => x.category_id == props.category.id) 

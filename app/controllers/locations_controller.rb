@@ -20,11 +20,10 @@ class LocationsController < ApplicationController
     end
 
     def destroy
-        # byebug
         location = @current_user.locations.find(params[:id])
         if location.items.empty?
             location.destroy
-            head :no_content
+            render json: { response: "content deleted"} , status: :ok
         else
             render json: { errors: "Cannot delete location while items are still assigned to it"}, status: :unprocessable_entity
         end

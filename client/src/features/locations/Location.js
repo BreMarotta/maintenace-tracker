@@ -14,9 +14,12 @@ const Location = ({ location }) => {
   const [showForm, setShowForm] = useState(false)
   const [showItems, setShowItems] = useState(false)
   const [del, setDel] = useState(false)
+  const items = useSelector(state => state.items.items)
   const errors = useSelector(state => state.locations.errors)
 
   const errorLis = errors ? errors.map(e => <ErrorLi key={e}>{e}</ErrorLi>) : ""
+
+  const has = items.find(x => x.location_id === location.id)
 
   const toggle = () => {
     setShowForm(!showForm)
@@ -26,7 +29,7 @@ const Location = ({ location }) => {
     console.log(location)
     dispatch(deleteLocation(location))
     .then(data => {
-      console.log(data)
+      // console.log(data)
       if(!data.payload.errors && !data.payload.error){
         dispatch(deleteLocFront(location))
       }
@@ -36,10 +39,6 @@ const Location = ({ location }) => {
   const handleBack = () => {
     setDel(!del)
     dispatch(clearLocErrors())
-  }
-  const handleShowDel = () => {
-    setShowItems(false)
-    setDel(!del)
   }
 
   const display = showForm ? 
@@ -51,9 +50,8 @@ const Location = ({ location }) => {
     <div>
       <br/>
       <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setShowItems(!showItems)}>...</EditButton>
-      <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={handleShowDel}>🗑️</EditButton>
       <Banner main={design.main}>{location.name}</Banner>
-      <Items location={location}/>
+      <Items location={location} />
     </div> 
     : del ?
     <div><StyledLi backgroundColor={design.background}>
@@ -64,9 +62,8 @@ const Location = ({ location }) => {
     :
     <StyledLi backgroundColor={design.background}>
       <span>
-        <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setShowItems(!showItems)}>...</EditButton>
+        {has == undefined ? <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setDel(!del)}>🗑️</EditButton> : <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setShowItems(!showItems)}>...</EditButton>}
         <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setShowForm(!showForm)}>✎</EditButton>
-        <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setDel(!del)}>🗑️</EditButton>
         <br/>
         {location.name} 
         <br/>
