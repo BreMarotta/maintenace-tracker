@@ -9,4 +9,12 @@ class UserSerializer < ActiveModel::Serializer
   has_many :parts, through: :items
   has_many :repairs, through: :people
 
+  attribute :categories do
+    # byebug
+    self.object.categories.sort_by{|c| c[:name]}
+  end
+
+  attribute :people do
+    self.object.people.sort_by{|c| c[:name]}
+  end
 end

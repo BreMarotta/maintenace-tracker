@@ -6,6 +6,6 @@ class Category < ApplicationRecord
     # validates :name, uniqueness: { case_sensitive: false }
 
     def self.sort_order
-        self.sort("name": :asc)
+        self.order("name": :asc)
     end
 end

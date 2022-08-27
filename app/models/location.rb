@@ -6,6 +6,6 @@ class Location < ApplicationRecord
     validates :name, presence: true, uniqueness: { scope: :user_id}
 
     def self.sort_order
-        self.sort("name": :asc)
+        self.order("name": :asc)
     end
 end

@@ -14,4 +14,10 @@ class User < ApplicationRecord
 
     accepts_nested_attributes_for :designs
     
+    def sort_info
+        x = []
+        x << self.categories.sort_order
+        x << self.locations.sort_order
+        x
+    end
 end
