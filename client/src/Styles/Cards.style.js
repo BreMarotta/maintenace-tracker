@@ -46,6 +46,9 @@ export const Card = styled.div`
     & h1 {
         font-size: 150%;
     }
+    & p {
+        font-size: 14px;
+    }
     & button {
         background-color: ${(props) => props.accent};
         display: flex;

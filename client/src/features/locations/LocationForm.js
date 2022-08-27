@@ -39,15 +39,19 @@ const LocationForm = (props) => {
         e.preventDefault()
         dispatch(addLocation(locationObj))
         .then(data => {
-            if(!data.payload.errors){
+            console.log(data)
+            if(!data.payload.errors && !data.payload.error){
+                const x = data.payload.id
+                setLocationObj({...locationObj, ["id"]: x})
                 if(props.toggle) {
                     props.toggle()
                 } else {  
                     history.push('/locations')
                 }
             }
-        })   
+        })  
     }
+    console.log(locationObj)
 
     const handleUpdate = (e) => {
         e.preventDefault()

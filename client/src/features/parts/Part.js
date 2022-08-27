@@ -16,14 +16,14 @@ const Part = ({ part }) => {
 
     const details = showDetails ? 
         <div>
-            <h3>{part.name}</h3>
+            <p>{part.name}</p>
             <hr/>
             {part.model ? <span>Model: {part.model} <br/></span> : ""}
             {part.price ? <span>Price: ${part.price}<br/></span> : "" }
             {part.details ? <span><hr/> {part.details}</span> : ""}
         </div>
         :
-        <h1>{part.name}</h1>
+        <p>{part.name}</p>
 
     const buttonText = showForm == true ? "Hide Form" : "Update"
 

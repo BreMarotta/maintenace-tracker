@@ -23,9 +23,11 @@ const Location = ({ location }) => {
   }
 
   const handleDelete = () => {
+    console.log(location)
     dispatch(deleteLocation(location))
     .then(data => {
-      if(!data.payload.errors){
+      console.log(data)
+      if(!data.payload.errors && !data.payload.error){
         dispatch(deleteLocFront(location))
       }
     })
