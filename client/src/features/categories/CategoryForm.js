@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign'
 import { StyledBackground, Button } from '../../Styles/Styled';
-import { Form } from '../../Styles/Form.style';
+import { Form, ErrorLi } from '../../Styles/Form.style';
 
 const CategoryForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
@@ -20,7 +20,7 @@ const CategoryForm = (props) => {
     })
 
     const errors = useSelector((state) => state.categories.errors)   
-    const errorLis = errors.map(e => <li key={e}>{e}</li>)
+    const errorLis = errors.map(e => <ErrorLi key={e}>{e}</ErrorLi>)
     
     const handleChange = (e) => {
         const newObj = {
@@ -33,16 +33,30 @@ const CategoryForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(addCategory(categoryObj))
-        if(props.toggle) {
-            props.toggle()
-        } else {  
-            history.push('/categories')
-        }
+        .then(data => {
+            console.log(data)
+            if(!data.payload.errors && data.payload.error){
+                const x = data.payload.id
+                setCategoryObj({...categoryObj, ["id"]: x})
+                if(props.toggle) {
+                    props.toggle()
+                } else {
+                    history.push('/categories')
+                }
+            }
+        })
     }
 
     const handleUpdate = (e) => {
         e.preventDefault()
         dispatch(updateCategory(categoryObj))
+        .then(data => {
+            if(!data.payload.errors){
+                props.toggle()
+            } else {
+                history.push('/categories')
+            }
+        })
     }
 
     const buttonText = props.category !== undefined || null ? "Save Changes" : "Add Category"

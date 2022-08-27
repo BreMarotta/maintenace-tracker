@@ -20,7 +20,7 @@ const Items = (props) => {
     
   const displayItems = fItems.map(i => <Item key={i.id} item={i} />)
 
-  const add = props.location ? "" :  <><Link to="/items/new"><Button backgroundColor={design.main}>Add New Item</Button></Link>
+  const add = props.location ? "" :  props.category ? "" : <><Link to="/items/new"><Button backgroundColor={design.main}>Add New Item</Button></Link>
   <br/></>
   
   if (loggedIn){ 

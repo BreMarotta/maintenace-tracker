@@ -20,6 +20,15 @@ export const updateCategory = createAsyncThunk('categories/updateCategory', (cat
     .then(data => data)
 })
 
+export const deleteCategory = createAsyncThunk('categories/deleteCategory', (categoryObj) => {
+    return fetch(`/api/categories/${categoryObj.id}`, {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(categoryObj)
+    })
+    .then(res => res.json())
+})
+
 const categoriesSlice = createSlice({
     name: "categories",
     initialState: {
@@ -29,14 +38,17 @@ const categoriesSlice = createSlice({
     },
     reducers: {
         initCategories(state, action) {
-            // console.log("initCategories called: ", action.payload)
             state.categories = action.payload
-        },
-        updateCategoryFront(state, action) {
-            console.log(action.payload)
         },
         logoutCategories(state) {
             state.categories = []
+        },
+        deleteCatFront(state, action){
+            const index = state.categories.findIndex(c => c.id === action.payload.id);
+            state.categories.splice(index, 1);
+        },
+        clearCatErrors(state){
+            state.errors = []
         }
     },
     extraReducers: {
@@ -59,12 +71,28 @@ const categoriesSlice = createSlice({
         },
         [updateCategory.fulfilled](state, action) {
             if(!action.payload.errors && !action.payload.error) {
-                // Need to figure this out still
+                const updatedCat = state.categories.map(c => c.id === action.payload.id ? action.payload : c)
+                state.categories = updatedCat
+                state.status = "idle"
+                state.errors = []
+            } else {
+                state.errors = action.payload.errors
+                state.status = "idle"
+            }
+        },
+        [deleteCategory.pending](state) {
+            state.status = "loading"
+        },
+        [deleteCategory.fulfilled](state, action) {
+            if(action.payload.errors || action.payload.error){
+                console.log(action.payload)
+                state.errors.push(action.payload.errors)
+                state.status = "idle"
             }
         }
     }
 });
 
-export const { initCategories, updateCategoryFront, logoutCategories } = categoriesSlice.actions;
+export const { initCategories, updateCategoryFront, logoutCategories, clearCatErrors, deleteCatFront } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { clearErrors } from "../people/peopleSlice"
 
 export const addLocation = createAsyncThunk('/locations/addLocation', (locationObj) => {
     return fetch('/api/locations', {
