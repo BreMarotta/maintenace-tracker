@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteRepFront, deleteRepair } from './repairsSlice';
 
 const Repair = (props) => {
-  console.log(props)
+
   const people = useSelector((state) =>state.people.people)
   const items = useSelector((state) => state.items.items)
   const parts = useSelector((state) => state.parts.parts)
@@ -46,6 +46,7 @@ const Repair = (props) => {
   :
   <div>
     <EditButton backgroundColor={person.current == false || null  ? "Gainsboro" : "white"} accent="whitesmoke" side="right" onClick={() => setDel(!del)}>🗑️</EditButton>
+    <br/>
     <h2>{p.name ? <div><span>{p.name} - {thing.name}</span></div> : thing.name}</h2>
     <h4>{props.repair.title == "" ? "" : `${props.repair.title}`}</h4>
     <div>
