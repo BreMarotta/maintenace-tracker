@@ -5,5 +5,6 @@ class Item < ApplicationRecord
     accepts_nested_attributes_for :parts
     has_many :repairs, as: :repairable
 
+    validates :name, presence: true, uniqueness: { scope: :user_id, case_sensitive: false}
     
 end

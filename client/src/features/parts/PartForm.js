@@ -58,6 +58,7 @@ const PartForm = (props) => {
 if (loggedIn) {
     return (
         <CenteredForm onSubmit={submitFunction}>
+            {errorLis}
             <label>Part Name: </label>
                 <input
                     type="text"

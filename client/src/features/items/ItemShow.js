@@ -67,9 +67,11 @@ const ItemShow = () => {
           {item.purchase_year ? <p>Purchased: {item.purchase_year}<br/></p> : ""}
       </div>
       <img src={item.img} alt="No Image Available" />
+      <br/>
       <Button backgroundColor={design.main} onClick={toggle}>Update</Button>
       <Button backgroundColor={design.main} onClick={handleDelete}>Delete</Button>
     </ShowGrid>
+    <br/>
     <PartsContainer item={item}/>
     </div>
 
@@ -82,7 +84,11 @@ const ItemShow = () => {
             {display}
       </StyledBackground>
     </>
-  )} else {
+  )} else if (loggedIn && params.id == "new"){
+    return(
+      <div>What?</div>
+    )
+  } else {
     return (
       <Login />
     )

@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import CategoriesDropDown from '../categories/CategoriesDropDown';
 import LocationsDropDown from '../locations/LocationsDropDown';
-import { addItem, updateItem } from './itemsSlice';
+import { addItem, updateItem, clearItemErrors } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
 import { useDesign } from '../designs/useDesign';
 import { StyledBackground, Button } from '../../Styles/Styled';
-import { Form } from '../../Styles/Form.style';
+import { Form, ErrorLi } from '../../Styles/Form.style';
 
 const ItemForm = (props) => {
     const { loggedIn } = useContext(DisperseInfo)
@@ -30,7 +30,7 @@ const ItemForm = (props) => {
     const image = (props.item !== undefined || null ? props.item.img : "")
     
     const errors = useSelector(state => state.items.errors);
-    const errorLis = errors.map(e => <li key={e}> {e}</li>)
+    const errorLis = errors.map(e => <ErrorLi key={e}> {e}</ErrorLi>)
 
     const [itemObj, setItemObj] = useState({
         category_id: cat,
@@ -45,8 +45,8 @@ const ItemForm = (props) => {
         id: params.id 
     })
 
-    console.log(itemObj)
     const handleSelect = (type, id) => {
+        dispatch(clearItemErrors())
         const newObj = {...itemObj, [type]: id}
         setItemObj(newObj)
     }
@@ -59,7 +59,11 @@ const ItemForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addItem(itemObj))
-        history.push('/items')
+            console.log(errors)
+            if(errors.length < 1){
+                history.push('/items')
+            }
+
     }
 
     const handleUpdate = (e) => {
@@ -112,6 +116,7 @@ const ItemForm = (props) => {
     <StyledBackground backgroundColor={design.background}>
         <Form onSubmit={submitFunction}>
         <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
+        {errorLis}
         <br/>
             <label>Name: </label>
             
@@ -170,7 +175,6 @@ const ItemForm = (props) => {
                     value={itemObj.imb}
                     onChange={handleChange} />
                 <br/>           
-            {errorLis}
         </Form>
         {catLocPart}
     </StyledBackground>
@@ -178,7 +182,7 @@ const ItemForm = (props) => {
 } else {
     return (
       <div>
-        <h3 className="unauthroized"> Not Authorized - Please Login or Signup</h3>
+
       </div>
     )
   }

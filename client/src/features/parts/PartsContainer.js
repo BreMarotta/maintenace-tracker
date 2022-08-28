@@ -23,6 +23,8 @@ const PartsContainer = ({ item }) => {
   return (
     <div>
     <StyledBackground backgroundColor={design.background}> 
+    <br/>
+    <br/>
         <label>Add Part to This Item: </label>
             <input
                 type="checkbox"
