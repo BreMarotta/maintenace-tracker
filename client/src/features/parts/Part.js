@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useDesign } from '../designs/useDesign'
-import PartForm from './PartForm';
 import { Card } from '../../Styles/Cards.style';
 import { Button } from '../../Styles/Styled';
 
-const Part = ({ part }) => {
+const Part = ({ part, toggleForm }) => {
     const design = useDesign()
-    const [showForm, setShowForm] = useState(false)
     const [showDetails, setShowDetails] = useState(false)
 
-    const toggleForm = () => {
-        setShowForm(!showForm)
+    const handleClick = () => {
+        toggleForm(part)
     }
 
     const details = showDetails ? 
@@ -25,19 +22,14 @@ const Part = ({ part }) => {
         :
         <p>{part.name}</p>
 
-    const buttonText = showForm == true ? "Hide Form" : "Update"
-
-    const displayPart = showForm == true ? <PartForm toggle={toggleForm} part={part}/> : 
-        <Card   accent={design.accent} onMouseEnter={() => setShowDetails(true)} onMouseLeave={() => setShowDetails(false)}>  
-            <img src={part.img} alt={part.name} />
-            <br/>
-            <h3>{details}</h3>
-            <Button onClick={toggleForm}>{buttonText}</Button>           
-        </Card>
-
   return (
     <div>
-        {displayPart}
+        <Card   accent={design.accent} onMouseEnter={() => setShowDetails(true)} onMouseLeave={() => setShowDetails(false)}>  
+        <img src={part.img} alt={part.name} />
+        <br/>
+        <h3>{details}</h3>
+        <Button onClick={handleClick}>Update</Button>           
+        </Card>
     </div>
   )
 }

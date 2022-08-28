@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { addPart, updatePart } from './partsSlice';
 import { DisperseInfo } from '../../Disperse';
 import { Button } from '../../Styles/Styled';
-import { Form } from '../../Styles/Form.style';
+import { CenteredForm } from '../../Styles/Form.style';
 import { useDesign } from '../designs/useDesign';
 
 const PartForm = (props) => {
@@ -43,14 +43,14 @@ const PartForm = (props) => {
         e.preventDefault()
         console.log(partObj)
         dispatch(addPart(partObj))
-        props.toggle()
+        props.toggleForm()
     }
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        console.log("called update")
+        console.log(partObj)
         dispatch(updatePart(partObj))
-        props.toggle()
+        props.toggleForm()
     }
 
     const buttonText = props.part !== undefined || null ? "Save Changes" : "Add Part"
@@ -59,49 +59,49 @@ const PartForm = (props) => {
 
 if (loggedIn) {
     return (
-            <Form onSubmit={submitFunction}>
-                <label>Part Name: </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={partObj.name}
-                        onChange={handleChange} />
-                    <br/>
-                    <label>Model: </label>
-                    <input
-                        type="text"
-                        id="model"
-                        name="model"
-                        value={partObj.model}
-                        onChange={handleChange} />
-                    <br/>
-                    <label>Image: </label>
-                    <input
-                        type="text"
-                        id="img"
-                        name="img"
-                        value={partObj.img}
-                        onChange={handleChange} />
-                    <br/>
-                    <label>Price: </label>
-                    <input
-                        type="text"
-                        id="price"
-                        name="price"
-                        value={partObj.price}
-                        onChange={handleChange} />
-                    <br/>
-                    <label>Additional Details: </label>
-                    <input
-                        type="text"
-                        id="details"
-                        name="details"
-                        value={partObj.details}
-                        onChange={handleChange} />
-                    <br/>
-                    <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
-            </Form>
+        <CenteredForm onSubmit={submitFunction}>
+            <label>Part Name: </label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={partObj.name}
+                    onChange={handleChange} />
+                <br/>
+            <label>Model: </label>
+                <input
+                    type="text"
+                    id="model"
+                    name="model"
+                    value={partObj.model}
+                    onChange={handleChange} />
+                <br/>
+            <label>Image: </label>
+                <input
+                    type="text"
+                    id="img"
+                    name="img"
+                    value={partObj.img}
+                    onChange={handleChange} />
+                <br/>
+            <label>Price: </label>
+                <input
+                    type="text"
+                    id="price"
+                    name="price"
+                    value={partObj.price}
+                    onChange={handleChange} />
+                <br/>
+            <label>Additional Details: </label>
+                <input
+                    type="text"
+                    id="details"
+                    name="details"
+                    value={partObj.details}
+                    onChange={handleChange} />
+                <br/>
+            <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
+        </CenteredForm>
     )
 } else {
     return (

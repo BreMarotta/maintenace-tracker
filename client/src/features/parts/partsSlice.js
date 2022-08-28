@@ -11,6 +11,7 @@ export const addPart = createAsyncThunk('parts/addPart', (partObj) => {
 })
 
 export const updatePart = createAsyncThunk('parts/updatePart', (partObj) => {
+    console.log("update called in slice")
     return fetch(`/api/parts/${partObj.id}`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
@@ -67,6 +68,7 @@ const partsSlice = createSlice({
             state.status = "loading"
         },
         [updatePart.fulfilled](state, action) {
+            console.log("returned from Fetch: ", action.payload)
             if (!action.payload.errors && !action.payload.error) {
                 const updatedParts = state.parts.map(p => p.id === action.payload.id ? action.payload : p)
                 state.parts = updatedParts 

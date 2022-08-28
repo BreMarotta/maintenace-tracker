@@ -3,9 +3,6 @@ class Location < ApplicationRecord
     has_many :items
     has_many :categories, through: :items
 
-    validates :name, presence: true, uniqueness: { scope: :user_id}
+    validates :name, presence: true, uniqueness: { scope: :user_id, case_sensitive: false}
 
-    def self.sort_order
-        self.order("name": :asc)
-    end
 end

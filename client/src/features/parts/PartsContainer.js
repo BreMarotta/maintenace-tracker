@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PartForm from './PartForm';
-import Parts from './Parts'
+import Parts from './Parts';
 import { useDesign } from '../designs/useDesign'
 import { StyledBackground } from '../../Styles/Styled';
 
-const PartsContainer = (props) => {
+const PartsContainer = ({ item }) => {
+  console.log(item)
     const design = useDesign()
     const [displayPartForm, setDisplayPartForm] = useState(false)
 
@@ -12,8 +13,16 @@ const PartsContainer = (props) => {
         setDisplayPartForm(!displayPartForm)
     }
 
-    const displayContainer = displayPartForm == true ? <PartForm toggle={toggleDisplay}/> : <Parts parts={props.parts}/>
+    const displayContainer = displayPartForm == true ? 
+    <PartForm toggle={toggleDisplay}/> 
+    : 
+    <div>
+      <hr/>
+      <Parts item={item}/>
+    </div>
+
   return (
+    <div>
     <StyledBackground backgroundColor={design.background}> 
         <label>Add Part to This Item: </label>
             <input
@@ -22,6 +31,7 @@ const PartsContainer = (props) => {
                 onChange={toggleDisplay} />
         {displayContainer}
     </StyledBackground>
+    </div>
   )
 }
 

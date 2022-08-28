@@ -8,8 +8,7 @@ import PartsContainer from '../parts/PartsContainer';
 import { Button, StyledBackground, Banner } from '../../Styles/Styled';
 import { ShowGrid } from '../../Styles/Cards.style';
 import { useDesign } from '../designs/useDesign';
-
-
+import Login from '../settings/Login';
 
 const ItemShow = () => {
   const params = useParams()
@@ -49,7 +48,14 @@ const ItemShow = () => {
     history.push('/items')
   }
 
-  const display = showForm == true ? <ItemForm item={item} toggle={toggle} updateItem={updateItem} /> : 
+  const display = showForm == true ? 
+    <ItemForm item={item} toggle={toggle} updateItem={updateItem} /> 
+    : error ?
+    <div>
+      <StyledBackground className="unauthorized"><strong> Not Authorized - You do not have access to this information </strong></StyledBackground>
+    </div>
+    : 
+    <div>
     <ShowGrid accent={design.accent}>
       <div>
         <h5>
@@ -64,23 +70,21 @@ const ItemShow = () => {
       <Button backgroundColor={design.main} onClick={toggle}>Update</Button>
       <Button backgroundColor={design.main} onClick={handleDelete}>Delete</Button>
     </ShowGrid>
+    <PartsContainer item={item}/>
+    </div>
 
 
-  if (loggedIn && !error && params.id != "new") {
+  if (loggedIn && params.id != "new") {
     return (
     <>
       <StyledBackground backgroundColor={design.background}> 
         <Banner main={design.main}>{item.name}</Banner>
-
             {display}
       </StyledBackground>
-      <PartsContainer parts={item.parts}/>
     </>
-  )} else if (error) {
+  )} else {
     return (
-      <div>
-        <StyledBackground className="unauthorized"><strong> Not Authorized - You do not have access to this information </strong></StyledBackground>
-      </div>
+      <Login />
     )
   }
   

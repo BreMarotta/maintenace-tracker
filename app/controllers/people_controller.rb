@@ -7,7 +7,11 @@ class PeopleController < ApplicationController
 
     def show
         person = @current_user.people.find(params[:id])
-        render json: person
+        if person
+            render json: person
+        else
+            render json: { errors: "Not Authorized" }, status: :unauthorized
+        end
     end
     
     def update
@@ -21,6 +25,13 @@ class PeopleController < ApplicationController
     end
 
     def destroy
+        person = @current_user.peopel.find(params[:id])
+        if person.repairs.empty?
+            person.destroy
+            render json: { response: "content deleted"}, status: :ok
+        else
+            render json: { errors: "Cannot delete person with assigned repairs"}, status: :unprocessable_entity
+        end
 
     end
 
