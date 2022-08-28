@@ -5,7 +5,6 @@ import { useDesign } from '../designs/useDesign'
 import { StyledBackground } from '../../Styles/Styled';
 
 const PartsContainer = ({ item }) => {
-  console.log(item)
     const design = useDesign()
     const [displayPartForm, setDisplayPartForm] = useState(false)
 

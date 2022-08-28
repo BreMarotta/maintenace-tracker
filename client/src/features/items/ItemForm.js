@@ -18,7 +18,6 @@ const ItemForm = (props) => {
    
     const [showCategory, setShowCategory] = useState(false)
     const [showLocation, setShowLocation] = useState(false)
-    // console.log(props)
 
     const cat = (props.item !== undefined || null ? props.item.category_id : "")
     const loc = (props.item !== undefined || null ? props.item.location_id : "")
@@ -45,6 +44,8 @@ const ItemForm = (props) => {
         img: image,   
         id: params.id 
     })
+
+    console.log(itemObj)
     const handleSelect = (type, id) => {
         const newObj = {...itemObj, [type]: id}
         setItemObj(newObj)
@@ -63,7 +64,6 @@ const ItemForm = (props) => {
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        // console.log(itemObj)
         dispatch(updateItem(itemObj))
         props.toggle()
         props.updateItem(itemObj)

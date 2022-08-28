@@ -18,8 +18,6 @@ const People = () => {
 
   const fPeople = people.filter(p => p.current === true)
 
-  console.log(fPeople)
-
   const display = filterActive ? fPeople.map(p => <Person key={p.id} person={p}/>) : people.map(p => <Person key={p.id} person={p}/>)
 
   const aText = filterActive ? "Show All" : "Show Active Only"

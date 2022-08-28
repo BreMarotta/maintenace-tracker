@@ -6,17 +6,15 @@ import { DisperseInfo } from '../../Disperse';
 import { Grid } from '../../Styles/Cards.style';
 
 const Parts = ({ item }) => {
-    console.log(item)
     const { loggedIn } = useContext(DisperseInfo)
     const [showForm, setShowForm] = useState(false)
     const [formPart, setFormPart] = useState({})
     const parts = useSelector(state => state.parts.parts)
 
-    const fParts = item ? parts.filter(p => p.item_id === item.id) : parts
+    const fParts = item ? parts.filter(p => p.item_id == item.id) : parts
 
     const toggleForm = (part) => {
         setFormPart(part)
-        console.log("part infor passed up: ", part)
         setShowForm(!showForm)
     }
 

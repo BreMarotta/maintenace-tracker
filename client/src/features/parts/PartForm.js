@@ -41,14 +41,12 @@ const PartForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(partObj)
         dispatch(addPart(partObj))
         props.toggleForm()
     }
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        console.log(partObj)
         dispatch(updatePart(partObj))
         props.toggleForm()
     }
