@@ -24,7 +24,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   has_many :repairs, through: :people do
-    object.repairs.order(:title)
+    object.repairs.order(date: :desc)
   end
 
 end

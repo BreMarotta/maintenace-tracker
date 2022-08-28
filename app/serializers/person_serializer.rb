@@ -1,11 +1,12 @@
 class PersonSerializer < ActiveModel::Serializer
-  attributes :id, :name, :title, :color, :current
+  attributes :id, :name, :title, :color, :current, :repair_sum
 
-  has_many :repairs
+  has_many :repairs do
+    object.repairs.order(date: :desc)
+  end
 
   def repair_sum
-    byebug
-    self.object.repairs.cost.inject { |a, b| a + b} 
+    self.object.repairs.sum(:cost)
   end
   
 end

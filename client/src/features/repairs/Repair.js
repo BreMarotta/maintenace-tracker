@@ -25,7 +25,7 @@ const Repair = (props) => {
           <div>
             {props.repair.complete == false || null ? "Ongoing Repair"  : complete}
             <br/>
-            {props.repair.cost == "" ? "" : `Cost: $${props.repair.cost}`}
+            {props.repair.cost == null ? "" : `Cost: $${props.repair.cost}`}
           </div>
 
           <h5>{person ? `Repair by: ${person.name}` : ""}</h5>

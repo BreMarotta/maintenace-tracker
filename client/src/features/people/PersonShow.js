@@ -25,21 +25,7 @@ const PersonShow = () => {
     fetch(`/api/people/${params.id}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       if (!data.error && !data.errors){
-        // const x = data.repairs.map(r => {
-        //   let nums = []
-        //   if(r.cost == ""){
-        //     console.log("Nope")
-        //   } else {
-        //     nums.push(parseInt(r.cost))
-        //   }
-        //   return nums
-        // })
-
-        // console.log(x)
-        // // const totes = x.reduce((a, b) => a + b, 0)
-        // // console.log(totes)
         setColor(data.color)
         setCurrent(data.current)
         setPerson(data)
@@ -65,7 +51,7 @@ const PersonShow = () => {
   <Banner  main={color ? color : "black"} opacity={current ? 1 : .85}>
     <p>{person.name}</p>
     <p>{person.title}</p>
-    <p>Repair Cost Total: ${}</p>
+    <p>{person.repair_sum == 0 ? "" : `Repair Cost Total: ${person.repair_sum}`}</p>
     <label>Update Information </label>
           <input
             type="checkbox"
