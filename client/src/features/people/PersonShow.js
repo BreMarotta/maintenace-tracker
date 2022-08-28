@@ -51,7 +51,7 @@ const PersonShow = () => {
   <Banner  main={color ? color : "black"} opacity={current ? 1 : .85}>
     <p>{person.name}</p>
     <p>{person.title}</p>
-    <p>{person.repair_sum == 0 ? "" : `Repair Cost Total: ${person.repair_sum}`}</p>
+    <p>{person.repair_sum == 0 ? "" : `Repair Cost Total: $${person.repair_sum}`}</p>
     <label>Update Information </label>
           <input
             type="checkbox"
