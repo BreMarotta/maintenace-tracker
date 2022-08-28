@@ -2,7 +2,7 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :username
 
   has_many :designs
-  
+
   has_many :people do
     object.people.order(:name)
   end
@@ -12,7 +12,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   has_many :locations do
-    object.categories.order(:name)
+    object.locations.order(:name)
   end
 
   has_many :items, through: :categories do
