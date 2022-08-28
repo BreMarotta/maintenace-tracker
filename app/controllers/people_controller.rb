@@ -25,7 +25,7 @@ class PeopleController < ApplicationController
     end
 
     def destroy
-        person = @current_user.peopel.find(params[:id])
+        person = @current_user.people.find(params[:id])
         if person.repairs.empty?
             person.destroy
             render json: { response: "content deleted"}, status: :ok

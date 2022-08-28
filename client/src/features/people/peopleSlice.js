@@ -84,6 +84,7 @@ const peopleSlice = createSlice({
             state.status = "loading"
         },
         [deletePerson.fulfilled](state, action) {
+            console.log("returned from Fetch: ", action.payload)
             if(action.payload.errors || action.payload.error){
                 console.log(action.payload)
                 state.errors.push(action.payload.errors)
