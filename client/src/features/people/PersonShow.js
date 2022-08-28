@@ -33,7 +33,6 @@ const PersonShow = () => {
     fetch(`/api/people/${params.id}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       if (data.error || data.errors){
         setError(true)
       } else{
@@ -73,7 +72,7 @@ const PersonShow = () => {
     <PersonForm person={person} toggle={toggle} updatePerson={updatePerson}/> 
   : del ?
   <div>
-  <Banner  main={color ? color : "black"} opacity={current ? 1 : .85}>     
+  <Banner  main={color ? color : design.accent} opacity={current ? 1 : .85}>     
     <p>Are you sure you want to delete <strong>{person.name}</strong>?</p> 
     <Button backgroundColor="black" onClick={() => setDel(false)}>No</Button>
     <Button backgroundColor="black" onClick={handleDelete}>Confirm Delete</Button>
@@ -81,8 +80,8 @@ const PersonShow = () => {
   </div>
   :
   <div>
-  <Banner  main={color ? color : "black"} opacity={current ? 1 : .85}>      
-  {has ? "" :<EditButton backgroundColor={color ? color : "black"} accent="whitesmoke" side="right" onClick={() => setDel(!del)}>🗑️</EditButton>}
+  <Banner  main={color ? color : design.accent} opacity={current ? 1 : .85}>      
+  {has ? "" :<EditButton backgroundColor={color ? color : design.accent} accent="whitesmoke" side="right" onClick={() => setDel(!del)}>🗑️</EditButton>}
   <br/>
     <p>{person.name}</p>
     <p>{person.title}</p>

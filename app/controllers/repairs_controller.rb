@@ -28,7 +28,13 @@ class RepairsController < ApplicationController
     end
 
     def destroy
-
+        repair = @current_user.repairs.find(params[:id])
+        if repair.valid?
+            repair.destroy
+            render json: { response: "content deleted"}, status: :ok
+        else
+            render json: { errors: repair.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     private

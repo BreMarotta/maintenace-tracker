@@ -7,10 +7,10 @@ import { useDesign } from '../designs/useDesign';
 const Person = ({ person }) => {
   const design = useDesign()
   return (
-    <PersonCard highlight={person.color ? person.color : "black"} backgroundColor={person.current ? "white" : "lightgray"} >
+    <PersonCard highlight={person.color ? person.color : design.accent} backgroundColor={person.current ? "white" : "lightgray"} >
           <Link to={`/people/${person.id}`}>
                     <StyledLink>
-                      <Button backgroundColor={person.color ? person.color : "black"}>{person.name}</Button>
+                      <Button backgroundColor={person.color ? person.color : design.accent}>{person.name}</Button>
                     </StyledLink>
                   </Link>
               {person.title}    

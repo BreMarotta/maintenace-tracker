@@ -10,11 +10,9 @@ const Repairs = (props) => {
   const design = useDesign()
   const repairs = useSelector(state => state.repairs.repairs)
 
-  // console.log(props)
-
   const fRepairs = props.person ? repairs.filter(r => r.person_id === props.person.id) : repairs
 
-  const display = fRepairs.map(r => <div><Repair key={r.id} repair={r} /><br/></div>)
+  const display = fRepairs.map(r => <div><Repair key={r.id} repair={r} person={props.person}/><br/></div>)
 
   return (
     <StyledBackground backgroundColor={design.background}>
