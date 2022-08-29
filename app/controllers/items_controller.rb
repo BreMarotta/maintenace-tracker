@@ -24,7 +24,8 @@ class ItemsController < ApplicationController
     end
 
     def update 
-
+        # byebug
+        
         item = @current_user.items.find(params[:id])
         item.update(item_params)
         if item.valid?

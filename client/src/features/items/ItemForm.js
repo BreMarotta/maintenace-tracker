@@ -28,6 +28,7 @@ const ItemForm = (props) => {
     const mod = (props.item !== undefined || null ? props.item.model : "")
     const war = (props.item !== undefined || null ? props.item.warrenty : "")
     const image = (props.item !== undefined || null ? props.item.img : "")
+    const z = (props.item !== undefined || null ? parseInt(params.id) : "")
     
     const errors = useSelector(state => state.items.errors);
     const errorLis = errors.map(e => <ErrorLi key={e}> {e}</ErrorLi>)
@@ -42,7 +43,7 @@ const ItemForm = (props) => {
         model: mod,
         warrenty: war,
         img: image,   
-        id: params.id 
+        id: z
     })
 
     const handleSelect = (type, id) => {
@@ -68,6 +69,7 @@ const ItemForm = (props) => {
 
     const handleUpdate = (e) => {
         e.preventDefault()
+        console.log(itemObj)
         dispatch(updateItem(itemObj))
         props.toggle()
         props.updateItem(itemObj)
