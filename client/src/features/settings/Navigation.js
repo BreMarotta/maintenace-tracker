@@ -31,7 +31,7 @@ const Navigation = () => {
           
           <NavLink to="/locations" ><StyledLink backgroundColor={design.main}>Locations</StyledLink></NavLink>
           <NavLink to="/categories" ><StyledLink backgroundColor={design.main}>Categories</StyledLink></NavLink>
-          <NavLink to='/settings' ><StyledLink backgroundColor={design.main}>⚙️ Settings</StyledLink></NavLink>
+          <NavLink to='/settings' ><StyledLink backgroundColor={design.main}>⚙️</StyledLink></NavLink>
           
           
           <hr color={design.accent}/>
