@@ -8,6 +8,7 @@ import { CenteredForm } from '../../Styles/Form.style';
 import { useDesign } from '../designs/useDesign';
 
 const PartForm = (props) => {
+    console.log(props)
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch();
     const params = useParams();
@@ -42,7 +43,7 @@ const PartForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addPart(partObj))
-        props.toggleForm()
+        props.toggle()
     }
 
     const handleUpdate = (e) => {
