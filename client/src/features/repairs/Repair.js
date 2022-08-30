@@ -53,9 +53,12 @@ const Repair = (props) => {
       {props.repair.complete == false || null ? "Ongoing Repair"  : complete}
       <br/>
       {props.repair.cost == null ? "" : `Cost: $${props.repair.cost}`}
+      <br/>
+      {props.repair.summary == null || "" ? "" : `${props.repair.summary}`}
     </div>
 
     <h5>{person ? `Repair by: ${person.name}` : ""}</h5>
+
     <Button backgroundColor={person.color ? person.color : "black"}><Link to={`/repairs/${props.repair.id}/update`} ><StyledLink>Update Repair Info</StyledLink></Link></Button>
   </div>
 
