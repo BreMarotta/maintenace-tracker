@@ -60,19 +60,22 @@ const ItemForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addItem(itemObj))
-            console.log(errors)
-            if(errors.length < 1){
-                history.push('/items')
-            }
-
+        console.log(errors)
+        if(errors.length < 1){
+            history.push('/items')
+        }
     }
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        console.log(itemObj)
         dispatch(updateItem(itemObj))
-        props.toggle()
-        props.updateItem(itemObj)
+        .then(data => {
+            if(!data.payload.errors){
+                props.toggle()
+                props.updateItem(itemObj)
+                dispatch(clearItemErrors())
+            }
+        })
     }
     
     const toggleCategory = () => {setShowCategory(!showCategory)}
@@ -108,8 +111,6 @@ const ItemForm = (props) => {
     <div>
         <CategoriesDropDown handleSelect={handleSelect} />
         <LocationsDropDown handleSelect={handleSelect} />
-        {/* <DropDown type={"locations"} handleSelect={handleSelect} /> */}
-        {/* {locationDrop} */}
     </div>
      )
 

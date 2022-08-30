@@ -19,13 +19,7 @@ class ItemsController < ApplicationController
         render json: item
     end
 
-    def index 
-
-    end
-
     def update 
-        # byebug
-        
         item = @current_user.items.find(params[:id])
         item.update(item_params)
         if item.valid?
@@ -33,12 +27,6 @@ class ItemsController < ApplicationController
         else
             render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
         end
-    end
-
-    def destroy
-        item = @current_user.items.find(params[:id])
-        item.destroy
-        head :no_content
     end
 
     private

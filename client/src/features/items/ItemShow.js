@@ -1,19 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ItemForm from './ItemForm';
-import { deleteItem, deleteItemFront } from './itemsSlice';
 import { DisperseInfo } from '../../Disperse';
 import PartsContainer from '../parts/PartsContainer';
-import { Button, StyledBackground, Banner } from '../../Styles/Styled';
+import { EditButton, StyledBackground, Banner } from '../../Styles/Styled';
 import { ShowGrid } from '../../Styles/Cards.style';
 import { useDesign } from '../designs/useDesign';
 import Login from '../settings/Login';
 
 const ItemShow = () => {
   const params = useParams()
-  const dispatch = useDispatch()
-  const history = useHistory()
   const design = useDesign()
   const { loggedIn } = useContext(DisperseInfo)
 
@@ -39,13 +36,7 @@ const ItemShow = () => {
   const toggle = () => {setShowForm(!showForm)}
 
   const updateItem = (obj) => {
-    setItem(obj)
-  }
-
-  const handleDelete = () => {
-    dispatch(deleteItem(item))
-    dispatch(deleteItemFront(item.id))
-    history.push('/items')
+      setItem(obj)
   }
 
   const display = showForm == true ? 
@@ -68,8 +59,8 @@ const ItemShow = () => {
       </div>
       <img src={item.img} alt="No Image Available" />
       <br/>
-      <Button backgroundColor={design.main} onClick={toggle}>Update</Button>
-      <Button backgroundColor={design.main} onClick={handleDelete}>Delete</Button>
+      <br/>
+      
     </ShowGrid>
     <br/>
     <PartsContainer item={item}/>
@@ -80,8 +71,12 @@ const ItemShow = () => {
     return (
     <>
       <StyledBackground backgroundColor={design.background}> 
-        <Banner main={design.main}>{item.name}</Banner>
-            {display}
+        <Banner main={design.main}>
+          <EditButton backgroundColor={design.main} onClick={toggle} side="right" accent={design.accent}>✎</EditButton>
+          {item.name}
+          <hr color={design.accent}/>   
+        </Banner>
+        {display}
       </StyledBackground>
     </>
   )} else if (loggedIn && params.id == "new"){
