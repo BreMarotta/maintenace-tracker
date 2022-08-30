@@ -43,13 +43,13 @@ const Category = ({ category }) => {
 
   const display = showForm ?
   <div>
-    <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={toggle}>✎</EditButton>
+    <EditButton backgroundColor="white" accent={design.accent} side="left" onClick={toggle}>✎</EditButton>
     <CategoryForm category={category} toggle={toggle} />
   </div>
   : showItems ?
   <div>
     <br/>
-    <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setShowItems(!showItems)}>...</EditButton>
+    <EditButton backgroundColor="white" accent={design.accent} side="left" onClick={() => setShowItems(!showItems)}>...</EditButton>
     <Banner main={design.main}>{category.name}</Banner>
     <Items category={category} />
   </div>
@@ -62,8 +62,8 @@ const Category = ({ category }) => {
   :
   <StyledLi backgroundColor={design.background}>
     <span>
-      {has == undefined ? <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setDel(!del)}>🗑️</EditButton> : <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setShowItems(!showItems)}>...</EditButton>}
-      <EditButton backgroundColor={design.background} accent={design.accent} side="left" onClick={() => setShowForm(!showForm)}>✎</EditButton>
+      {has == undefined ? <EditButton backgroundColor="white" accent={design.accent} side="left" onClick={() => setDel(!del)}>🗑️</EditButton> : <EditButton backgroundColor="white" accent={design.accent} side="left" onClick={() => setShowItems(!showItems)}>...</EditButton>}
+      <EditButton backgroundColor="white" accent={design.accent} side="left" onClick={() => setShowForm(!showForm)}>✎</EditButton>
         <br/>
         {category.name} 
         <hr/>

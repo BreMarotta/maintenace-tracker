@@ -13,17 +13,8 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by(id: session[:user_id])
-        # user.sort_info
         render json: user
     end
-
-    # def update
-    #     # byebug 
-    #     user = User.find_by(id: session[:user_id])
-    #     user.save(user_params)
-    #     # @current_user.save!
-    #     render json: user
-    # end
 
     private
 

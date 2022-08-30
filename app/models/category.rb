@@ -5,7 +5,4 @@ class Category < ApplicationRecord
 
     validates :name, presence: true, uniqueness: { scope: :user_id}
 
-    def self.sort_order
-        self.order("name": :asc)
-    end
 end

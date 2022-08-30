@@ -13,7 +13,7 @@ const Footer = () => {
       <StyledFooterLink href="https://github.com/BreMarotta/maintenace-tracker" target="_blank">Github Repository
       </StyledFooterLink>
       <StyledFooterLink href="" target="_blank">Blog</StyledFooterLink>
-      <StyledFooterLink href="" target="_blank">YouTube</StyledFooterLink>
+      <StyledFooterLink href="https://youtu.be/QWsiBidTEes" target="_blank">YouTube</StyledFooterLink>
     </StyledFooter>
   )
 }
