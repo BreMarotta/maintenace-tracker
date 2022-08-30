@@ -102,7 +102,7 @@ const PersonShow = () => {
   )
  } else {
   return(
-    <Login />
+    <div></div>
     )
   }
   
