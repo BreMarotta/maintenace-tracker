@@ -18,7 +18,6 @@ const PersonShow = () => {
 
   const repairs = useSelector(state => state.repairs.repairs)
 
-
   const [person, setPerson] = useState({}) 
   const [color, setColor] = useState("")
   const [current, setCurrent] = useState(true)
@@ -30,23 +29,22 @@ const PersonShow = () => {
 
   useEffect(() => {
     if(params.id != "new"){
-    fetch(`/api/people/${params.id}`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.error || data.errors){
-        setError(true)
-      } else{
-        setColor(data.color)
-        setCurrent(data.current)
-        setPerson(data)
-        setError(false) 
-      } 
-    })
-  }
+      fetch(`/api/people/${params.id}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.error || data.errors){
+          setError(true)
+        } else{
+          setColor(data.color)
+          setCurrent(data.current)
+          setPerson(data)
+          setError(false) 
+        } 
+      })
+    }
   }, [])
 
   const handleDelete = () => {
-    console.log(person)
     dispatch(deletePerson(person))
     .then(data => {
       if(!data.payload.errors && !data.payload.error){
@@ -80,20 +78,14 @@ const PersonShow = () => {
   </div>
   :
   <div>
-  <Banner  main={color ? color : design.accent} opacity={current ? 1 : .85}>      
-  {has ? "" :<EditButton backgroundColor={color ? color : design.accent} accent="whitesmoke" side="right" onClick={() => setDel(!del)}>🗑️</EditButton>}
-  <br/>
-    <p>{person.name}</p>
-    <p>{person.title}</p>
-    <p>{person.repair_sum == 0 ? "" : `Repair Cost Total: $${person.repair_sum}`}</p>
-    <label>Update Information </label>
-          <input
-            type="checkbox"
-            checked={showForm}
-            onChange={toggle}/>        
-          <hr/>
-
-          
+    <Banner  main={color ? color : design.accent} opacity={current ? 1 : .85}> 
+      <EditButton backgroundColor={color ? color : design.accent} accent="whitesmoke" side="right" onClick={toggle}>✎</EditButton>     
+      {has ? "" :<EditButton backgroundColor={color ? color : design.accent} accent="whitesmoke" side="right" onClick={() => setDel(!del)}>🗑️</EditButton>}
+      <br/>
+        <p><strong>{person.name}</strong></p>
+        <p>{person.title}</p>
+        <p>{person.repair_sum == 0 ? "" : `Repair Cost Total: $${person.repair_sum}`}</p>     
+        <hr color={design.accent}/>  
     </Banner>
     <StyledBackground backgroundColor={design.background}>
           <Repairs person={person}/>
