@@ -49,7 +49,7 @@ const itemsSlice = createSlice({
                 state.status = "idle";
                 state.errors = [];
             } else if (action.payload.error){
-                console.log(action.payloac)
+                console.log(action.payload)
                 state.errors = ['Category must exist'];
                 state.status = "idle";
             } else {

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { clearCatErrors } from './categoriesSlice';
+import { useDispatch } from 'react-redux';
 import CategoryForm from './CategoryForm';
 
 const CategoriesDropDown = (props) => {
-  // console.log(props)
+  const dispatch = useDispatch()
     const categories = useSelector(state => state.categories.categories)
-    const [category, setCategory] = useState("")
     const [showForm, setShowForm] = useState(false)
 
     const dropDown = categories.map(x => <option value={x.id} key={x.id}>{x.name}</option>)
@@ -15,11 +16,16 @@ const CategoriesDropDown = (props) => {
     const formFlag = showForm == true ? <CategoryForm toggle={toggle}/> : ""
 
     const handleCategorySelect = (e) => {
-        e.target.value == "add" ? toggle() : props.handleSelect("category_id", e.target.value)
+      if(e.target.value == "add"){
+        dispatch(clearCatErrors())
+        setShowForm(true)
+      } else {
+        setShowForm(false)
+        props.handleSelect("category_id", e.target.value)
+      }
     }
 
     const d = (props.cat !== undefined || null ? props.cat : "")
-    // const dText = (props.cat !== undefined || null ? )
 
   return (
     <div>

@@ -60,10 +60,11 @@ const ItemForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addItem(itemObj))
-        console.log(errors)
-        if(errors.length < 1){
-            history.push('/items')
-        }
+        .then(data => {
+            if(!data.payload.errors && !data.payload.error){
+              history.push('/items')  
+            }
+        })
     }
 
     const handleUpdate = (e) => {

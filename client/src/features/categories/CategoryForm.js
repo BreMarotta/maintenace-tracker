@@ -8,6 +8,7 @@ import { StyledBackground, Button } from '../../Styles/Styled';
 import { Form, ErrorLi } from '../../Styles/Form.style';
 
 const CategoryForm = (props) => {
+    console.log(props)
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -35,7 +36,7 @@ const CategoryForm = (props) => {
         dispatch(addCategory(categoryObj))
         .then(data => {
             console.log(data)
-            if(!data.payload.errors && data.payload.error){
+            if(!data.payload.errors && !data.payload.error){
                 const x = data.payload.id
                 setCategoryObj({...categoryObj, ["id"]: x})
                 if(props.toggle) {
@@ -43,6 +44,8 @@ const CategoryForm = (props) => {
                 } else {
                     history.push('/categories')
                 }
+            }else {
+                
             }
         })
     }
@@ -67,6 +70,7 @@ const CategoryForm = (props) => {
         return (
             <StyledBackground backgroundColor={design.background}>
                 <Form className="categoryForm" onSubmit={submitFunction}>
+                    {errorLis}
                     <label>Category Name: </label>
                         <input
                             style={{width: "100%"}}
@@ -77,8 +81,7 @@ const CategoryForm = (props) => {
                             onChange={handleChange} />
                         <br/>
                     <Button backgroundColor={design.accent} type="submit">{buttonText}</Button>
-                </Form>
-                {errorLis}
+                </Form>  
             </StyledBackground>
         ) 
     } else {

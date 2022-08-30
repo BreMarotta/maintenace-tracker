@@ -23,8 +23,6 @@ const Locations = () => {
     }
   }, [])
 
-
-  
   if (loggedIn){
     return (
     <StyledBackground backgroundColor={design.background}>

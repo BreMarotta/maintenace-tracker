@@ -17,10 +17,8 @@ const Repair = (props) => {
   const person  = people.find(y => y.id === props.repair.person_id)
 
   const thing = props.repair.repairable_type == "Item" ? items.find(x => x.id == props.repair.repairable_id) : parts.find(x => x.id == props.repair.repairable_id)
-  console.log("thing: ", thing)
   
   const p = props.repair.repairable_type == "Part" ? items.find(x => x.id == thing.item_id) : "repair on item"
-console.log("p: ", p)
 
   const complete = props.repair.date !== null ? `Completed on ${props.repair.date}` : "" 
 
