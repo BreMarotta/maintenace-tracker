@@ -8,7 +8,6 @@ import { StyledBackground, Button } from '../../Styles/Styled';
 import { Form, ErrorLi } from '../../Styles/Form.style';
 
 const CategoryForm = (props) => {
-    console.log(props)
     const { loggedIn } = useContext(DisperseInfo)
     const dispatch = useDispatch()
     const history = useHistory()
