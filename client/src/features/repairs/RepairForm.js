@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { addRepair, updateRepair } from './repairsSlice'
 import { DisperseInfo } from '../../Disperse'
 import { Button, StyledBackground } from '../../Styles/Styled'
-import { Form } from '../../Styles/Form.style'
+import { Form, ErrorLi } from '../../Styles/Form.style'
 import { useDesign } from '../designs/useDesign'
 import PeopleDropDown from '../people/PeopleDropDown'
 import ItemsDropDown from '../items/ItemsDropDown'
@@ -21,6 +21,7 @@ const RepairForm = () => {
     const [upItem, setUpItem] = useState({});
     const [upPart, setUpPart] = useState({});
     const [addSummary, setAddSummary] = useState(false)
+    const [repairError, setRepairError] = useState(false)
     
     const [repairObj, setRepairObj] = useState({
         id: "",
@@ -57,10 +58,8 @@ const RepairForm = () => {
     const repairs = useSelector((state) => state.repairs.repairs)
     const upRepair = repairs.find(x => x.id == params.id)
 
-
-
     const errors = useSelector(state => state.repairs.errors);
-    const errorLis = errors.map(e => <li key={e}>{e}</li>)
+    const errorLis = errors.map(e => <ErrorLi key={e}>{e}</ErrorLi>)
 
     const handleSelect = (type, id) => {
         const newObj = {...repairObj, [type]: id}
@@ -69,6 +68,7 @@ const RepairForm = () => {
     const handleRepairableSelect = (type, id, x) => {
         const newObj = {...repairObj, [type]: id, ["repairable_type"]: x}
         setRepairObj(newObj)
+        setRepairError(false)
         if(x == "Item"){
             setItemId(id)
         } else {
@@ -87,9 +87,18 @@ const RepairForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(repairObj)
-        dispatch(addRepair(repairObj))
-        history.push('/repairs')
+        if(!repairObj.repairable_id || !repairObj.repairable_type){
+            console.log("No id")
+            setRepairError(true)
+        } else {
+            setRepairError(false)
+            dispatch(addRepair(repairObj))
+            .then(data => {
+                if(!data.payload.errors){
+                   history.push('/repairs') 
+                }
+            })  
+        }
     }
 
     const handleUpdate = (e) => {
@@ -141,6 +150,8 @@ const RepairForm = () => {
                 <PartsDropDown handleRepairableSelect={handleRepairableSelect} itemId={itemId} upPart={pPart}/>
 
                 <Form onSubmit={submitFunction}>
+                    {repairError ? <ErrorLi>Must select an Item or Part for the Repair</ErrorLi> : ""}
+                    {errorLis}
                     <label>Label: </label>
                         <input
                                 type="text"
