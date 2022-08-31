@@ -38,7 +38,7 @@ The user can:
 
 
 
-## Additional Information:
+## Visit the Site:
 
 This project has been deployed via [heroku](https://project-maintenance-tracker.herokuapp.com/) 
 * There is no seeded data, so to visit a dummy site populated with information, login in with:
@@ -46,15 +46,16 @@ This project has been deployed via [heroku](https://project-maintenance-tracker.
     * password: 1234
     * Heroku just announced changes effective 11/28/22 which may alter the availability of this application.
 
-
+## Additional Information:
 
 * Please check out the [YouTube](https://youtu.be/QWsiBidTEes) walk through video to see a highlight of some of the SPA features. 
 
 * I also wrote multiple blogs regarding this project:
-    * [Project Blog]()
-    * [Redux Toolkit: createAsyncThunk]()
+    * [Project Blog](https://medium.com/@bremarotta/maintenance-tracker-application-688ed3d939ba)
+    * [Redux Toolkit: createAsyncThunk](https://medium.com/@bremarotta/redux-toolkit-createasyncthunk-829e139ea623)
     * [Rails: accepts_nested_attributes_for](https://medium.com/@bremarotta/rails-accepts-nested-attributes-for-f0a588d88a2)
     * [React: Styled Components](https://medium.com/@bremarotta/react-styled-components-440cc25004cf)
+    * [Polymorphic Associations in Ruby on Rails](https://medium.com/@bremarotta/polymorphic-associations-in-ruby-on-rails-68f6f33efbb)
 
 ##
 #### License

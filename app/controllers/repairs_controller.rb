@@ -7,7 +7,7 @@ class RepairsController < ApplicationController
         if repair.valid?
             render json: repair, status: :created
         else
-            render json: { error: "Must Assign Repair to an Item or a Part of an Item" },
+            render json: { errors: "Must Assign Repair to an Item or a Part of an Item" },
             status: :unprocessable_entity   
         end
     end
@@ -44,6 +44,7 @@ class RepairsController < ApplicationController
     end
 
     def find_repairable
+        
         @klass = params[:repairable_type].capitalize.constantize
         @thing = @klass.find(params[:repairable_id])
     end
