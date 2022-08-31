@@ -25,7 +25,7 @@ const Part = ({ part, toggleForm }) => {
   return (
     <div>
         <Card   accent={design.accent} onMouseEnter={() => setShowDetails(true)} onMouseLeave={() => setShowDetails(false)}>  
-        <img src={part.img} alt={part.name} />
+        <img src={part.img ? part.img : "https://miro.medium.com/max/1400/1*JvriTgiihk6SS1lxSM7rKg.jpeg"} alt={part.name} />
         <br/>
         <h3>{details}</h3>
         <Button onClick={handleClick}>Update</Button>           

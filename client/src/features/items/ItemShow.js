@@ -57,7 +57,7 @@ const ItemShow = () => {
           {item.warrenty ? <p>Warrenty Info: {item.warrenty}<br/></p> : ""}
           {item.purchase_year ? <p>Purchased: {item.purchase_year}<br/></p> : ""}
       </div>
-      <img src={item.img} alt="No Image Available" />
+      <img src={item.img ? item.img : "https://miro.medium.com/max/1400/1*JvriTgiihk6SS1lxSM7rKg.jpeg"} alt="No Image Available" />
       <br/>
       <br/>
       
