@@ -20,17 +20,6 @@ const UserProvider = ({children}) => {
 
     useEffect(() => {
         getMe()
-        // fetch('/me')
-        // .then(res => res.json())
-        // .then((data) => {
-        //     if(!data.errors) {
-        //         setLoggedIn(true)
-        //         initAll(data) 
-        //     } else {
-        //         setLoggedIn(false)
-        //         clearAll()
-        //     }            
-        // })
     }, [])
 
     const getMe = () => {
@@ -50,6 +39,7 @@ const UserProvider = ({children}) => {
     const initAll = (user) => {
         setLoggedIn(true)
         console.log(user)
+        alert("call init functions for data")
         dispatch(initUser(user))
         dispatch(initDesign(user.designs))
         dispatch(initPeople(user.people))
@@ -74,6 +64,7 @@ const UserProvider = ({children}) => {
         setLoggedIn(true)
         initAll(user)
     }
+    
     const handleLogout = () => {
         setLoggedIn(false)
         clearAll()
