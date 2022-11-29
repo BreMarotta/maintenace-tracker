@@ -26,3 +26,6 @@ class UserSerializer < ActiveModel::Serializer
   has_many :repairs, through: :people
 
 end
+
+
+
